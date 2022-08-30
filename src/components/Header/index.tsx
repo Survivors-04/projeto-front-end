@@ -1,25 +1,23 @@
-import { Container } from "./style";
-import iconUserHeader from "../../assets/imgs/iconUserHeader.svg";
+import { StyledContainer } from "./style";
 import logoHeader from "../../assets/imgs/logoHeader.svg";
+import menuLogo from "../../assets/imgs/menu.svg";
+import { useState } from "react";
+import Modal from "../Modal";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Container>
+    <StyledContainer>
       <div>
-        <img src={logoHeader} alt="" />
-        <nav>
-          <a href="">Início</a>
-          <a href="">Recompensa</a>
-          <a href="">Mercado</a>
-          <a href="">Ajuda</a>
-          <a href="">Sobre Nós</a>
-        </nav>
-        <span>100g</span>
-        <button>
-          <img src={iconUserHeader} alt="" />
+        <img src={logoHeader} alt="" className="logoGroup" />
+
+        <button onClick={() => setIsOpen(!isOpen)} className="button-menu">
+          <img src={menuLogo} alt="" />
         </button>
+        {isOpen && <Modal setIsOpen={setIsOpen} />}
       </div>
-    </Container>
+    </StyledContainer>
   );
 };
 
