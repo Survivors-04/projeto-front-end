@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import iconUserHeader from "../../assets/imgs/iconUserHeader.svg";
-import { StyledDiv } from "./style";
+import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ModalContext } from "../../context/ModalContext";
+import { StyledModalBox, StyledModalContainer } from "./style";
 
-interface IModal {
-  setIsOpen: (open: boolean) => void;
+interface iModal {
+  children: ReactNode;
+  setIs: (arg0: boolean) => void
 }
 
 export interface IEvent {
@@ -11,14 +12,13 @@ export interface IEvent {
   target: HTMLDivElement | any;
 }
 
-const Modal = ({ setIsOpen }: IModal) => {
-  const [isLogged, setIsLogged] = useState(false);
-  const modalRef = useRef<null | HTMLParagraphElement>(null);
+const Modal = ({ children, setIs }: iModal) => {
+  const modalRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    function handleOutClick(event: IEvent) {
+    function handleOutClick(event: any) {
       if (!modalRef.current?.contains(event.target)) {
-        setIsOpen(false);
+        setIs(false);
       }
     }
 
@@ -27,36 +27,12 @@ const Modal = ({ setIsOpen }: IModal) => {
     return () => {
       document.removeEventListener("mousedown", handleOutClick);
     };
-  }, []);
+  }, [setIs]);
 
   return (
-    <StyledDiv>
-      <ul className="menu">
-        <li>
-          <button>Início</button>
-        </li>
-        <li>
-          <button>Recompensa</button>
-        </li>
-        <li>
-          <button>Mercado</button>
-        </li>
-        <li>
-          <button>Ajuda</button>
-        </li>
-        <li>
-          <button>Sobre nós</button>
-        </li>
-        {isLogged && <span>100g</span>}
-        {isLogged ? (
-          <button>
-            <img src={iconUserHeader} alt="" />
-          </button>
-        ) : (
-          <button>Login</button>
-        )}
-      </ul>
-    </StyledDiv>
+    <StyledModalContainer>
+      <StyledModalBox ref={modalRef}>{children}</StyledModalBox>
+    </StyledModalContainer>
   );
 };
 

@@ -1,25 +1,37 @@
 import styled from "styled-components";
 
-export const StyledDiv = styled.div`
-  width: 100%;
-  display: flex;
-  top: 0px;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+export const StyledModalContainer = styled.div`
   position: fixed;
 
-  > .menu {
-    background: #ffc;
-    border: 1px solid #ccc;
-    border-radius: 0.3em;
-    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    margin-top: 80px;
-    right: 10px;
-    transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-    > li {
-      padding: 0.2em 0.4em;
-    }
+  width: 100%;
+  min-height: 100vh;
+
+  background: rgba(0, 0, 0, 0.5);
+  /* inset: 0; */
+`;
+
+export const StyledModalBox = styled.div`
+  width: 95%;
+  background: var(--color-gray-2);
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+
+  border-radius: 5px 5px 0 0;
+  
+  @media screen and (min-width: 768px) {
+    width: 70%;
   }
+
+  @media screen and (min-width: 1024px) {
+    width: 70%;
+  }
+
 `;
