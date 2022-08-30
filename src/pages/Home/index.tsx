@@ -6,7 +6,7 @@ import StyledButton from "../../components/Button/styles";
 const Home = () => {
   return (
     <>
-      <StyledHome>45456</StyledHome>
+      <Header />
       <StyledContainer>
         <StyledBoosterList>
           {boosters.map(({ imgUrl, title, price }) => (
@@ -24,7 +24,5 @@ const Home = () => {
         </StyledBoosterList>
       </StyledContainer>
     </>
-  );
-};
-
+    
 export default Home;
