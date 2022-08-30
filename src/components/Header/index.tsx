@@ -1,6 +1,6 @@
 import { StyledContainer } from "./style";
-import logoHeader from "../../assets/imgs/logoHeader.svg";
-import menuLogo from "../../assets/imgs/menu.svg";
+import logoHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
+import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
 import { useState } from "react";
 import Modal from "../Modal";
 
@@ -15,7 +15,7 @@ const Header = () => {
         <button onClick={() => setIsOpen(!isOpen)} className="button-menu">
           <img src={menuLogo} alt="" />
         </button>
-        {isOpen && <Modal setIsOpen={setIsOpen} />}
+        {/* {isOpen && <Modal />} */}
       </div>
     </StyledContainer>
   );
