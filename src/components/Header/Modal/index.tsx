@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import iconUserHeader from "../../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import { StyledDiv } from "./style";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { GiOpenTreasureChest } from "react-icons/gi";
 import { BsFillCartFill } from "react-icons/bs";
 import { IoIosHelpCircle } from "react-icons/io";
@@ -71,7 +71,10 @@ const Modal = ({ setIsOpen }: IModal) => {
                 <img src={iconUserHeader} alt="" />
               </button>
             ) : (
-              <button>Login</button>
+              <li>
+                <FaUser />
+                <a href="/">Login</a>
+              </li>
             )}
           </ul>
         </motion.div>
