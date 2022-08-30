@@ -8,21 +8,24 @@ const StyledButton = styled.button<iStyledButton>`
   width: ${({ width }) => width}%;
   background: var(--color-red);
   font-family: inherit;
-  padding: 0.6em 1.3em;
+  padding: 10px 21px;
+
   font-weight: 900;
   font-size: 18px;
+
   border: 3px solid black;
-  border-radius: 0.4em;
-  box-shadow: 0.1em 0.1em;
+  border-radius: 8px;
+  box-shadow: 1.6px 1.6px;
 
   :hover {
-    transform: translate(-0.05em, -0.05em);
-    box-shadow: 0.15em 0.15em;
+    background-color: var(--color-red-focus);
+    transform: translate(-1px, -1px);
+    box-shadow: 2.4px 2.4px;
   }
 
   :active {
-    transform: translate(0.05em, 0.05em);
-    box-shadow: 0.05em 0.05em;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px;
   }
 `;
 
