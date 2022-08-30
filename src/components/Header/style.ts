@@ -48,6 +48,7 @@ export const Nav = styled.nav`
         a {
           color: var(--color-gray-4);
           font-size: 16px;
+          cursor: pointer;
         }
       }
     }

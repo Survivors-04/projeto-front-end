@@ -8,6 +8,9 @@ export const StyledDiv = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
 
+  @media screen and (min-width: 700px) {
+    background: none;
+  }
   .div-transition {
     .menu {
       width: 100%;

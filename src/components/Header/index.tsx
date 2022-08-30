@@ -20,6 +20,7 @@ const Header = () => {
 
         {isOpen && <Modal setIsOpen={setIsOpen} />}
       </div>
+
       <Nav>
         <ul>
           <li>
@@ -44,7 +45,7 @@ const Header = () => {
                 <img src={iconUserHeader} alt="" />
               </button>
             ) : (
-              <button>Login</button>
+              <a href="/">Login</a>
             )}
           </li>
         </ul>
