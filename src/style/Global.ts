@@ -8,6 +8,8 @@ export default createGlobalStyle`
     --color-gray-3: #212529;
     --color-gray-2: #343B41;
     --color-gray-1: #868E96;
+    --color-yellow: #FFD700;
+    --color-blue: #4169E1;
     --color-success: #168821;
     --color-error: #E60000;
     font-size: 60%; 
@@ -68,6 +70,9 @@ export default createGlobalStyle`
   }
   ul {
     list-style: none;
+  }
+  span {
+    color: var(--color-yellow)
   }
   /* width */
   ::-webkit-scrollbar {
