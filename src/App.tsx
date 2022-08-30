@@ -5,9 +5,11 @@ import Global from "./style/Global";
 function App() {
   return (
     <>
+
       <Global/>
       <Home />;
       <Login />
+
     </>
   );
 }
