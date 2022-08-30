@@ -5,9 +5,9 @@ import Global from "./style/Global";
 function App() {
   return (
     <>
-      <Global />
+      <Global/>
       <Home />;
-      <Login/>
+      <Login />
     </>
   );
 }
