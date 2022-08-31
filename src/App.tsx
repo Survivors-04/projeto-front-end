@@ -1,11 +1,14 @@
-import Home from "./pages/Home";
+import Context from "./context/Context";
+import MainRoutes from "./routes/mainRoutes";
 import Global from "./style/Global";
 
 function App() {
   return (
     <>
-      <Global />
-      <Home />;
+      <Context>
+        <Global />
+        <MainRoutes />
+      </Context>
     </>
   );
 }
