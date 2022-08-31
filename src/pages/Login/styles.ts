@@ -1,6 +1,6 @@
 import "../../style/Global";
 import styled from "styled-components";
-import ImgSrc from "../../../assets/imgs/Login/image-removebg-preview.png";
+import ImgSrc from "../../assets/imgs/Login/image-removebg-preview.png";
 
 export const ContainerLogin = styled.div`
   width: 85%;

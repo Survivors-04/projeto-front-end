@@ -1,30 +1,24 @@
 
-import { ContainerLogin } from "./Login";
-import Charmander from "../../assets/imgs/Login/Charmander.svg";
 import StyledContainer from "../../components/Container/styles";
-
+import { ContainerLogin } from "./styles";
 import { Form } from "../../components/Form";
 
-
-
-
-
-
-export const Login = () => {
- 
+ const Login = () => {
   return (
     <StyledContainer>
 
     <ContainerLogin>
        
-      <main >
+      <main className="main">
        <h2 className="title">Login</h2>
+      
        <Form>
        <button type="submit">Entrar</button>
-       </Form>   
+       </Form>
+
         <div className="register">
           <p>Ainda não possui uma conta?</p>
-          <img src={Charmander} alt="charmander" />
+          <img src={"https://www.pkparaiso.com/imagenes/xy/sprites/animados/charmander.gif"} alt="charmander" />
           <button>Cadastrar</button>
         </div>
       </main>
@@ -32,3 +26,5 @@ export const Login = () => {
     </StyledContainer>
   );
 };
+
+export default Login;

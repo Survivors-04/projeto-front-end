@@ -1,13 +1,14 @@
-import Home from "./pages/Home";
-import { Login } from "./pages/Login";
+import Context from "./context/Context";
+import MainRoutes from "./routes/mainRoutes";
 import Global from "./style/Global";
 
 function App() {
   return (
     <>
-      <Global/>
-      <Home />;
-      <Login />
+      <Context>
+        <Global />
+        <MainRoutes />
+      </Context>
     </>
   );
 }
