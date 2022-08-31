@@ -35,7 +35,7 @@ export const ContainerLogin = styled.div`
       margin-bottom: 35px;
     }
 
-    .formLogin {
+    form {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -78,7 +78,13 @@ export const ContainerLogin = styled.div`
       color: var(--color-gray-4);
     }
 
-    .register {
+ 
+    
+}
+`
+
+export const StyledRegister = styled.div`
+
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -91,20 +97,5 @@ export const ContainerLogin = styled.div`
         font-size: 14px;
         color: var(--color-gray-4);
       }
-    }
-  }
-  @media screen and (min-width: 500px) {
-    width: 80%;
-    height: 650px;
 
-    form {
-      input {
-        width: 500px;
-      }
-    }
-  }
-  @media screen and (min-width: 767px) {
-    width: 80%;
-    height: 780px;
-  }
 `;

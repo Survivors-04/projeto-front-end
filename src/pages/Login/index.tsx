@@ -2,6 +2,7 @@
 import StyledContainer from "../../components/Container/styles";
 import { ContainerLogin } from "./styles";
 import { Form } from "../../components/Form";
+import { StyledRegister } from "./styles";
 
  const Login = () => {
   return (
@@ -16,11 +17,11 @@ import { Form } from "../../components/Form";
        <button type="submit">Entrar</button>
        </Form>
 
-        <div className="register">
+        <StyledRegister>
           <p>Ainda não possui uma conta?</p>
           <img src={"https://www.pkparaiso.com/imagenes/xy/sprites/animados/charmander.gif"} alt="charmander" />
           <button>Cadastrar</button>
-        </div>
+        </StyledRegister>
       </main>
     </ContainerLogin>
     </StyledContainer>
