@@ -1,4 +1,4 @@
-import ModalProvider from "./context/ModalContext";
+import Context from "./context/Context";
 import Home from "./pages/Home";
 import { Login } from "./pages/Login";
 import Global from "./style/Global";
@@ -6,11 +6,11 @@ import Global from "./style/Global";
 function App() {
   return (
     <>
-     <ModalProvider>
+      <Context>
         <Global />
         <Home />
         <Login />
-      </ModalProvider>
+      </Context>
     </>
   );
 }

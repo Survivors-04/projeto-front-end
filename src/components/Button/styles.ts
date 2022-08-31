@@ -8,6 +8,8 @@ const StyledButton = styled.button<iStyledButton>`
   width: ${({ width }) => width}%;
   background: var(--color-red);
   font-family: inherit;
+
+  margin: 5px;
   padding: 10px 21px;
 
   font-weight: 900;
