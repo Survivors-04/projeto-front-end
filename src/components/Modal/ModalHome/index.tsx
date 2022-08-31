@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import Modal from ".";
-import { ModalContext } from "../../context/ModalContext";
-import Button from "../Button";
-import { StyledModalHome } from "./style";
+import Modal from "../ModalBase";
+import { ModalContext } from "../../../context/ModalContext";
+import Button from "../../Button";
+import { StyledModalHome } from "./styled";
 
 interface iPokemon {
   pokemon: string;
   id: number;
 }
 
-const ModalHome = () => {
+export const ModalHome = () => {
   const { setisModalHome } = useContext(ModalContext);
   const testeLimit = 6;
 
@@ -56,11 +56,11 @@ const ModalHome = () => {
               <h3>{pokemon}</h3>
             </li>
           ))}
-            <Button width={60} onClick={() => setisModalHome(false)} >Confirmar</Button>
+          <Button width={60} onClick={() => setisModalHome(false)}>
+            Confirmar
+          </Button>
         </StyledModalHome>
       </Modal>
     </>
   );
 };
-
-export default ModalHome;

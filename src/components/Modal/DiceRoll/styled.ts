@@ -94,6 +94,7 @@ export const StyledNumberRandom = styled.div`
     align-items: center;
   }
   div span {
+    color: var(--color-gray-4);
     width: 80px;
   }
 `;

@@ -5,11 +5,11 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
-import ModalHome from "../../components/Modal/ModalHome";
+import { ModalHome } from "../../components/Modal/ModalHome";
 
 const Home = () => {
   const { isModalHome, setisModalHome } = useContext(ModalContext);
-  
+
   return (
     <>
       <Header />
@@ -25,7 +25,9 @@ const Home = () => {
                   preço: <span>{price}</span>
                 </p>
               </div>
-              <Button width={100} onClick={() => setisModalHome(true)} >Comprar</Button>
+              <Button width={100} onClick={() => setisModalHome(true)}>
+                Comprar
+              </Button>
             </li>
           ))}
         </StyledBoosterList>

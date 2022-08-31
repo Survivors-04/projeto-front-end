@@ -3,7 +3,7 @@ import { StyledModalBox, StyledModalContainer } from "./style";
 
 interface iModal {
   children: ReactNode;
-  setIs: (arg0: boolean) => void
+  setIs: (arg0: boolean) => void;
 }
 
 export interface IEvent {
