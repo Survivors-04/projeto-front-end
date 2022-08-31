@@ -12,7 +12,7 @@ export const ContainerLogin = styled.div`
   border-radius: 12px;
   border: 7px solid rgba(65, 105, 225, 1);
 
-  .main {
+  main {
     width: 100%;
     height: 100%;
 
