@@ -1,6 +1,7 @@
 import StyledContainer from "../../components/Container/styles";
 import { ContainerLogin } from "./styles";
 import { Form } from "../../components/Form";
+import { StyledRegister } from "./styles";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 
@@ -17,7 +18,8 @@ const Login = () => {
             <Button width={25}>Entrar</Button>
           </Form>
 
-          <div className="register">
+
+          <StyledRegister>
             <p>Ainda não possui uma conta?</p>
             <img
               src={
@@ -28,7 +30,7 @@ const Login = () => {
             <Button width={25} onClick={() => navigate("/register")}>
               Cadastrar
             </Button>
-          </div>
+          </StyledRegister>
         </main>
       </ContainerLogin>
     </StyledContainer>
