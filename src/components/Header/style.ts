@@ -11,25 +11,29 @@ export const StyledContainer = styled.header`
     justify-content: space-around;
     gap: 120px;
   }
+`;
 
-  div {
-    display: flex;
+export const StyledDiv = styled.div`
+  display: flex;
 
-    .logoGroup {
-      width: 130px;
+  img {
+    width: 130px;
+  }
+
+  button {
+    border: none;
+    background-color: var(--color-red);
+    position: fixed;
+    right: 0;
+
+    img {
+      width: 50px;
     }
+  }
 
-    .button-menu {
-      border: none;
-      background-color: var(--color-red);
-      position: fixed;
-      right: 0;
-    }
-
-    @media screen and (min-width: 700px) {
-      .button-menu {
-        display: none;
-      }
+  @media screen and (min-width: 700px) {
+    button {
+      display: none;
     }
   }
 `;

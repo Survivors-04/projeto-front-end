@@ -5,14 +5,13 @@ export const StyledDiv = styled.div`
   display: flex;
   top: 0px;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
 
   @media screen and (min-width: 700px) {
     background: none;
   }
   .div-transition {
-    .menu {
+    ul {
       width: 100%;
       background-color: var(--color-red);
       border: 1px solid #ccc;
@@ -40,7 +39,7 @@ export const StyledDiv = styled.div`
     }
 
     @media screen and (min-width: 700px) {
-      .menu {
+      ul {
         display: none;
       }
     }
