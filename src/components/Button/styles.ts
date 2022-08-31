@@ -5,15 +5,27 @@ interface iStyledButton {
 }
 
 const StyledButton = styled.button<iStyledButton>`
-  width: ${({width}) => width}%;
-  
-  border: none;
-  border-radius: 8px;
+  width: ${({ width }) => width}%;
+  background: var(--color-red);
+  font-family: inherit;
+  padding: 10px 21px;
 
-  background-color: var(--color-red);
+  font-weight: 900;
+  font-size: 18px;
+
+  border: 3px solid black;
+  border-radius: 8px;
+  box-shadow: 1.6px 1.6px;
 
   :hover {
     background-color: var(--color-red-focus);
+    transform: translate(-1px, -1px);
+    box-shadow: 2.4px 2.4px;
+  }
+
+  :active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px;
   }
 `;
 

@@ -17,7 +17,6 @@ const Header = () => {
         <button onClick={() => setIsOpen(!isOpen)} className="button-menu">
           <img src={menuLogo} alt="" />
         </button>
-
         {isOpen && <Modal setIsOpen={setIsOpen} />}
       </div>
 
