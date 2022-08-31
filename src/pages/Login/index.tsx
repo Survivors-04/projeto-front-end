@@ -1,17 +1,17 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ContainerLogin } from "./styles";
 
-import { ContainerLogin } from "./Login";
-import Charmander from "../../assets/imgs/Login/Charmander.svg";
 import StyledContainer from "../../components/Container/styles";
+import React from "react";
 
 interface IOnSubmitFunctionProps {
   email: string;
   password: string;
 }
 
-export const Login = () => {
+const Login = () => {
   const formSchema = yup.object().shape({
     email: yup.string().required("Email Obrigatório!").email(),
     password: yup.string().required("Senha Obrigatória!"),
@@ -57,7 +57,12 @@ export const Login = () => {
 
           <div className="register">
             <p>Ainda não possui uma conta?</p>
-            <img src={Charmander} alt="charmander" />
+            <img
+              src={
+                "https://www.pkparaiso.com/imagenes/xy/sprites/animados/charmander.gif"
+              }
+              alt="charmander"
+            />
             <button>Cadastrar</button>
           </div>
         </main>
@@ -65,3 +70,5 @@ export const Login = () => {
     </StyledContainer>
   );
 };
+
+export default Login;
