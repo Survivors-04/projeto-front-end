@@ -22,26 +22,20 @@ export const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IOnSubmitFunctionProps>({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(formSchema),
   });
 
-  const onSubmitFunction = ( data:IOnSubmitFunctionProps ) => {
-    console.log(data)
-  }
-  
+  const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
+    console.log(data);
+  };
 
   return (
     <StyledContainer>
+      <ContainerLogin>
+        <main className="main">
+          <h2 className="title">Login</h2>
 
-
-   
-    <ContainerLogin>
-       
-      <main className="main">
-       <h2 className="title">Login</h2>
-      
-        <form className="formLogin" onSubmit={handleSubmit(onSubmitFunction)}>
-          
+          <form className="formLogin" onSubmit={handleSubmit(onSubmitFunction)}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -59,16 +53,15 @@ export const Login = () => {
             {errors.password?.message}
 
             <button type="submit">Entrar</button>
-            
-        </form>
+          </form>
 
-        <div className="register">
-          <p>Ainda não possui uma conta?</p>
-          <img src={Charmander} alt="charmander" />
-          <button>Cadastrar</button>
-        </div>
-      </main>
-    </ContainerLogin>
+          <div className="register">
+            <p>Ainda não possui uma conta?</p>
+            <img src={Charmander} alt="charmander" />
+            <button>Cadastrar</button>
+          </div>
+        </main>
+      </ContainerLogin>
     </StyledContainer>
   );
 };

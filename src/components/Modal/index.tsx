@@ -1,5 +1,4 @@
-import { ReactNode, useContext, useEffect, useRef } from "react";
-import { ModalContext } from "../../context/ModalContext";
+import { ReactNode, useEffect, useRef } from "react";
 import { StyledModalBox, StyledModalContainer } from "./style";
 
 interface iModal {

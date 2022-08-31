@@ -4,6 +4,7 @@ interface iBoosters {
   imgUrl: string;
   title: string;
   price: string;
+  teste?: object;
 }
 
 const boosters: iBoosters[] = [
@@ -14,18 +15,18 @@ const boosters: iBoosters[] = [
   },
   {
     imgUrl: booster_01,
-    title: "Pacote 01",
-    price: "100g",
+    title: "Pacote 02",
+    price: "200g",
   },
   {
     imgUrl: booster_01,
-    title: "Pacote 01",
-    price: "100g",
+    title: "Pacote 03",
+    price: "300g",
   },
   {
     imgUrl: booster_01,
-    title: "Pacote 01",
-    price: "100g",
+    title: "Pacote 04",
+    price: "400g",
   },
 ];
 
