@@ -4,7 +4,7 @@ import StyledButton from "./styles";
 interface iButton {
   children: React.ReactNode;
   width: number;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button = ({ children, width, onClick }: iButton) => {
