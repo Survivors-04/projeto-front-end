@@ -28,7 +28,7 @@ export const Form = ({children}:IForm)=>{
       }
 
     return (
-        <form className="formLogin" onSubmit={handleSubmit(onSubmitFunction)}>
+        <form  onSubmit={handleSubmit(onSubmitFunction)}>
            <label htmlFor="email">Email</label>
             <input
               type="email"
