@@ -1,6 +1,5 @@
 import Context from "./context/Context";
-import Home from "./pages/Home";
-import { Login } from "./pages/Login";
+import MainRoutes from "./routes/mainRoutes";
 import Global from "./style/Global";
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
     <>
       <Context>
         <Global />
-        <Home />
-        <Login />
+        <MainRoutes />
       </Context>
     </>
   );
