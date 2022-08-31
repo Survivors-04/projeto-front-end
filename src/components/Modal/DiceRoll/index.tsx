@@ -1,15 +1,17 @@
 import {
   StyledConfirmation,
-  StyledContainer,
   StyledConteinerModal,
   StyledRollDice,
   StyledNumberRandom,
   StyledResult,
 } from "./styled";
-import gifConfirmacao from "../../assets/imgs/gifConfirmacao.gif";
-import diceWalking from "../../assets/imgs/diceWalking.webp";
-import { useEffect, useState } from "react";
+import Modal from "../ModalBase";
+import gifConfirmacao from "../../../assets/imgs/DiceRoll/gifConfirmacao.gif";
+import diceWalking from "../../../assets/imgs/DiceRoll/diceWalking.webp";
+import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ModalContext } from "../../../context/ModalContext";
+import Button from "../../Button";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -17,6 +19,8 @@ const DiceRoll = () => {
   const [result, setResult] = useState(false);
   const [animationResult, setAnimationResult] = useState(true);
   const [numberResult, setNumberResult] = useState(1);
+
+  const { setIsModalDice } = useContext(ModalContext);
 
   useEffect(() => {
     if (roll) {
@@ -49,20 +53,21 @@ const DiceRoll = () => {
   };
 
   return (
-    <StyledContainer>
+    <Modal setIs={setIsModalDice}>
       <StyledConteinerModal>
         {confirmation === true && (
           <StyledConfirmation>
             <img src={gifConfirmacao} alt="pokemon" />
             <span>Deseja rolar o dado?</span>
-            <button
+            <Button
+              width={25}
               onClick={() => {
                 setConsfirmation(false);
                 setRoll(true);
               }}
             >
               Sim!
-            </button>
+            </Button>
           </StyledConfirmation>
         )}
         {roll && (
@@ -97,7 +102,7 @@ const DiceRoll = () => {
           </StyledResult>
         )}
       </StyledConteinerModal>
-    </StyledContainer>
+    </Modal>
   );
 };
 

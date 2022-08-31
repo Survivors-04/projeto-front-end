@@ -9,6 +9,8 @@ import {
 interface iModalContext {
   isModalHome: boolean;
   setisModalHome: Dispatch<SetStateAction<boolean>>;
+  isModalDice: boolean;
+  setIsModalDice: Dispatch<SetStateAction<boolean>>;
 }
 
 interface iModalProvider {
@@ -18,10 +20,13 @@ interface iModalProvider {
 export const ModalContext = createContext<iModalContext>({} as iModalContext);
 
 const ModalProvider = ({ children }: iModalProvider) => {
-  const [isModalHome, setisModalHome] = useState(false)
+  const [isModalHome, setisModalHome] = useState(false);
+  const [isModalDice, setIsModalDice] = useState(false);
 
   return (
-    <ModalContext.Provider value={{ isModalHome, setisModalHome }}>
+    <ModalContext.Provider
+      value={{ isModalHome, setisModalHome, isModalDice, setIsModalDice }}
+    >
       {children}
     </ModalContext.Provider>
   );
