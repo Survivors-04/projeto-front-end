@@ -10,6 +10,11 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+
+  @media screen and (min-width: 768px) {
+    width: 75%;
+  }
 `;
 
 export default StyledContainer;
