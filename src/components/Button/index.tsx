@@ -10,7 +10,7 @@ interface iButton {
 
 const Button = ({ children, width, onClick }: iButton) => {
   return (
-    <StyledButton width={width} onClick={onClick} type="submit">
+    <StyledButton width={width} onClick={onClick}>
       {children}
     </StyledButton>
   );
