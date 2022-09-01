@@ -7,10 +7,9 @@ interface iStyledButton {
 const StyledButton = styled.button<iStyledButton>`
   width: ${({ width }) => width}%;
   background: var(--color-red);
-  font-family: inherit;
 
-  margin: 5px;
-  padding: 10px 21px;
+  margin: 5px 0;
+  padding: 10px 0;
 
   font-weight: 900;
   font-size: 18px;

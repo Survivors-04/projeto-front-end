@@ -32,7 +32,6 @@ export const ContainerLogin = styled.div`
     background-repeat: no-repeat;
 
     h2 {
-      font-family: "Inter";
       font-style: normal;
       font-weight: 700;
       font-size: 20px;
@@ -50,7 +49,6 @@ export const ContainerLogin = styled.div`
       label {
         width: 193px;
         color: var(--color-gray-4);
-        font-family: "Inter";
         font-style: normal;
         font-weight: 700;
         font-size: 15px;
@@ -68,7 +66,6 @@ export const ContainerLogin = styled.div`
         background-color: #212121;
         padding: 5px;
         transition: 0.5s linear;
-        font-family: monospace;
         letter-spacing: 1px;
       }
 
@@ -102,7 +99,6 @@ export const StyledRegister = styled.div`
 
   p {
     margin-top: 8px;
-    font-family: "Inter";
     font-style: normal;
     font-weight: 600;
     font-size: 14px;

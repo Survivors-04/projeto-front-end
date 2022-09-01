@@ -21,13 +21,17 @@ const Home = () => {
               <img src={imgUrl} alt={title} />
               <div>
                 <h3>{title}</h3>
-                <p>
-                  preço: <span>{price}</span>
-                </p>
+                {price && (
+                  <>
+                    <p>
+                      preço: <span>{`${price}g`}</span>
+                    </p>
+                    <Button width={100} onClick={() => setisModalHome(true)}>
+                      Comprar
+                    </Button>
+                  </>
+                )}
               </div>
-              <Button width={100} onClick={() => setisModalHome(true)}>
-                Comprar
-              </Button>
             </li>
           ))}
         </StyledBoosterList>
