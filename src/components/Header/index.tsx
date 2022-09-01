@@ -1,17 +1,17 @@
-import { Nav, StyledContainer, StyledDiv } from "./style";
+import { Nav, StyledContainer, StyledDiv, StyledNavButton } from "./style";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
 import { useContext, useState } from "react";
-import Modal from "../Modal/ModalHeader";
 import { ModalContext } from "../../context/ModalContext";
 import DiceRoll from "../Modal/DiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../Button";
 
 const Header = () => {
   const [isLogged, setIsLogged] = useState(false);
-
+  const navigate = useNavigate();
   const { isModalDice, setIsModalDice } = useContext(ModalContext);
   const { isModalHeader, setIsModalHeader } = useContext(ModalContext);
 
@@ -33,27 +33,45 @@ const Header = () => {
               <Link to={"/"}>Início</Link>
             </li>
             <li>
-              <button onClick={() => setIsModalDice(true)}>Recompensa</button>
+              <StyledNavButton onClick={() => setIsModalDice(true)}>Recompensa</StyledNavButton>
             </li>
             <li>
               <Link to={"/marketplace"}>Mercado</Link>
             </li>
             <li>
-              <Link to={""}>Ajuda</Link>
+              <Link to={"/help"}>Ajuda</Link>
             </li>
             <li>
-              <Link to={""}>Sobre nós</Link>
+              <Link to={"/aboutUs"}>Sobre nós</Link>
             </li>
-            <li>
-              {isLogged && <span>100g</span>}
+            <>
               {isLogged ? (
-                <button>
-                  <img src={iconUserHeader} alt="" />
-                </button>
+                <>
+                  <li>
+                    <span>100g</span>
+                  </li>
+                  <li>
+                    <button onClick={() => setIsLogged(false)}>
+                      <img src={iconUserHeader} alt="" />
+                    </button>
+                  </li>
+                </>
               ) : (
-                <Link to={"/login"}>Login</Link>
+                <li>
+                  <Button
+                    width={100}
+                    onClick={() => navigate("/login", { replace: true })}
+                    // onClick={() => setIsLogged(true)}
+                    textColor={"var(--color-blue)"}
+                    backgroundColor={"var(--color-yellow)"}
+                    hover={"var(--color-yellow-focus)"}
+                  >
+                    Login
+                  </Button>
+                  {/* <Link to={"/login"}>Login</Link> */}
+                </li>
               )}
-            </li>
+            </>
           </ul>
         </Nav>
       </StyledContainer>

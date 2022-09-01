@@ -4,7 +4,7 @@ import boosters from "./boosters";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import { useContext } from "react";
-import { ModalContext } from "../../context/ModalContext";
+import { ModalContext } from "../../Context/ModalContext";
 import { ModalHome } from "../../components/Modal/ModalHome";
 
 const Home = () => {

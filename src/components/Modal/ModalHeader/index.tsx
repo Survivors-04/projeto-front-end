@@ -8,12 +8,13 @@ import { IoIosHelpCircle } from "react-icons/io";
 import { IoPeopleSharp } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../ModalBase";
-import { ModalContext } from "../../../context/ModalContext";
+import { ModalContext } from "../../../Context/ModalContext";
 import { Link } from "react-router-dom";
 
 const ModalHeader = () => {
   const [isLogged, setIsLogged] = useState(false);
   const { setIsModalHeader } = useContext(ModalContext);
+  const { setIsModalDice } = useContext(ModalContext);
 
   return (
     <Modal setIs={setIsModalHeader}>
@@ -33,7 +34,14 @@ const ModalHeader = () => {
               </li>
               <li>
                 <GiOpenTreasureChest />
-                <a href="/">Recompensa</a>
+                <button
+                  onClick={() => {
+                    setIsModalHeader(false);
+                    setIsModalDice(true);
+                  }}
+                >
+                  Recompensa
+                </button>
               </li>
               <li>
                 <BsFillCartFill />
