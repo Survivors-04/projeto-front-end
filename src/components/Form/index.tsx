@@ -1,31 +1,30 @@
 import { ReactNode } from "react";
-import { formSchema } from "../../validations/loginValidations";
-import { useForm } from "react-hook-form";
+import { formSchema } from "../../validations/LoginValidations";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 interface IForm {
   children: ReactNode;
+  userSubmit: SubmitHandler<FieldValues>;
+
+}
+export interface IOnSubmitFunctionProps {
+  email?: string;
+  password?: string; 
 }
 
-interface IOnSubmitFunctionProps {
-  email: string;
-  password: string;
-}
 
-export const Form = ({ children }: IForm) => {
+export const Form = ({ children,userSubmit }: IForm) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IOnSubmitFunctionProps>({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema)
   });
-  const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-    console.log(data);
-  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitFunction)}>
+    <form onSubmit={handleSubmit(userSubmit)}>
       <label htmlFor="email">Email</label>
       <input
         type="email"

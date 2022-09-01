@@ -12,7 +12,7 @@ import diceRed from "../../../assets/imgs/DiceRoll/diceRed.png";
 import diceRed2 from "../../../assets/imgs/DiceRoll/diceRed2.png";
 import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ModalContext } from "../../../context/ModalContext";
+import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
 
 const DiceRoll = () => {

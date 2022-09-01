@@ -5,11 +5,12 @@ interface iButton {
   children: React.ReactNode;
   width: number;
   onClick?: () => void;
+
 }
 
 const Button = ({ children, width, onClick }: iButton) => {
   return (
-    <StyledButton width={width} onClick={onClick}>
+    <StyledButton width={width} onClick={onClick} type="submit">
       {children}
     </StyledButton>
   );
