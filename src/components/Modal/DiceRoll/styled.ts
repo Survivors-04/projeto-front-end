@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const StyledConteinerModal = styled.div`
-  background: var(--color-gray-3);
+  background: var(--color-gray-3-background);
 
-  width: 95%;
+  width: 320px;
   height: 450px;
-  max-width: 502px;
+
+  @media only screen and (min-width: 700px) {
+    width: 600px;
+  }
 
   display: flex;
   flex-direction: column;
@@ -14,7 +17,7 @@ export const StyledConteinerModal = styled.div`
 `;
 
 export const StyledConfirmation = styled.div`
-  background: var(--color-gray-3);
+  background: transparent;
 
   width: 100%;
   height: 100%;
@@ -45,6 +48,7 @@ export const StyledConfirmation = styled.div`
 `;
 
 export const StyledRollDice = styled.div`
+  background: transparent;
   width: 100%;
   height: 100%;
   min-height: 100%;
@@ -98,7 +102,7 @@ export const StyledNumberRandom = styled.div`
 `;
 
 export const StyledResult = styled.div`
-  background: var(--color-gray-3);
+  background: transparent;
 
   width: 100%;
   height: 100%;
