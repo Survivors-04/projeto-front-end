@@ -7,8 +7,6 @@ import {
   StyledDivImgs,
 } from "./styled";
 import Modal from "../ModalBase";
-import gifConfirmacao from "../../../assets/imgs/DiceRoll/gitConfirmacao.gif";
-import diceWalking from "../../../assets/imgs/DiceRoll/diceWalking.webp";
 import pikachuDance from "../../../assets/imgs/DiceRoll/pikachuDance.gif";
 import diceRed from "../../../assets/imgs/DiceRoll/diceRed.png";
 import diceRed2 from "../../../assets/imgs/DiceRoll/diceRed2.png";
@@ -16,9 +14,6 @@ import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ModalContext } from "../../../context/ModalContext";
 import Button from "../../Button";
-import AnimationFlashing from "../../Animations/AnimationFlashing";
-import AnimationY from "../../Animations/AnimationY";
-import AnimationXPage from "../../Animations/AnimationXPage";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -165,14 +160,15 @@ const DiceRoll = () => {
               exit={{ y: "+100vw" }}
               transition={{ duration: 0.5, type: "spring", delay: 2 }}
             >
-              <AnimationY delay={1}>
-                <img src={pikachuDance} alt="pokemon" />
-              </AnimationY>
-              <AnimationY delay={1.5}>
-                <AnimationFlashing>
-                  <span>Você ganhou {numberResult} de gold, parabéns!</span>
-                </AnimationFlashing>
-              </AnimationY>
+              <img src={pikachuDance} alt="pokemon" />
+
+              <motion.span
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ duration: 0.5, yoyo: Infinity }}
+              >
+                Você ganhou {numberResult} de gold, parabéns!
+              </motion.span>
             </StyledResult>
           )}
         </AnimatePresence>

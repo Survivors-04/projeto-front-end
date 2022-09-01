@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const StyledConteinerModal = styled.div`
   background: var(--color-gray-3);
 
-  width: 95%;
+  width: 320px;
   height: 450px;
-  max-width: 502px;
+
+  @media only screen and (min-width: 700px) {
+    width: 600px;
+  }
 
   display: flex;
   flex-direction: column;
