@@ -41,20 +41,32 @@ export const StyledDiv = styled.div`
 export const Nav = styled.nav`
   display: none;
 
-  @media screen and (min-width: 700px) {
+  ul {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 
-    ul {
-      display: flex;
-      gap: 15px;
-
-      li {
-        a {
-          color: var(--color-gray-4);
-          font-size: 16px;
-          cursor: pointer;
-        }
+    li {
+      a {
+        color: var(--color-gray-4);
+        font-weight: 700;
+        font-size: 16px;
       }
     }
   }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+`;
+
+export const StyledNavButton = styled.button`
+  color: var(--color-gray-4);
+  background-color: transparent;
+  
+  border: none;
+
+  font-weight: 700;
+  font-size: 16px;
 `;
