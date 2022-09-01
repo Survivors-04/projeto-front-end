@@ -4,6 +4,7 @@ import {
   StyledRollDice,
   StyledNumberRandom,
   StyledResult,
+  StyledDivImgs,
 } from "./styled";
 import Modal from "../ModalBase";
 import gifConfirmacao from "../../../assets/imgs/DiceRoll/gitConfirmacao.gif";
@@ -17,7 +18,7 @@ import { ModalContext } from "../../../context/ModalContext";
 import Button from "../../Button";
 import AnimationFlashing from "../../Animations/AnimationFlashing";
 import AnimationY from "../../Animations/AnimationY";
-import AnimationScale from "../../Animations/AnimationScale";
+import AnimationXPage from "../../Animations/AnimationXPage";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -32,7 +33,7 @@ const DiceRoll = () => {
     if (roll) {
       setTimeout(() => {
         toRoll();
-      }, 500);
+      }, 1800);
     }
   }, [roll]);
 
@@ -61,65 +62,120 @@ const DiceRoll = () => {
   return (
     <Modal setIs={setIsModalDice}>
       <StyledConteinerModal>
-        {confirmation === true && (
-          <StyledConfirmation>
-            <motion.div
-              initial={{ y: 0 }}
-              animate={{ y: 15 }}
-              transition={{ duration: 0.7, yoyo: Infinity }}
+        <AnimatePresence>
+          {confirmation === true && (
+            <StyledConfirmation
+              as={motion.div}
+              key={1}
+              initial={{ y: "-100vh", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "+100vw" }}
+              transition={{ duration: 1, type: "spring" }}
             >
-              <img src={diceRed} alt="pokemon" />
-              <img src={diceRed2} alt="pokemon" />
-            </motion.div>
-            <span>Deseja rolar o dado?</span>
-            <Button
-              width={25}
-              onClick={() => {
-                setConsfirmation(false);
-                setRoll(true);
-              }}
+              <motion.div
+                initial={{ y: 0 }}
+                animate={{ y: 15 }}
+                transition={{ duration: 0.7, yoyo: Infinity }}
+              >
+                <img src={diceRed} alt="pokemon" />
+                <img src={diceRed2} alt="pokemon" />
+              </motion.div>
+              <span>Deseja rolar o dado?</span>
+              <Button
+                width={25}
+                onClick={() => {
+                  setConsfirmation(false);
+                  setRoll(true);
+                }}
+              >
+                Sim!
+              </Button>
+            </StyledConfirmation>
+          )}
+
+          {roll && (
+            <StyledRollDice
+              as={motion.div}
+              key={2}
+              initial={{ y: "-100vh", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "+100vw" }}
+              transition={{ duration: 0.5, type: "spring", delay: 1 }}
             >
-              Sim!
-            </Button>
-          </StyledConfirmation>
-        )}
-        {roll && (
-          <StyledRollDice>
-            <img src={diceWalking} alt="Dice walking" />
-            <StyledNumberRandom>
-              <div>
+              <StyledDivImgs>
                 {animationResult ? (
-                  <AnimatePresence>
+                  <>
+                    <motion.div
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: 0 }}
+                      transition={{ duration: 0.4, yoyo: Infinity, delay: 2.5 }}
+                    >
+                      <img src={diceRed} alt="pokemon" />
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: 0 }}
+                      transition={{
+                        duration: 0.4,
+                        yoyo: Infinity,
+                        delay: 2,
+                      }}
+                    >
+                      <img src={diceRed2} alt="pokemon" />
+                    </motion.div>
+                  </>
+                ) : (
+                  <>
+                    <img src={diceRed} alt="pokemon" />
+                    <img src={diceRed2} alt="pokemon" />
+                  </>
+                )}
+              </StyledDivImgs>
+
+              <StyledNumberRandom>
+                <div>
+                  {animationResult ? (
                     <motion.span
                       initial={{ opacity: 1, y: +2 }}
                       animate={{ opacity: 0, y: -55 }}
-                      exit={{ opacity: 1, y: +2 }}
-                      transition={{ duration: 0.2, yoyo: Infinity, delay: 0.4 }}
+                      transition={{
+                        duration: 0.2,
+                        yoyo: Infinity,
+                        delay: 2,
+                      }}
                     >
                       {numberResult}
                     </motion.span>
-                  </AnimatePresence>
-                ) : (
-                  <span>{numberResult}</span>
-                )}
+                  ) : (
+                    <span>{numberResult}</span>
+                  )}
 
-                <span>Gold</span>
-              </div>
-            </StyledNumberRandom>
-          </StyledRollDice>
-        )}
-        {result && (
-          <StyledResult>
-            <AnimationY>
-              <img src={pikachuDance} alt="pokemon" />
-            </AnimationY>
-            <AnimationY delay={0.5}>
-              <AnimationFlashing>
-                <span>Você ganhou {numberResult} de gold, parabéns!</span>
-              </AnimationFlashing>
-            </AnimationY>
-          </StyledResult>
-        )}
+                  <span>Gold</span>
+                </div>
+              </StyledNumberRandom>
+            </StyledRollDice>
+          )}
+
+          {result && (
+            <StyledResult
+              as={motion.div}
+              key={3}
+              initial={{ y: "-100vh", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "+100vw" }}
+              transition={{ duration: 0.5, type: "spring", delay: 2 }}
+            >
+              <AnimationY delay={1}>
+                <img src={pikachuDance} alt="pokemon" />
+              </AnimationY>
+              <AnimationY delay={1.5}>
+                <AnimationFlashing>
+                  <span>Você ganhou {numberResult} de gold, parabéns!</span>
+                </AnimationFlashing>
+              </AnimationY>
+            </StyledResult>
+          )}
+        </AnimatePresence>
       </StyledConteinerModal>
     </Modal>
   );
