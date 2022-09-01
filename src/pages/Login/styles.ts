@@ -8,6 +8,7 @@ export const ContainerLogin = styled.div`
   height: 458px;
   margin: 35px 0px;
   background: rgba(255, 215, 0, 0.9);
+  margin-top: 150px;
 
   border-radius: 12px;
   border: 7px solid rgba(65, 105, 225, 1);
