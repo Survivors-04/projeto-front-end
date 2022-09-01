@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import UserProvider from "../Context/UserContext";
+
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Marketplace from "../pages/Marketplace";
@@ -8,7 +8,7 @@ import Register from "../pages/Register";
 
 const MainRoutes = () => {
   return (
-    <UserProvider> 
+    
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
@@ -16,7 +16,7 @@ const MainRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/marketplace" element={<Marketplace />} />
     </Routes>
-    </UserProvider>
+    
   );
 };
 
