@@ -4,6 +4,7 @@ import { Form } from "../../components/Form";
 import { StyledRegister } from "./styles";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
+import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,9 +16,8 @@ const Login = () => {
           <h2 className="title">Login</h2>
 
           <Form>
-            <Button width={25}>Entrar</Button>
+            <Button width={80}>Entrar</Button>
           </Form>
-
 
           <StyledRegister>
             <p>Ainda não possui uma conta?</p>
@@ -27,7 +27,7 @@ const Login = () => {
               }
               alt="charmander"
             />
-            <Button width={25} onClick={() => navigate("/register")}>
+            <Button width={100} onClick={() => navigate("/register")}>
               Cadastrar
             </Button>
           </StyledRegister>
