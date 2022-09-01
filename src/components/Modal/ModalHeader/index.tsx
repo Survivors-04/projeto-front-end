@@ -8,7 +8,7 @@ import { IoIosHelpCircle } from "react-icons/io";
 import { IoPeopleSharp } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../ModalBase";
-import { ModalContext } from "../../../context/ModalContext";
+import { ModalContext } from "../../../Context/ModalContext";
 import { Link } from "react-router-dom";
 
 const ModalHeader = () => {

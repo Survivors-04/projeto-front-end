@@ -12,7 +12,7 @@ import diceRed from "../../../assets/imgs/DiceRoll/diceRed.png";
 import diceRed2 from "../../../assets/imgs/DiceRoll/diceRed2.png";
 import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ModalContext } from "../../../context/ModalContext";
+import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
 
 const DiceRoll = () => {
@@ -37,16 +37,16 @@ const DiceRoll = () => {
     setTimeout(() => {
       setRoll(false);
       setResult(true);
-    }, 1000);
+    }, 500);
   };
 
   const toRoll = () => {
-    for (var i = 1; i <= 20; i++) {
+    for (var i = 1; i <= 25; i++) {
       (function (ind) {
         setTimeout(function () {
           const numberRandom = Math.floor(Math.random() * (101 - 30) + 30);
           setNumberResult(numberRandom);
-          if (ind === 20) {
+          if (ind === 25) {
             showResult();
           }
         }, 400 * ind);
@@ -65,7 +65,7 @@ const DiceRoll = () => {
               initial={{ y: "-100vh", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "+100vw" }}
-              transition={{ duration: 1, type: "spring" }}
+              transition={{ duration: 0.6, type: "spring" }}
             >
               <motion.div
                 initial={{ y: 0 }}
@@ -95,7 +95,7 @@ const DiceRoll = () => {
               initial={{ y: "-100vh", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "+100vw" }}
-              transition={{ duration: 0.5, type: "spring", delay: 1 }}
+              transition={{ duration: 0.6, type: "spring", delay: 0.6 }}
             >
               <StyledDivImgs>
                 {animationResult ? (
@@ -158,7 +158,7 @@ const DiceRoll = () => {
               initial={{ y: "-100vh", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "+100vw" }}
-              transition={{ duration: 0.5, type: "spring", delay: 2 }}
+              transition={{ duration: 0.6, type: "spring", delay: 1.2 }}
             >
               <img src={pikachuDance} alt="pokemon" />
 

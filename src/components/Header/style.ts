@@ -4,10 +4,10 @@ export const StyledContainer = styled.header`
   background-color: var(--color-red);
   width: 100%;
   height: 80px;
-  display: flex;
   align-items: center;
 
   @media screen and (min-width: 700px) {
+    display: flex;
     justify-content: space-around;
     gap: 120px;
   }
@@ -15,16 +15,16 @@ export const StyledContainer = styled.header`
 
 export const StyledDiv = styled.div`
   display: flex;
+  justify-content: space-around;
 
   img {
     width: 130px;
+    margin-top: 15px;
   }
 
   button {
     border: none;
     background-color: var(--color-red);
-    position: fixed;
-    right: 0;
 
     img {
       width: 50px;
