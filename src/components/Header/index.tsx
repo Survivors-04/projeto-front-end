@@ -3,7 +3,7 @@ import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
 import { useContext, useState } from "react";
-import { ModalContext } from "../../context/ModalContext";
+import { ModalContext } from "../../Context/ModalContext";
 import DiceRoll from "../Modal/DiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
 import { Link, useNavigate } from "react-router-dom";
