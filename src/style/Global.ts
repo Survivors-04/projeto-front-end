@@ -10,6 +10,7 @@ export default createGlobalStyle`
     --color-gray-2: #343B41;
     --color-gray-1: #868E96;
     --color-yellow: #FFD700;
+    --color-yellow-focus: #FFDB4D;
     --color-blue: #4169E1;
     --color-success: #168821;
     --color-error: #E60000;
@@ -67,7 +68,7 @@ export default createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: var(--color-gray-0);
+    color: var(--color-gray-4);
   }
   ul {
     list-style: none;

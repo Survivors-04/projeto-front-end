@@ -3,14 +3,29 @@ import StyledButton from "./styles";
 
 interface iButton {
   children: React.ReactNode;
-  width: number;
   onClick?: () => void;
-
+  width?: number;
+  textColor?: string;
+  backgroundColor?: string;
+  hover?: string;
 }
 
-const Button = ({ children, width, onClick }: iButton) => {
+const Button = ({
+  children,
+  width,
+  onClick,
+  textColor,
+  backgroundColor,
+  hover,
+}: iButton) => {
   return (
-    <StyledButton width={width} onClick={onClick} type="submit">
+    <StyledButton
+      width={width}
+      onClick={onClick}
+      textColor={textColor}
+      backgroundColor={backgroundColor}
+      hover={hover}
+    >
       {children}
     </StyledButton>
   );

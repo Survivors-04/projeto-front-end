@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 const ModalHeader = () => {
   const [isLogged, setIsLogged] = useState(false);
   const { setIsModalHeader } = useContext(ModalContext);
+  const { setIsModalDice } = useContext(ModalContext);
 
   return (
     <Modal setIs={setIsModalHeader}>
@@ -33,7 +34,14 @@ const ModalHeader = () => {
               </li>
               <li>
                 <GiOpenTreasureChest />
-                <a href="/">Recompensa</a>
+                <button
+                  onClick={() => {
+                    setIsModalHeader(false);
+                    setIsModalDice(true);
+                  }}
+                >
+                  Recompensa
+                </button>
               </li>
               <li>
                 <BsFillCartFill />
