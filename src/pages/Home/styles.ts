@@ -15,6 +15,7 @@ export const StyledBoosterList = styled.ul`
 
   li {
     width: 20%;
+    
   }
 
   img {
@@ -30,5 +31,6 @@ export const StyledBoosterList = styled.ul`
   h3 {
     justify-self: center;
     align-self: center;
+    
   }
 `;

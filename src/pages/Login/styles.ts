@@ -32,7 +32,7 @@ export const ContainerLogin = styled.div`
     background-repeat: no-repeat;
 
     h2 {
-      font-family: "Inter";
+      font-family: 'Jura', sans-serif;
       font-style: normal;
       font-weight: 700;
       font-size: 20px;
@@ -50,7 +50,7 @@ export const ContainerLogin = styled.div`
       label {
         width: 193px;
         color: var(--color-gray-4);
-        font-family: "Inter";
+        font-family: 'Jura', sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 15px;
@@ -90,6 +90,7 @@ export const ContainerLogin = styled.div`
 
       button {
         max-width: 179px;
+        font-family: 'Jura', sans-serif;
       }
     }
   }
@@ -102,10 +103,13 @@ export const StyledRegister = styled.div`
 
   p {
     margin-top: 8px;
-    font-family: "Inter";
+    font-family: 'Jura', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     color: var(--color-gray-4);
+  }
+  button{
+    font-family: 'Jura', sans-serif;
   }
 `;
