@@ -41,12 +41,12 @@ const DiceRoll = () => {
   };
 
   const toRoll = () => {
-    for (var i = 1; i <= 25; i++) {
+    for (var i = 1; i <= 22; i++) {
       (function (ind) {
         setTimeout(function () {
           const numberRandom = Math.floor(Math.random() * (101 - 30) + 30);
           setNumberResult(numberRandom);
-          if (ind === 25) {
+          if (ind === 22) {
             showResult();
           }
         }, 400 * ind);
