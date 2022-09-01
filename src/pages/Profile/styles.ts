@@ -4,16 +4,19 @@ export const StyledSection = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-top: 150px;
 
   @media screen and (min-width: 700px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 30px;
+    margin-top: 100px;
   }
 
   @media screen and (min-width: 1024px) {
     gap: 100px;
+    margin-top: 50px;
   }
 
   form {
@@ -173,15 +176,22 @@ export const StyledList = styled.ul`
     background-color: var(--color-gray-3);
     border-radius: 10px;
     height: 170px;
-    gap: 5px;
+
+    padding: 10px;
 
     img {
       padding: 10px;
-      width: 100px;
+      width: 90px;
     }
 
     @media screen and (min-width: 700px) {
       width: 110px;
+      gap: 5px;
+
+      img {
+        padding: 3px;
+        width: 70px;
+      }
     }
 
     @media screen and (min-width: 1024px) {
@@ -191,7 +201,7 @@ export const StyledList = styled.ul`
 
       img {
         padding: 5px;
-        width: 100px;
+        width: 80px;
       }
     }
 
@@ -201,7 +211,7 @@ export const StyledList = styled.ul`
 
       img {
         padding: 1px;
-        width: 100px;
+        width: 90px;
       }
     }
   }
