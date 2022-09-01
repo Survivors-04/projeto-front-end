@@ -1,10 +1,10 @@
 import "../../style/Global";
 import styled from "styled-components";
-import ImgSrc from "../../assets/imgs/Login/image-removebg-preview.png";
+import ImgSrc from "../../assets/imgs/Login/Bulbasaur.png";
 
 export const ContainerLogin = styled.div`
-  width: 85%;
-  max-width: 521px;
+  width: 400px;
+  max-width: 300px;
   height: 458px;
   margin: 35px 0px;
   background: rgba(255, 215, 0, 0.9);
@@ -22,9 +22,14 @@ export const ContainerLogin = styled.div`
     align-items: center;
     padding: 5px 0px;
 
-    background-image: url(${ImgSrc});
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.2)
+      ),
+      url(${ImgSrc});
     background-position: center;
-    background-size: cover;
+    background-size: 300px;
+    background-repeat: no-repeat;
 
     h2 {
       font-family: "Inter";
@@ -43,7 +48,7 @@ export const ContainerLogin = styled.div`
       padding: 0px 10px;
 
       label {
-        width: 235px;
+        width: 193px;
         color: var(--color-gray-4);
         font-family: "Inter";
         font-style: normal;
@@ -54,48 +59,53 @@ export const ContainerLogin = styled.div`
         margin-bottom: 7px;
       }
       input {
-        width: 235px;
-        height: 43px;
-        border: none;
-        border-radius: 5px;
-        margin-bottom: 13px;
-        padding: 5px 10px;
+        max-width: 230px;
+        height: 30px;
+        border: 2px solid transparent;
+        outline: none;
+        border-bottom: 2px solid #3f3f3f;
+        caret-color: #3f3f3f;
+        background-color: #212121;
+        padding: 5px;
+        transition: 0.5s linear;
+        font-family: monospace;
+        letter-spacing: 1px;
+      }
+
+      input:focus {
+        border: 2px solid var(--color-blue);
+        caret-color: var(--color-blue);
+        color: var(--color-blue);
+        box-shadow: 4px 4px 10px #070707;
+      }
+
+      input:focus::placeholder {
+        color: var(--color-blue);
+      }
+
+      span {
+        color: var(--color-red);
+        font-weight: 700;
+      }
+
+      button {
+        max-width: 179px;
       }
     }
-
-    button {
-      border: none;
-      width: 235px;
-      height: 43px;
-      background: #c80b0b;
-      border-radius: 12px;
-
-      font-family: "Jura";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 20px;
-      line-height: 24px;
-      color: var(--color-gray-4);
-    }
-
- 
-    
-}
-`
+  }
+`;
 
 export const StyledRegister = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      p {
-        margin-top: 8px;
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 14px;
-        color: var(--color-gray-4);
-      }
-
+  p {
+    margin-top: 8px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--color-gray-4);
+  }
 `;
