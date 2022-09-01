@@ -4,7 +4,7 @@ import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
 import { useContext, useState } from "react";
 import Modal from "../Modal/ModalHeader";
-import { ModalContext } from "../../context/ModalContext";
+import { ModalContext } from "../../Context/ModalContext";
 import DiceRoll from "../Modal/DiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
 import { Link } from "react-router-dom";

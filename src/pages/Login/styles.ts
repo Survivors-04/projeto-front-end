@@ -2,7 +2,7 @@ import "../../style/Global";
 import styled from "styled-components";
 import ImgSrc from "../../assets/imgs/Login/Bulbasaur.png";
 
-export const ContainerLogin = styled.div`
+export const ContainerUsers = styled.div`
   width: 400px;
   max-width: 300px;
   height: 458px;
