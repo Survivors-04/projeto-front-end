@@ -8,13 +8,17 @@ const StyledHome = styled.div`
 export default StyledHome;
 
 export const StyledBoosterList = styled.ul`
-  margin-top: 40px;
-
   display: flex;
   justify-content: space-between;
 
+  height: 85%;
+  max-height: 560px;
+  max-width: 93%;
+  flex-wrap: wrap;
+
   li {
     width: 20%;
+    min-width: 130px;
   }
 
   img {
@@ -22,12 +26,13 @@ export const StyledBoosterList = styled.ul`
   }
 
   div {
-    height: 12%;
+    font-size: 22px;
     display: flex;
     flex-direction: column;
   }
 
   h3 {
+    font-size: 24px;
     justify-self: center;
     align-self: center;
   }
