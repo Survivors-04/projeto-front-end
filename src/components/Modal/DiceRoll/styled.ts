@@ -18,6 +18,7 @@ export const StyledConfirmation = styled.div`
 
   width: 100%;
   height: 100%;
+  min-height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -46,6 +47,7 @@ export const StyledConfirmation = styled.div`
 export const StyledRollDice = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -53,13 +55,21 @@ export const StyledRollDice = styled.div`
   justify-content: space-between;
 
   img {
-    width: 100%;
-    height: 55%;
+    width: 140px;
+    height: 110px;
   }
 `;
 
+export const StyledDivImgs = styled.div`
+  width: 100%;
+  height: 55%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const StyledNumberRandom = styled.div`
-  background-color: #ffe50d;
   width: 100%;
   height: 45%;
 
@@ -70,19 +80,19 @@ export const StyledNumberRandom = styled.div`
     width: 180px;
     height: 50px;
 
-    color: var(--color-gray-4);
+    color: red;
 
     font-size: 40px;
 
-    border-top: 1px var(--color-gray-4) solid;
-    border-bottom: 1px var(--color-gray-4) solid;
+    border-top: 1px var(--color-red-focus) solid;
+    border-bottom: 1px var(--color-red-focus) solid;
 
     display: flex;
     justify-content: center;
     align-items: center;
   }
   div span {
-    color: var(--color-gray-4);
+    color: #ffe50d;
     width: 80px;
   }
 `;
