@@ -1,12 +1,14 @@
 import "../../style/Global";
 import styled from "styled-components";
-import ImgSrc from "../../assets/imgs/Login/Bulbasaur.png";
 
-export const ContainerUsers = styled.div`
+interface IContainerProps {
+  imgBackground:string;
+}
+export const ContainerUsers = styled.div<IContainerProps>`
   width: 400px;
   max-width: 300px;
   height: 458px;
-  margin: 35px 0px;
+  margin:  0px;
   background: rgba(255, 215, 0, 0.9);
   margin-top: 150px;
 
@@ -27,7 +29,7 @@ export const ContainerUsers = styled.div`
         rgba(255, 255, 255, 0.2),
         rgba(255, 255, 255, 0.2)
       ),
-      url(${ImgSrc});
+      url(${({imgBackground})=>imgBackground});
     background-position: center;
     background-size: 300px;
     background-repeat: no-repeat;

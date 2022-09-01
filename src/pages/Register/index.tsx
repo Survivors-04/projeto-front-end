@@ -3,10 +3,12 @@ import StyledContainer from "../../components/Container/styles";
 import { useNavigate } from "react-router-dom";
 import { ContainerUsers, StyledRegister } from "../Login/styles";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { UserContext } from "../../Context/UserContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../../validations/RegisterValidations";
+import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
+import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
+import { HeaderUsers } from "./styles";
+
 
 interface IOnSubmitFunctionProps {
   email?: string;
@@ -32,7 +34,18 @@ const Register = () => {
 
   return (
     <StyledContainer>
-      <ContainerUsers>
+      
+      <HeaderUsers>
+         <img
+              src={
+               logoHeader
+              }
+              alt="Grupo4"
+            />
+           <Button width={25} onClick={() => navigate("/Login")}>Login</Button>
+        </HeaderUsers>
+      <ContainerUsers imgBackground={ImgSquirtle}>
+      
         <main>
           <h2>Crie sua conta</h2>
           <form onSubmit={handleSubmit(onSubmitFunction)}>

@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
+display: flex;
+flex-direction: column;
+
   margin: 0 auto;
 
   width: 95%;
