@@ -12,25 +12,13 @@ export const StyledModalContainer = styled.div`
   min-height: 100vh;
 
   background: rgba(0, 0, 0, 0.5);
-  /* inset: 0; */
+  inset: 0;
 `;
 
 export const StyledModalBox = styled.div`
-  width: 95%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-
-  border-radius: 8px;
-
-  @media screen and (min-width: 768px) {
-    width: 70%;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 70%;
-  }
 `;
