@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { formSchema } from "../../validations/LoginValidations";
+import { formSchema } from "../../validations/loginValidations";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
