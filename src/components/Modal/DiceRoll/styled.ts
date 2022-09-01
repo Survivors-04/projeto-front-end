@@ -1,21 +1,7 @@
 import styled from "styled-components";
 
-export const StyledContainer = styled.div`
-  background: rgba(0, 0, 0, 0.3);
-  width: 100vw;
-  height: 100vh;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const StyledConteinerModal = styled.div`
-  background: #fff;
+  background: var(--color-gray-3);
 
   width: 95%;
   height: 450px;
@@ -28,7 +14,7 @@ export const StyledConteinerModal = styled.div`
 `;
 
 export const StyledConfirmation = styled.div`
-  background-color: aquamarine;
+  background: var(--color-gray-3);
 
   width: 100%;
   height: 100%;
@@ -38,13 +24,15 @@ export const StyledConfirmation = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
+  border-radius: 10px;
+
   img {
-    width: 190px;
-    height: 160px;
+    width: 140px;
+    height: 110px;
   }
 
   span {
-    color: var(--color-gray-4);
+    color: #ffe50d;
     font-size: 22px;
   }
 
@@ -100,8 +88,8 @@ export const StyledNumberRandom = styled.div`
 `;
 
 export const StyledResult = styled.div`
-  background-color: #555;
-  color: var(--color-gray-4);
+  background: var(--color-gray-3);
+
   width: 100%;
   height: 100%;
 
@@ -110,7 +98,13 @@ export const StyledResult = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
+  img {
+    width: 190px;
+    height: 160px;
+  }
+
   span {
+    color: #ffe50d;
     font-size: 32px;
     text-align: center;
   }
