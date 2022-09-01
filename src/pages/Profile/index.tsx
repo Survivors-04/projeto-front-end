@@ -9,37 +9,31 @@ import { StyledCharmImg, StyledDiv, StyledList, StyledSection } from "./styles";
 const Profile = () => {
   const colection = [
     {
-      img: imgPikachu,
       name: "Pikachu",
       class: "Elétrico",
       rarity: "Comum",
     },
     {
-      img: imgPikachu,
       name: "Pikachu",
       class: "Elétrico",
       rarity: "Comum",
     },
     {
-      img: imgBulba,
       name: "Bulbasaur",
       class: ["Grama", "Veneno"],
       rarity: "Comum",
     },
     {
-      img: imgBulba,
       name: "Bulbasaur",
       class: ["Àgua", "Pedra"],
       rarity: "Comum",
     },
     {
-      img: imgPikachu,
       name: "Pikachu",
       class: "Elétrico",
       rarity: "Comum",
     },
     {
-      img: imgPikachu,
       name: "Pikachu",
       class: "Elétrico",
       rarity: "Comum",
@@ -87,7 +81,10 @@ const Profile = () => {
               colection.map((pokemon, index) => (
                 <li key={index}>
                   <figure>
-                    <img src={pokemon.img} alt="" />
+                    <img
+                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.name.toLowerCase()}.gif`}
+                      alt=""
+                    />
                   </figure>
 
                   <h3>{pokemon.name}</h3>
