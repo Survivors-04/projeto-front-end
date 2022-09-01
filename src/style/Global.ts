@@ -45,7 +45,7 @@ export default createGlobalStyle`
     overflow-x: hidden;
   }
   body, input, button, textarea {
-    font-family: 'Roboto';
+    font-family: 'Jura', sans-serif;
     font-size: 1.6rem;
   }
   h1, h2, h3 {
