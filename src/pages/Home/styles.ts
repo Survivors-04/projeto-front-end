@@ -35,5 +35,6 @@ export const StyledBoosterList = styled.ul`
     font-size: 24px;
     justify-self: center;
     align-self: center;
+    
   }
 `;
