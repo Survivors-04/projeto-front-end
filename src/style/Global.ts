@@ -6,6 +6,7 @@ export default createGlobalStyle`
     --color-red-focus: #FD1515;
     --color-gray-4: #121214;
     --color-gray-3: #212529;
+    --color-gray-3-background: rgba(33, 37, 41, 0.85);
     --color-gray-2: #343B41;
     --color-gray-1: #868E96;
     --color-yellow: #FFD700;

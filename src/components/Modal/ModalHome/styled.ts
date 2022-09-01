@@ -4,9 +4,12 @@ export const StyledModalHome = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  background-color: var(--color-gray-3-background);
+  border-radius: 8px;
+
+  max-width: 670px;
 
   margin: 0 auto;
-  width: 58%;
   padding: 5px;
 
   li {
@@ -14,7 +17,8 @@ export const StyledModalHome = styled.ul`
     margin: 8px;
 
     height: 180px;
-    width: 30%;
+    width: 40%;
+    max-width: 150px;
 
     display: flex;
     justify-content: flex-end;
