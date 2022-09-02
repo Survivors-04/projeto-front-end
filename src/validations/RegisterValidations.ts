@@ -9,8 +9,5 @@ export  const formSchema = yup.object().shape({
   .matches(/(\d)/, "deve conter ao menos 1 número")
   .matches(/(\W)|_/, "deve conter ao menos 1 caracter especial")
   .matches(/.{8}/, "deve conter ao menos 8 dígitos"),
-confirmPassword: yup
-  .string().required()
-  .oneOf([yup.ref("password"), null], "Password errado."),
 name:yup.string().required("Nickname obrigatório!")
 });
