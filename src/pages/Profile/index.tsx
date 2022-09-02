@@ -8,6 +8,8 @@ import { StyledCharmImg, StyledDiv, StyledList, StyledSection } from "./styles";
 import api from "../../services/api";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
+import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
+import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 
 interface IData {
   email: string;
@@ -26,9 +28,7 @@ interface IPokemons {
 
 const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
-  const { user } = useContext(UserContext)
-
-  // console.log(user)
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
@@ -84,7 +84,23 @@ const Profile = () => {
                   </figure>
 
                   <h3>{pokemon.Pokemon}</h3>
-                  <p>{pokemon.Type01}</p>
+
+                  <div>
+                    <StyledParagraph
+                      backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                    >
+                      {pokemon.Type01}
+                    </StyledParagraph>
+                    {pokemon.Type02 !== "null" ? (
+                      <StyledSpan
+                        backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                      >
+                        {pokemon.Type02}
+                      </StyledSpan>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                   <p>{pokemon.Rarity}</p>
                 </li>
               ))}
