@@ -1,13 +1,13 @@
 import Button from "../../components/Button";
 import StyledContainer from "../../components/Container/styles";
 import { useNavigate } from "react-router-dom";
-import { ContainerUsers, StyledRegister } from "../Login/styles";
+import { ContainerUsers, StyledRegister } from "../../components/StylerUser/styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../../validations/RegisterValidations";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
-import { HeaderUsers } from "./styles";
+import { HeaderUsers } from "../../components/StylerUser/styles";
 
 
 interface IOnSubmitFunctionProps {
