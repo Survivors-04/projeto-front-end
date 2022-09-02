@@ -10,7 +10,7 @@ export const ContainerUsers = styled.div<IContainerProps>`
   height: 458px;
   margin:  0px;
   background: rgba(255, 215, 0, 0.9);
-  margin-top: 150px;
+  margin-top: 0px;
 
   border-radius: 12px;
   border: 7px solid rgba(65, 105, 225, 1);
@@ -107,4 +107,22 @@ export const StyledRegister = styled.div`
     font-size: 14px;
     color: var(--color-gray-4);
   }
-`;
+`
+export const HeaderUsers = styled.div`
+margin: 0;
+width:400px;
+max-width: 300px;
+display: flex;
+justify-content: space-between;
+padding: 10px;
+
+
+img{
+    height: 50;
+    width: 130px;
+}
+button{   
+    height: 35px;
+    padding:5px 
+    }
+`
