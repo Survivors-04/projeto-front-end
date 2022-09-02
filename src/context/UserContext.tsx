@@ -40,7 +40,7 @@ const UserProvider = ({ children }: IUserProvider) => {
     };
 
     loadUser();
-  }, [user]);
+  }, []);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
