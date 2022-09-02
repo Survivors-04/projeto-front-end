@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
+display: flex;
+flex-direction: column;
+
   margin: 0 auto;
 
   width: 95%;
@@ -10,7 +13,6 @@ const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
 
   @media screen and (min-width: 768px) {
     width: 75%;

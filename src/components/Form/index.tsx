@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import { formSchema } from "../../validations/loginValidations";
+
+import { loginSchema } from "../../validations/loginValidations";
+
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -20,7 +22,7 @@ export const Form = ({ children,userSubmit }: IForm) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IOnSubmitFunctionProps>({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(loginSchema)
   });
 
   return (
