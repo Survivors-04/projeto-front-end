@@ -15,12 +15,15 @@ import DiceRoll from "../Modal/DiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
+import { UserContext } from "../../Context/UserContext";
 
 const Header = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  //const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
   const { isModalDice, setIsModalDice } = useContext(ModalContext);
   const { isModalHeader, setIsModalHeader } = useContext(ModalContext);
+  const { isLogged } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -59,10 +62,10 @@ const Header = () => {
                 {isLogged ? (
                   <>
                     <li>
-                      <span>100g</span>
+                      <span>{user.gold}</span>
                     </li>
                     <li>
-                      <StyledNavButton onClick={() => setIsLogged(false)}>
+                      <StyledNavButton>
                         <img src={iconUserHeader} alt="" />
                       </StyledNavButton>
                     </li>
@@ -72,7 +75,6 @@ const Header = () => {
                     <Button
                       width={100}
                       onClick={() => navigate("/login", { replace: true })}
-                      // onClick={() => setIsLogged(true)}
                       textColor={"var(--color-blue)"}
                       backgroundColor={"var(--color-yellow)"}
                       hover={"var(--color-yellow-focus)"}
