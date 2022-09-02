@@ -7,12 +7,13 @@ import Button from "../../components/Button";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgBulbasaur from "../../assets/imgs/Login/Bulbasaur.png";
 import { HeaderUsers } from "../../components/StylerUser/styles";
+import ApiLogin from "../../services/apiLogin";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-    console.log(data);
+    ApiLogin(data);
    
   };
   return (

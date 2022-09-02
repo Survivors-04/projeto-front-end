@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledEmptyCart = styled.div`
-    width: 344px;
+    width: 280px;
     height: 525px;
     background: #212529;
     border: 2px solid #868E96;
@@ -9,6 +9,11 @@ const StyledEmptyCart = styled.div`
     position: relative;
     margin-top: 7%;
     margin-left: 7%;
+    @media only screen and (max-width: 779px) {
+    
+    margin-top: 2%;
+    margin-left: 0%;
+}
         h2{
             background: #C80B0B;
             height: 18%;

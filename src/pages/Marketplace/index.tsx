@@ -16,7 +16,7 @@ const Marketplace = () => {
       <StyledDivSearchCard>
         <SearchFilter/>
         <EmptyCart/>
-        <FullCart/>
+        
       </StyledDivSearchCard>
     </StyledDivsMarket>
     </>

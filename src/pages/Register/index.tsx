@@ -8,6 +8,7 @@ import { formSchema } from "../../validations/RegisterValidations";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
+import  { IApiLogin }  from "../../services/apiLogin";
 
 
 interface IOnSubmitFunctionProps { 
@@ -16,6 +17,8 @@ interface IOnSubmitFunctionProps {
   password?: string;
   confirmPassword?: string;
   gold?:number;
+
+ 
 }
 
 const Register = () => {
@@ -33,7 +36,7 @@ const Register = () => {
     
     const goldUser = data.gold = 100; 
     const dataUser = data;
-    console.log(dataUser);
+    // console.log(dataUser);
     
   };
 
