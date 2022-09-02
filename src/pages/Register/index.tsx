@@ -10,11 +10,11 @@ import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 
 
-interface IOnSubmitFunctionProps {
+interface IOnSubmitFunctionProps { 
+  name?: string;
   email?: string;
   password?: string;
   confirmPassword?: string;
-  name?: string;
   gold?:number;
 }
 
@@ -54,6 +54,15 @@ const Register = () => {
         <main>
           <h2>Crie sua conta</h2>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
+
+          <label htmlFor="name">Nickname</label>
+            <input
+              type="text"
+              placeholder="Digite Seu nickname"
+              {...register("name")}
+            />
+            <span>{errors.name?.message}</span>
+
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -78,13 +87,6 @@ const Register = () => {
             />
             <span>{errors.confirmPassword?.message}</span>
 
-            <label htmlFor="name">Nickname</label>
-            <input
-              type="text"
-              placeholder="Digite Seu nickname"
-              {...register("name")}
-            />
-            <span>{errors.name?.message}</span>
             <Button width={100} onClick={() => navigate("/register")}>
               Cadastrar
             </Button>

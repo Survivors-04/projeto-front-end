@@ -1,5 +1,5 @@
-const api = () => {
-  return "oi";
-};
+import axios from "axios";
 
-export default api;
+const Api = ()=>{}
+
+export default Api
