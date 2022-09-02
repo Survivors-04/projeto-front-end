@@ -6,6 +6,7 @@ interface IUserProvider {
 }
 export interface IUserContext {
   user: iUser;
+  isLogged: boolean;
 }
 
 interface iUser {
@@ -20,6 +21,7 @@ export const UserContext = createContext({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProvider) => {
   const [user, setUser] = useState<iUser>({} as iUser);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -29,6 +31,7 @@ const UserProvider = ({ children }: IUserProvider) => {
       if (token) {
         try {
           api.defaults.headers.common.authorization = `Bearer ${token}`;
+          setIsLogged(true);
 
           const { data } = await api.get(`/Users/${userID}`);
 
@@ -43,7 +46,9 @@ const UserProvider = ({ children }: IUserProvider) => {
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, isLogged }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 
