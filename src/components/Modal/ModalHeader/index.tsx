@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useContext } from "react";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaHome, FaUser } from "react-icons/fa";

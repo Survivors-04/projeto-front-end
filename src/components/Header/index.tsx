@@ -9,7 +9,7 @@ import {
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ModalContext } from "../../Context/ModalContext";
 import DiceRoll from "../Modal/DiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
@@ -19,7 +19,6 @@ import { UserContext } from "../../Context/UserContext";
 import { AnimatePresence } from "framer-motion";
 
 const Header = () => {
-  //const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
   const { isModalDice, setIsModalDice } = useContext(ModalContext);
   const { isModalHeader, setIsModalHeader } = useContext(ModalContext);
