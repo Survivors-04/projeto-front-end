@@ -4,13 +4,12 @@ export const StyledContainer = styled.header`
   background-color: var(--color-red);
   width: 100%;
   height: 80px;
-  align-items: center;
 
-  @media screen and (min-width: 700px) {
-    display: flex;
-    justify-content: space-around;
-    gap: 120px;
-  }
+  /* position: fixed; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const StyledDiv = styled.div`
@@ -30,11 +29,35 @@ export const StyledDiv = styled.div`
       width: 50px;
     }
   }
+`;
+
+export const StyledHeaderContainer = styled.div`
+  margin: 0 auto;
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media screen and (min-width: 700px) {
-    button {
+    div > button {
       display: none;
     }
+  }
+`;
+
+export const StyledNavButton = styled.button`
+  color: var(--color-gray-4);
+  background-color: transparent;
+
+  border: none;
+
+  font-size: 20px;
+`;
+
+export const StyledHeaderMobile = styled.div`
+  button {
+    background-color: transparent;
+    border: none;
   }
 `;
 
@@ -47,26 +70,19 @@ export const Nav = styled.nav`
     align-items: center;
     gap: 15px;
 
-    li {
-      a {
-        color: var(--color-gray-4);
-        font-weight: 700;
-        font-size: 16px;
-      }
+    li > a {
+      color: var(--color-gray-4);
+      font-weight: 700;
+      font-size: 25px;
+    }
+
+    li > button {
+      font-weight: 700;
+      font-size: 25px;
     }
   }
 
   @media screen and (min-width: 768px) {
     display: flex;
   }
-`;
-
-export const StyledNavButton = styled.button`
-  color: var(--color-gray-4);
-  background-color: transparent;
-  
-  border: none;
-
-  font-weight: 700;
-  font-size: 16px;
 `;

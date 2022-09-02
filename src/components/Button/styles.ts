@@ -15,7 +15,7 @@ const StyledButton = styled.button<iStyledButton>`
     backgroundColor ? backgroundColor : "var(--color-red)"};
 
   margin: 5px 0;
-  padding: 10px 0;
+  padding: 10px 5px;
 
   font-weight: 900;
   font-size: 18px;
