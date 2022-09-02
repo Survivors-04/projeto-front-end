@@ -175,22 +175,31 @@ export const StyledList = styled.ul`
     margin-top: 15px;
     background-color: var(--color-gray-3);
     border-radius: 10px;
-    height: 170px;
+    max-height: 170px;
 
     padding: 10px;
 
     img {
       padding: 10px;
       width: 90px;
+      max-width: 90px;
+      height: 90px;
     }
 
     @media screen and (min-width: 700px) {
       width: 110px;
-      gap: 5px;
 
       img {
-        padding: 3px;
+        padding: 10px;
         width: 70px;
+      }
+
+      h3 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 13px;
       }
     }
 

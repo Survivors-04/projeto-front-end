@@ -18,7 +18,7 @@ interface IPokemons {
   Rarity: string;
   Number: number;
   Type01: string;
-  Type02: string;
+  Type02: string | null;
   userId: number;
   id: number;
 }
@@ -95,7 +95,14 @@ const Profile = () => {
                   </figure>
 
                   <h3>{pokemon.Pokemon}</h3>
-                  <p>{pokemon.Type01}</p>
+                  <p>
+                    {pokemon.Type01}
+                    {pokemon.Type02 !== "null" ? (
+                      <span>{pokemon.Type02}</span>
+                    ) : (
+                      <></>
+                    )}
+                  </p>
                   <p>{pokemon.Rarity}</p>
                 </li>
               ))}
