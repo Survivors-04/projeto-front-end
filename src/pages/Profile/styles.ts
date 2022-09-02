@@ -37,6 +37,10 @@ export const StyledSection = styled.section`
       width: 550px;
     }
   }
+  div {
+    display: flex;
+    gap: 5px;
+  }
 
   input {
     width: 100%;
