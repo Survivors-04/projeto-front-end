@@ -4,15 +4,17 @@ const StyledSinglePokemon = styled.div`
     background-color: #212529;
     height: 40%;
     width: 40%;
-    max-width: 333px;
-    max-height: 503px;
+    min-width: 280px;
+    max-width: 280px;
+    min-height: 387px;
+    max-height: 387px;
     border-radius: 20px;
     border: 2px solid #868E96;
     margin-left: 2%;
     margin-top: 2%;
 
     img {
-    width: 80%;
+    width: 57%;
     border-radius: 10px;
     text-align: center;
     display: block;
@@ -21,7 +23,7 @@ const StyledSinglePokemon = styled.div`
   }
   h2{
     font-weight: 700;
-    font-size: 36px;
+    font-size: 22px;
     line-height: 43px;
     color: #868E96;
     margin-left: 10%;
@@ -30,21 +32,22 @@ const StyledSinglePokemon = styled.div`
   
   h4{
     font-weight: 700;
-    font-size: 22px;
+    font-size: 15px;
     line-height: 26px;
     color: #868E96;
     margin-left: 10%;
-    margin-top: 5%;
+    
   }
 
   div{
     font-weight: 700;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 35px;
     color: #868E96;
     display: flex;
     margin-left: 10%;
     margin-top: 5%;
+    
     
   }
   span{
@@ -56,7 +59,7 @@ const StyledSinglePokemon = styled.div`
   }
   button{
     margin-left: 10%;
-    margin-top: 5%;
+    
   }
 
 `
@@ -69,10 +72,10 @@ export const StyledButtonBag = styled.button`
     border-radius: 12px;
     width: auto;
     height: auto;
-    margin-left: 10%;
-    margin-top: 5%;
+    margin-left: 10%;    
     font-weight: 700;
-    font-size: 26px;
+    font-size: 15px;
     line-height: 31px;
+    margin-top: 5%;
   
 `
