@@ -8,7 +8,7 @@ import { formSchema } from "../../validations/RegisterValidations";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
-import  { IApiLogin }  from "../../services/apiLogin";
+import apiRegister from "../../services/apiRegister";
 
 
 interface IOnSubmitFunctionProps { 
@@ -17,7 +17,6 @@ interface IOnSubmitFunctionProps {
   password?: string;
   confirmPassword?: string;
   gold?:number;
-
  
 }
 
@@ -33,12 +32,12 @@ const Register = () => {
   });
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
+    console.log(data)
+     const goldUser = data.gold = 100; 
+     const dataUser = data;
+     apiRegister(dataUser)
     
-    const goldUser = data.gold = 100; 
-    const dataUser = data;
-    // console.log(dataUser);
-    
-  };
+  }
 
   return (
     <StyledContainer>
@@ -81,14 +80,6 @@ const Register = () => {
               {...register("password")}
             />
             <span>{errors.password?.message}</span>
-
-            <label htmlFor="confirmPassword">Confirm password</label>
-            <input
-              type="password"
-              placeholder="Digite sua senha novamente"
-              {...register("confirmPassword")}
-            />
-            <span>{errors.confirmPassword?.message}</span>
 
             <Button width={100} onClick={() => navigate("/register")}>
               Cadastrar
