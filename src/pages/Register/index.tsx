@@ -32,7 +32,6 @@ const Register = () => {
   });
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-    console.log(data)
      const goldUser = data.gold = 100; 
      const dataUser = data;
      apiRegister(dataUser)
