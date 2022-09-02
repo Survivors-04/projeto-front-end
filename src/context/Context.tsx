@@ -7,7 +7,11 @@ interface iContext {
 }
 
 const Context = ({ children }: iContext) => {
-  return <UserProvider><ModalProvider>{children}</ModalProvider></UserProvider>;
+  return (
+    <UserProvider>
+      <ModalProvider>{children}</ModalProvider>
+    </UserProvider>
+  );
 };
 
 export default Context;

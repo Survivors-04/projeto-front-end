@@ -19,6 +19,7 @@ export const StyledSideHeader = styled.ul`
 
     text-decoration: none;
     font-size: 20px;
+    font-weight: 700;
 
     display: block;
 

@@ -38,7 +38,7 @@ export const StyledHeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 1024px) {
     div > button {
       display: none;
     }
@@ -51,6 +51,7 @@ export const StyledNavButton = styled.button`
 
   border: none;
 
+  font-weight: 700;
   font-size: 20px;
 `;
 
@@ -73,16 +74,11 @@ export const Nav = styled.nav`
     li > a {
       color: var(--color-gray-4);
       font-weight: 700;
-      font-size: 25px;
-    }
-
-    li > button {
-      font-weight: 700;
-      font-size: 25px;
+      font-size: 20px;
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     display: flex;
   }
 `;

@@ -14,6 +14,26 @@ export default createGlobalStyle`
     --color-blue: #4169E1;
     --color-success: #168821;
     --color-error: #E60000;
+    
+    --color-type-normal: #B0AEA1;
+    --color-type-poison: #A35994;
+    --color-type-psychic: #EE59A0;
+    --color-type-grass: #7BC45B;
+    --color-type-ground: #D7B960;
+    --color-type-ice: #80DEFA;
+    --color-type-fire: #EB4D44;
+    --color-type-rock: #BCAE70;
+    --color-type-dragon: #8170E9;
+    --color-type-water: #46A0F8;
+    --color-type-bug: #AFBF45;
+    --color-type-dark: #826152;
+    --color-type-fighting: #B15747;
+    --color-type-ghost: #6E6DBB;
+    --color-type-steel: #B3B2C4;
+    --color-type-flying: #6E97EF;
+    --color-type-electric: #F8D151;
+    --color-type-fairy: #E6A0E6;
+
     font-size: 60%; 
     --toastify-icon-color-success: var(--color-success);
     --toastify-icon-color-error: var(--color-error);
