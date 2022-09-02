@@ -142,6 +142,12 @@ export const StyledList = styled.ul`
   border-radius: 8px;
   padding: 10px;
 
+  h2 {
+    padding: 15px;
+    font-size: 15px;
+    color: var(--color-gray-3);
+  }
+
   .form {
     display: none;
   }
