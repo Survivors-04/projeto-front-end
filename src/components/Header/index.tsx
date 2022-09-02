@@ -16,6 +16,7 @@ import ModalHeader from "../Modal/ModalHeader";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { UserContext } from "../../Context/UserContext";
+import { AnimatePresence } from "framer-motion";
 
 const Header = () => {
   //const [isLogged, setIsLogged] = useState(false);
@@ -88,7 +89,7 @@ const Header = () => {
           </Nav>
         </StyledHeaderContainer>
       </StyledContainer>
-      {isModalHeader && <ModalHeader />}
+      <AnimatePresence>{isModalHeader && <ModalHeader />}</AnimatePresence>
       {isModalDice && <DiceRoll />}
     </>
   );

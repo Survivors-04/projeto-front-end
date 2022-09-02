@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { ReactNode, useEffect, useRef } from "react";
 import { StyledModalBox, StyledModalContainer } from "./style";
 
@@ -29,7 +30,14 @@ const Modal = ({ children, setIs }: iModal) => {
   }, [setIs]);
 
   return (
-    <StyledModalContainer>
+    <StyledModalContainer
+      as={motion.div}
+      key="modalBase"
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
       <StyledModalBox ref={modalRef}>{children}</StyledModalBox>
     </StyledModalContainer>
   );
