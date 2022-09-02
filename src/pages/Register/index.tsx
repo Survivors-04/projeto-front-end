@@ -8,14 +8,17 @@ import { formSchema } from "../../validations/RegisterValidations";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
+import  { IApiLogin }  from "../../services/apiLogin";
 
 
-interface IOnSubmitFunctionProps {
+interface IOnSubmitFunctionProps { 
+  name?: string;
   email?: string;
   password?: string;
   confirmPassword?: string;
-  name?: string;
   gold?:number;
+
+ 
 }
 
 const Register = () => {
@@ -33,7 +36,7 @@ const Register = () => {
     
     const goldUser = data.gold = 100; 
     const dataUser = data;
-    console.log(dataUser);
+    // console.log(dataUser);
     
   };
 
@@ -54,6 +57,15 @@ const Register = () => {
         <main>
           <h2>Crie sua conta</h2>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
+
+          <label htmlFor="name">Nickname</label>
+            <input
+              type="text"
+              placeholder="Digite Seu nickname"
+              {...register("name")}
+            />
+            <span>{errors.name?.message}</span>
+
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -78,13 +90,6 @@ const Register = () => {
             />
             <span>{errors.confirmPassword?.message}</span>
 
-            <label htmlFor="name">Nickname</label>
-            <input
-              type="text"
-              placeholder="Digite Seu nickname"
-              {...register("name")}
-            />
-            <span>{errors.name?.message}</span>
             <Button width={100} onClick={() => navigate("/register")}>
               Cadastrar
             </Button>
