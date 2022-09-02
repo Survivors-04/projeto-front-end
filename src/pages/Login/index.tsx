@@ -13,6 +13,7 @@ const Login = () => {
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
     console.log(data);
+   
   };
   return (
     <StyledContainer>

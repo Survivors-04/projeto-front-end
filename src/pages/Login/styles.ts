@@ -10,7 +10,7 @@ export const ContainerUsers = styled.div<IContainerProps>`
   height: 458px;
   margin:  0px;
   background: rgba(255, 215, 0, 0.9);
-  margin-top: 150px;
+  margin-top: 0px;
 
   border-radius: 12px;
   border: 7px solid rgba(65, 105, 225, 1);
