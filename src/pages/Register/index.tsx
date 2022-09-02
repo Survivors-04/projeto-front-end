@@ -1,20 +1,23 @@
 import Button from "../../components/Button";
 import StyledContainer from "../../components/Container/styles";
 import { useNavigate } from "react-router-dom";
-import { ContainerUsers, StyledRegister } from "../Login/styles";
+import { ContainerUsers, StyledRegister } from "../../components/StylerUser/styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../../validations/RegisterValidations";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
-import { HeaderUsers } from "./styles";
+import { HeaderUsers } from "../../components/StylerUser/styles";
+import apiRegister from "../../services/apiRegister";
 
 
-interface IOnSubmitFunctionProps {
+interface IOnSubmitFunctionProps { 
+  name?: string;
   email?: string;
   password?: string;
   confirmPassword?: string;
-  name?: string;
+  gold?:number;
+ 
 }
 
 const Register = () => {
@@ -29,8 +32,12 @@ const Register = () => {
   });
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-    console.log(data);
-  };
+    console.log(data)
+     const goldUser = data.gold = 100; 
+     const dataUser = data;
+     apiRegister(dataUser)
+    
+  }
 
   return (
     <StyledContainer>
@@ -49,6 +56,15 @@ const Register = () => {
         <main>
           <h2>Crie sua conta</h2>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
+
+          <label htmlFor="name">Nickname</label>
+            <input
+              type="text"
+              placeholder="Digite Seu nickname"
+              {...register("name")}
+            />
+            <span>{errors.name?.message}</span>
+
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -65,21 +81,6 @@ const Register = () => {
             />
             <span>{errors.password?.message}</span>
 
-            <label htmlFor="confirmPassword">Confirm password</label>
-            <input
-              type="password"
-              placeholder="Digite sua senha novamente"
-              {...register("confirmPassword")}
-            />
-            <span>{errors.confirmPassword?.message}</span>
-
-            <label htmlFor="name">Nickname</label>
-            <input
-              type="text"
-              placeholder="Digite Seu nickname"
-              {...register("name")}
-            />
-            <span>{errors.name?.message}</span>
             <Button width={100} onClick={() => navigate("/register")}>
               Cadastrar
             </Button>

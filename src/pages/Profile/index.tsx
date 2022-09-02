@@ -6,7 +6,8 @@ import imgAsh from "../../assets/imgs/Profile/ash 1.svg";
 import imgCharmander from "../../assets/imgs/Profile/Charmander.svg";
 import { StyledCharmImg, StyledDiv, StyledList, StyledSection } from "./styles";
 import api from "../../services/api";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 interface IData {
   email: string;
@@ -24,28 +25,16 @@ interface IPokemons {
 }
 
 const Profile = () => {
-  const [userName, setUserName] = useState("");
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
+  const { user } = useContext(UserContext)
 
-  const data = {
-    email: "teste5@gamil.com",
-    password: "123456",
-  };
+  // console.log(user)
 
   useEffect(() => {
-    api.get("/Users/5/pokedexUser").then((response) => {
+    api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
       setPokemons(response.data);
     });
   }, [pokemons]);
-
-  const login = (data: IData) => {
-    api.post("/login", data).then((response) => {
-      window.localStorage.setItem("@TOKEN", response.data.accessToken);
-      setUserName(response.data.user.name);
-    });
-  };
-
-  login(data);
 
   return (
     <>
@@ -58,11 +47,11 @@ const Profile = () => {
             </figure>
 
             <ul>
-              <li>{userName}</li>
+              <li>{user.name}</li>
               <li>Coleção: 15</li>
               <li>Raros: 2</li>
               <li>
-                Moedas: <span>100g</span>
+                Moedas: <span>{user.gold}</span>
               </li>
             </ul>
           </StyledDiv>
