@@ -14,6 +14,7 @@ import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
+import axios from "axios";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -32,12 +33,35 @@ const DiceRoll = () => {
     }
   }, [roll]);
 
-  const showResult = () => {
+  let dataUser = { gold: 0 };
+
+  axios
+    .get("https://projeto-front-end-json-server.herokuapp.com/Users/5")
+    .then((response) => {
+      dataUser = response.data;
+      //console.log(response);
+    });
+  const showResult = (ind: number) => {
     setAnimationResult(false);
-    setTimeout(() => {
-      setRoll(false);
-      setResult(true);
-    }, 500);
+
+    axios
+      .patch(
+        "https://projeto-front-end-json-server.herokuapp.com/Users/5",
+        { gold: dataUser.gold + ind },
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlNUBnYW1pbC5jb20iLCJpYXQiOjE2NjIxMzQ0OTQsImV4cCI6MTY2MjEzODA5NCwic3ViIjoiNSJ9.6MBe1ivw3u2cjFBaHROcX5VFb-EywrlAnzzjl4VVJPA",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setRoll(false);
+        setResult(true);
+      });
   };
 
   const toRoll = () => {
@@ -47,7 +71,7 @@ const DiceRoll = () => {
           const numberRandom = Math.floor(Math.random() * (101 - 30) + 30);
           setNumberResult(numberRandom);
           if (ind === 22) {
-            showResult();
+            showResult(numberRandom);
           }
         }, 400 * ind);
       })(i);
@@ -131,8 +155,8 @@ const DiceRoll = () => {
                 <div>
                   {animationResult ? (
                     <motion.span
-                      initial={{ opacity: 1, y: +2 }}
-                      animate={{ opacity: 0, y: -55 }}
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: 0 }}
                       transition={{
                         duration: 0.2,
                         yoyo: Infinity,

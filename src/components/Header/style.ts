@@ -53,6 +53,11 @@ export const StyledNavButton = styled.button`
 
   font-weight: 700;
   font-size: 20px;
+
+  img {
+    padding: 5px;
+    width: 50px;
+  }
 `;
 
 export const StyledHeaderMobile = styled.div`

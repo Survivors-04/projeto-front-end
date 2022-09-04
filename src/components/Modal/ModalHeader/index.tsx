@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useContext } from "react";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaHome, FaUser } from "react-icons/fa";
@@ -15,7 +16,14 @@ const ModalHeader = () => {
   return (
     <>
       <Modal setIs={setIsModalHeader}>
-        <StyledSideHeader>
+        <StyledSideHeader
+          as={motion.ul}
+          key="modalHeader"
+          initial={{ x: "+100vw" }}
+          exit={{ x: "+300vw" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.2 }}
+        >
           <ul>
             <li>
               Jotinha

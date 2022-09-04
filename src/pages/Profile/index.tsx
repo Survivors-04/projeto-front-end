@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
+import ApiPokedex from "../../services/apiPokedex";
 
 interface IData {
   email: string;
@@ -30,11 +31,10 @@ const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
-      setPokemons(response.data);
-    });
-  }, [pokemons]);
+  const teste = () => {
+    const request = ApiPokedex();
+    console.log(request);
+  };
 
   return (
     <>
@@ -66,14 +66,18 @@ const Profile = () => {
           </form>
 
           <StyledList>
-            <form className="form">
-              <input
-                type="text"
-                placeholder="Pesquisar Pokemon..."
-                onChange={() => {}}
-              />
-            </form>
-            {pokemons.length >= 1 &&
+            {pokemons.length >= 1 ? (
+              <form className="form">
+                <input
+                  type="text"
+                  placeholder="Pesquisar Pokemon..."
+                  onChange={() => {}}
+                />
+              </form>
+            ) : (
+              <></>
+            )}
+            {pokemons.length >= 1 ? (
               pokemons.map((pokemon, index) => (
                 <li key={index}>
                   <figure>
@@ -103,7 +107,10 @@ const Profile = () => {
                   </div>
                   <p>{pokemon.Rarity}</p>
                 </li>
-              ))}
+              ))
+            ) : (
+              <h2>Você ainda não possui pokemons em sua coleção :(</h2>
+            )}
           </StyledList>
         </StyledSection>
       </StyledContainer>
