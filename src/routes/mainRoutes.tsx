@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import AboutUs from "../pages/AboutUs";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Marketplace from "../pages/Marketplace";
@@ -34,6 +35,7 @@ const MainRoutes = () => {
 
       <Route path="/register" element={<Register />} />
       <Route path="/marketplace" element={<Marketplace />} />
+      <Route path="/aboutus" element={<AboutUs />} />
     </Routes>
   );
 };

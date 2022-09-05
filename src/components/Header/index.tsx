@@ -56,7 +56,7 @@ const Header = () => {
                 <Link to={"/help"}>Ajuda</Link>
               </li>
               <li>
-                <Link to={"/aboutUs"}>Sobre nós</Link>
+                <Link to={"/aboutus"}>Sobre nós</Link>
               </li>
               <>
                 {isLogged ? (
