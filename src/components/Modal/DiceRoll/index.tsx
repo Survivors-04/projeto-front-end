@@ -14,6 +14,8 @@ import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
+import api from "../../../services/api";
+import { UserContext } from "../../../Context/UserContext";
 import axios from "axios";
 
 const DiceRoll = () => {
@@ -24,6 +26,7 @@ const DiceRoll = () => {
   const [numberResult, setNumberResult] = useState(1);
 
   const { setIsModalDice } = useContext(ModalContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     if (roll) {
@@ -33,30 +36,27 @@ const DiceRoll = () => {
     }
   }, [roll]);
 
-  let dataUser = { gold: 0 };
-
-  axios
-    .get("https://projeto-front-end-json-server.herokuapp.com/Users/5")
-    .then((response) => {
-      dataUser = response.data;
-      //console.log(response);
-    });
   const showResult = (ind: number) => {
     setAnimationResult(false);
 
+    const tokenUser = localStorage.getItem("@TOKEN");
+    const idUser = localStorage.getItem("@USERID");
+
     axios
       .patch(
-        "https://projeto-front-end-json-server.herokuapp.com/Users/5",
-        { gold: dataUser.gold + ind },
+        `https://projeto-front-end-json-server.herokuapp.com/Users/${idUser}`,
+        { gold: user.gold + ind },
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlNUBnYW1pbC5jb20iLCJpYXQiOjE2NjIxMzQ0OTQsImV4cCI6MTY2MjEzODA5NCwic3ViIjoiNSJ9.6MBe1ivw3u2cjFBaHROcX5VFb-EywrlAnzzjl4VVJPA",
             "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenUser}`,
           },
         }
       )
-      .then((response) => console.log(response))
+      .then((response) => {
+        setUser({ ...user, gold: user.gold + ind });
+        console.log(response);
+      })
       .catch((err) => console.log(err))
       .finally(() => {
         setRoll(false);
