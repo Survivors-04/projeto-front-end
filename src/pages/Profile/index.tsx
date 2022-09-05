@@ -36,11 +36,17 @@ const Profile = () => {
     api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
       setPokemons(response.data);
     });
-    let countRaresPokemons = pokemons.filter(
-      (pokemon) => pokemon.Rarity === "Rare"
-    ).length;
-    setCountRares(countRaresPokemons);
   }, [user.id]);
+
+  useEffect(() => {
+    const countRares = () => {
+      let countRaresPokemons = pokemons.filter(
+        (pokemon) => pokemon.Rarity === "Rare"
+      ).length;
+      setCountRares(countRaresPokemons);
+    };
+    countRares();
+  }, [pokemons]);
 
   return (
     <>
