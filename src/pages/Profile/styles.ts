@@ -181,11 +181,11 @@ export const StyledList = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    width: 260px;
     margin-top: 15px;
     background-color: var(--color-gray-3);
     border-radius: 10px;
-    max-height: 170px;
+    max-height: 180px;
 
     padding: 10px;
 

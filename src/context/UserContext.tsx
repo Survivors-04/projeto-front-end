@@ -1,37 +1,39 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
-import api from "../services/api";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
+import api from "../services/api";
 
 interface IUserProvider {
   children: ReactNode;
 }
 export interface IUserContext {
-  user: iUser,
-  setUser:React.Dispatch<React.SetStateAction<iUser>>;
+  user: iUser;
+  setUser: React.Dispatch<React.SetStateAction<iUser>>;
   setIsLogged: Dispatch<SetStateAction<boolean>>;
-  isLogged: boolean,
- 
-  
+  isLogged: boolean;
 }
 
-interface iUser {
+export interface iUser {
   id: number;
   gold: number;
   email: string;
   name: string;
   password: string;
+  dateRoll: number;
 }
 
-export const UserContext = createContext({} as IUserContext);
+export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProvider) => {
-
   const [user, setUser] = useState<iUser>({} as iUser);
   const [isLogged, setIsLogged] = useState(false);
-  
 
- 
-  
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem("@TOKEN");
@@ -55,7 +57,7 @@ const UserProvider = ({ children }: IUserProvider) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, isLogged,setUser,setIsLogged }}>
+    <UserContext.Provider value={{ user, isLogged, setUser, setIsLogged }}>
       {children}
     </UserContext.Provider>
   );
