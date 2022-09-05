@@ -28,6 +28,7 @@ const DiceRoll = () => {
 
   const { setIsModalDice } = useContext(ModalContext);
   const { user, setUser } = useContext(UserContext);
+  console.log(user);
 
   useEffect(() => {
     const tokenUser = localStorage.getItem("@TOKEN");
@@ -63,7 +64,7 @@ const DiceRoll = () => {
         }
       )
       .then((response) => {
-        setUser({ ...user, gold: user.gold + ind });
+        setUser({ ...user, gold: user.gold + ind, dateRoll: Date.now() });
         console.log(response);
       })
       .catch((err) => console.log(err))
