@@ -53,7 +53,7 @@ const DiceRoll = () => {
 
     const idUser = localStorage.getItem("@USERID");
 
-    if (user.dateLastRoll)
+    if (user.dateRoll)
       api
         .patch(
           `/Users/${idUser}`,
