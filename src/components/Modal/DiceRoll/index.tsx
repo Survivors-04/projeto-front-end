@@ -14,7 +14,9 @@ import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
-import axios from "axios";
+import api from "../../../services/api";
+import { UserContext } from "../../../Context/UserContext";
+import Span from "../../TypePokemonSpan";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -22,8 +24,21 @@ const DiceRoll = () => {
   const [result, setResult] = useState(false);
   const [animationResult, setAnimationResult] = useState(true);
   const [numberResult, setNumberResult] = useState(1);
+  const [isLoged, setIsLoged] = useState(false);
+  const [rolledDice, setRolledDice] = useState(false);
 
   const { setIsModalDice } = useContext(ModalContext);
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const tokenUser = localStorage.getItem("@TOKEN");
+    if (tokenUser) setIsLoged(true);
+  }, [isLoged]);
+
+  useEffect(() => {
+    const currentDate = Date.now();
+    if (currentDate > user.dateRoll + 86400000) setRolledDice(true);
+  }, [user]);
 
   useEffect(() => {
     if (roll) {
@@ -33,35 +48,31 @@ const DiceRoll = () => {
     }
   }, [roll]);
 
-  let dataUser = { gold: 0 };
-
-  axios
-    .get("https://projeto-front-end-json-server.herokuapp.com/Users/5")
-    .then((response) => {
-      dataUser = response.data;
-      //console.log(response);
-    });
-  const showResult = (ind: number) => {
+  const showResult = async (ind: number) => {
     setAnimationResult(false);
 
-    axios
-      .patch(
-        "https://projeto-front-end-json-server.herokuapp.com/Users/5",
-        { gold: dataUser.gold + ind },
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlNUBnYW1pbC5jb20iLCJpYXQiOjE2NjIxMzQ0OTQsImV4cCI6MTY2MjEzODA5NCwic3ViIjoiNSJ9.6MBe1ivw3u2cjFBaHROcX5VFb-EywrlAnzzjl4VVJPA",
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setRoll(false);
-        setResult(true);
-      });
+    const idUser = localStorage.getItem("@USERID");
+
+    if (user.dateLastRoll)
+      api
+        .patch(
+          `/Users/${idUser}`,
+          { gold: user.gold + ind },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          setUser({ ...user, gold: user.gold + ind });
+          console.log(response);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setRoll(false);
+          setResult(true);
+        });
   };
 
   const toRoll = () => {
@@ -99,16 +110,26 @@ const DiceRoll = () => {
                 <img src={diceRed} alt="pokemon" />
                 <img src={diceRed2} alt="pokemon" />
               </motion.div>
-              <span>Deseja rolar o dado?</span>
-              <Button
-                width={25}
-                onClick={() => {
-                  setConsfirmation(false);
-                  setRoll(true);
-                }}
-              >
-                Sim!
-              </Button>
+              {isLoged === false ? (
+                <span>
+                  Faça login para rolar o dado e conseguir recompensas!
+                </span>
+              ) : isLoged && rolledDice === false ? (
+                <>
+                  <span>Deseja rolar o dado?</span>
+                  <Button
+                    width={25}
+                    onClick={() => {
+                      setConsfirmation(false);
+                      setRoll(true);
+                    }}
+                  >
+                    Sim!
+                  </Button>
+                </>
+              ) : (
+                <span> Você só pode rodar o dado uma vez a cada 24 horas!</span>
+              )}
             </StyledConfirmation>
           )}
 
