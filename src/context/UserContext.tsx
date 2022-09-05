@@ -1,5 +1,13 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import api from "../services/api";
+import ApiLogin from "../services/apiLogin";
 
 interface IUserProvider {
   children: ReactNode;
@@ -7,6 +15,8 @@ interface IUserProvider {
 export interface IUserContext {
   user: iUser;
   isLogged: boolean;
+  setUser: Dispatch<SetStateAction<iUser>>;
+
 }
 
 export interface iUser {
@@ -20,9 +30,11 @@ export interface iUser {
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProvider) => {
+
   const [user, setUser] = useState<iUser>({} as iUser);
   const [isLogged, setIsLogged] = useState(false);
 
+  
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem("@TOKEN");
@@ -46,7 +58,7 @@ const UserProvider = ({ children }: IUserProvider) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, isLogged }}>
+    <UserContext.Provider value={{ user, isLogged, setUser }}>
       {children}
     </UserContext.Provider>
   );
