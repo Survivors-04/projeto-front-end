@@ -5,16 +5,24 @@ import Button from "../../Button";
 import { StyledModalHome } from "./styled";
 import apiPokemonList from "../../../services/apiPokemonList";
 import { v4 as uuidv4 } from "uuid";
+import { UserContext } from "../../../Context/UserContext";
+import api from "../../../services/api";
 
 interface iPokemon {
   Pokemon: string;
-  id: number;
+  Rarity: string;
+  Number: number;
+  Type01: string;
+  Type02: string;
+  userId: number;
+  id: string | number;
 }
 
 export const ModalHome = () => {
   const { setisModalHome } = useContext(ModalContext);
+  const { user } = useContext(UserContext);
   const [teste, setTeste] = useState<iPokemon[]>([]);
-  const boosterLimit = 6;
+  const pokemonLimit = 6;
 
   useEffect(() => {
     const pokelist = async () => {
@@ -23,22 +31,42 @@ export const ModalHome = () => {
       const pokemonArry: iPokemon[] = [];
 
       const getrandom = () => {
-        for (let i = 0; i < boosterLimit; i++) {
+        for (let i = 0; i < pokemonLimit; i++) {
           const pokemonID = uuidv4();
           const pokemon =
             pokemonData[Math.floor(Math.random() * pokemonData.length)];
+
           pokemon.id = pokemonID;
+          pokemon.userId = user.id;
+
+          // console.log(pokemon);
           pokemonArry.push(pokemon);
         }
       };
       getrandom();
 
-      console.log(pokemonArry);
       setTeste(pokemonArry);
     };
 
     pokelist();
-  }, []);
+  }, [user.id]);
+
+  useEffect(() => {
+    const first = async (pokemon: iPokemon) => {
+      try {
+        const response = await api.post(
+          `/Users/${user.id}/pokedexUser`,
+          pokemon
+        );
+
+        // console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    teste.forEach(async (poke) => await first(poke));
+  }, [teste, user.id]);
 
   return (
     <>
