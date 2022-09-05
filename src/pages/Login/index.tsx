@@ -2,24 +2,24 @@ import StyledContainer from "../../components/Container/styles";
 import { ContainerUsers } from "../../components/StylerUser/styles";
 import { Form, IOnSubmitFunctionProps } from "../../components/Form";
 import { StyledRegister } from "../../components/StylerUser/styles";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgBulbasaur from "../../assets/imgs/Login/Bulbasaur.png";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import ApiLogin from "../../services/apiLogin";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../Context/UserContext";
 
-interface iLocationState {
-  from: {
-    pathname: string;
-  };
-}
+
+
 
 const Login = () => {
   const navigate = useNavigate();
+ 
   
-  const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-    ApiLogin(data);
+  const onSubmitFunction = (data: IOnSubmitFunctionProps) => {     
+    ApiLogin(data)
   };
   return (
     <StyledContainer>
@@ -34,7 +34,7 @@ const Login = () => {
           <h2>Login</h2>
 
           <Form userSubmit={onSubmitFunction}>
-            <Button width={80}>
+            <Button width={80} >
               Entrar
             </Button>
           </Form>

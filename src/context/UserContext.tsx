@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import api from "../services/api";
+import ApiLogin from "../services/apiLogin";
 
 interface IUserProvider {
   children: ReactNode;
@@ -7,6 +8,7 @@ interface IUserProvider {
 export interface IUserContext {
   user: iUser;
   isLogged: boolean;
+  
 }
 
 interface iUser {
@@ -20,9 +22,11 @@ interface iUser {
 export const UserContext = createContext({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProvider) => {
+
   const [user, setUser] = useState<iUser>({} as iUser);
   const [isLogged, setIsLogged] = useState(false);
 
+  
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem("@TOKEN");

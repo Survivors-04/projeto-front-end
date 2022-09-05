@@ -6,21 +6,22 @@ export interface IApiLogin {
   password?: string;
 }
 
-const ApiLogin = async (data: IApiLogin) => {
-  const navigate = useNavigate();
-  try {
-    const response = await api.post("/login", data);
+const ApiLogin = (data: IApiLogin) => {
+  
 
-    window.localStorage.clear();
-    window.localStorage.setItem("@TOKEN", response.data.accessToken);
-    window.localStorage.setItem("@USERID", response.data.user.id);
+  api
+    .post("/login", data)
+    .then((res) => {
+      window.localStorage.clear();
+      window.localStorage.setItem("@TOKEN", res.data.accessToken);
+      window.localStorage.setItem("@USERID", res.data.user.id);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
-    
-  } catch (err) {
-    console.log(err);
-  }finally{
-    navigate( "/", {replace:true} )
-  }
+  const token = window.localStorage.getItem("@TOKEN");
+  console.log(token)
 };
 
 export default ApiLogin;

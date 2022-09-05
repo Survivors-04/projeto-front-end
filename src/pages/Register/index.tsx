@@ -17,6 +17,7 @@ interface IOnSubmitFunctionProps {
   password?: string;
   confirmPassword?: string;
   gold?:number;
+  dateRoll?:number
  
 }
 
@@ -33,7 +34,8 @@ const Register = () => {
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
      const goldUser = data.gold = 100; 
-     const dataUser = data;
+     const dateRoll =  data.dateRoll = 0;
+;     const dataUser = data;
      apiRegister(dataUser)
     
   }
