@@ -19,7 +19,7 @@ export interface IUserContext {
 
 }
 
-interface iUser {
+export interface iUser {
   id: number;
   gold: number;
   email: string;
@@ -27,7 +27,7 @@ interface iUser {
   password: string;
 }
 
-export const UserContext = createContext({} as IUserContext);
+export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProvider) => {
 
