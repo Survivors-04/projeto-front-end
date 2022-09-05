@@ -62,10 +62,10 @@ const AboutUs = () => {
                 <h3>{dev.name}</h3>
                 <p>{dev.function}</p>
                 <a href={dev.github} target="_blanck">
-                  <BsLinkedin /> GitHub
+                  <BsGithub /> GitHub
                 </a>
                 <a href={dev.linkedin} target="_blanck">
-                  <BsGithub /> Linkedin
+                  <BsLinkedin /> Linkedin
                 </a>
               </li>
             ))}

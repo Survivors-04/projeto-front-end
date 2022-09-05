@@ -21,13 +21,14 @@ export const StyledList = styled.ul`
   }
 
   li {
-    background-color: var(--color-red);
+    background-color: var(--color-gray-3);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3px;
     border-radius: 5px;
     padding: 10px;
+    border: 1px solid;
 
     img {
       width: 150px;
@@ -41,7 +42,7 @@ export const StyledList = styled.ul`
     h3,
     p,
     a {
-      color: var(--color-gray-4);
+      color: var(--color-gray-1);
     }
 
     a:hover {
@@ -56,14 +57,17 @@ export const StyledListParagraph = styled.ul`
   margin: auto;
 
   li {
-    background-color: var(--color-red);
+    background-color: var(--color-gray-3);
     padding: 10px;
     border-radius: 5px;
+    border: 1px solid;
 
     p {
+      word-break: normal;
       font-size: 18px;
-      color: var(--color-gray-4);
-      font-weight: bold;
+      font-weight: 700;
+      color: var(--color-gray-1);
+      padding: 10px;
     }
   }
   @media screen and (min-width: 700px) {
