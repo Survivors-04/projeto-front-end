@@ -25,7 +25,7 @@ const DiceRoll = () => {
   const [animationResult, setAnimationResult] = useState(true);
   const [numberResult, setNumberResult] = useState(1);
   const [isLoged, setIsLoged] = useState(false);
-  const [rolledDice, setRolledDice] = useState(false);
+  const [rolledDice, setRolledDice] = useState(true);
 
   const { setIsModalDice } = useContext(ModalContext);
   const { user, setUser } = useContext(UserContext);
@@ -37,7 +37,7 @@ const DiceRoll = () => {
 
   useEffect(() => {
     const currentDate = Date.now();
-    if (currentDate > user.dateRoll + 86400000) setRolledDice(true);
+    if (currentDate > user.dateRoll + 86399999) setRolledDice(false);
   }, [user]);
 
   useEffect(() => {
@@ -114,7 +114,7 @@ const DiceRoll = () => {
                 <span>
                   Faça login para rolar o dado e conseguir recompensas!
                 </span>
-              ) : isLoged && rolledDice === false ? (
+              ) : isLoged && rolledDice ? (
                 <>
                   <span>Deseja rolar o dado?</span>
                   <Button
