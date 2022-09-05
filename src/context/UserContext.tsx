@@ -1,13 +1,16 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import api from "../services/api";
-import ApiLogin from "../services/apiLogin";
+
 
 interface IUserProvider {
   children: ReactNode;
 }
 export interface IUserContext {
-  user: iUser;
-  isLogged: boolean;
+  user: iUser,
+  setUser:React.Dispatch<React.SetStateAction<iUser>>;
+  setIsLogged: Dispatch<SetStateAction<boolean>>;
+  isLogged: boolean,
+ 
   
 }
 
@@ -25,7 +28,9 @@ const UserProvider = ({ children }: IUserProvider) => {
 
   const [user, setUser] = useState<iUser>({} as iUser);
   const [isLogged, setIsLogged] = useState(false);
+  
 
+ 
   
   useEffect(() => {
     const loadUser = async () => {
@@ -50,7 +55,7 @@ const UserProvider = ({ children }: IUserProvider) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, isLogged }}>
+    <UserContext.Provider value={{ user, isLogged,setUser,setIsLogged }}>
       {children}
     </UserContext.Provider>
   );
