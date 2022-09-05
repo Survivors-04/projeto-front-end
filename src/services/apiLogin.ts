@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext";
 import api from "./api";
 
 export interface IApiLogin {
@@ -7,21 +9,10 @@ export interface IApiLogin {
 }
 
 const ApiLogin = (data: IApiLogin) => {
-  
 
-  api
-    .post("/login", data)
-    .then((res) => {
-      window.localStorage.clear();
-      window.localStorage.setItem("@TOKEN", res.data.accessToken);
-      window.localStorage.setItem("@USERID", res.data.user.id);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const response = api.post("/login", data)
+   return response
 
-  const token = window.localStorage.getItem("@TOKEN");
-  console.log(token)
 };
 
 export default ApiLogin;

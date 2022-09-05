@@ -6,16 +6,17 @@ import {
   useEffect,
   useState,
 } from "react";
+
 import api from "../services/api";
-import ApiLogin from "../services/apiLogin";
 
 interface IUserProvider {
   children: ReactNode;
 }
 export interface IUserContext {
   user: iUser;
+  setUser: React.Dispatch<React.SetStateAction<iUser>>;
+  setIsLogged: Dispatch<SetStateAction<boolean>>;
   isLogged: boolean;
-  setUser: Dispatch<SetStateAction<iUser>>;
 }
 
 export interface iUser {
@@ -56,7 +57,7 @@ const UserProvider = ({ children }: IUserProvider) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, isLogged, setUser }}>
+    <UserContext.Provider value={{ user, isLogged, setUser, setIsLogged }}>
       {children}
     </UserContext.Provider>
   );
