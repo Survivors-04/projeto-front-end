@@ -23,6 +23,8 @@ interface iUser {
   email: string;
   name: string;
   password: string;
+  dateRoll: number;
+  dateLastRoll: number;
 }
 
 export const UserContext = createContext({} as IUserContext);

@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
-import ApiPokedex from "../../services/apiPokedex";
+import { count } from "console";
 
 interface IData {
   email: string;
@@ -29,12 +29,18 @@ interface IPokemons {
 
 const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
+  const [countRares, setCountRares] = useState(0);
   const { user } = useContext(UserContext);
 
-  const teste = () => {
-    const request = ApiPokedex();
-    console.log(request);
-  };
+  useEffect(() => {
+    api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
+      setPokemons(response.data);
+    });
+    let countRaresPokemons = pokemons.filter(
+      (pokemon) => pokemon.Rarity === "Rare"
+    ).length;
+    setCountRares(countRaresPokemons);
+  }, [user.id, pokemons]);
 
   return (
     <>
@@ -48,8 +54,8 @@ const Profile = () => {
 
             <ul>
               <li>{user.name}</li>
-              <li>Coleção: 15</li>
-              <li>Raros: 2</li>
+              <li>Coleção: {pokemons.length}</li>
+              <li>Raros: {countRares}</li>
               <li>
                 Moedas: <span>{user.gold}</span>
               </li>
