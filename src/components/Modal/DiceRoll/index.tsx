@@ -16,7 +16,6 @@ import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
 import api from "../../../services/api";
 import { UserContext } from "../../../Context/UserContext";
-import Span from "../../TypePokemonSpan";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -37,7 +36,7 @@ const DiceRoll = () => {
 
   useEffect(() => {
     const currentDate = Date.now();
-    if (currentDate > user.dateRoll + 86399999) setRolledDice(false);
+    if (currentDate <= user.dateRoll + 86399999) setRolledDice(false);
   }, [user]);
 
   useEffect(() => {
@@ -53,26 +52,25 @@ const DiceRoll = () => {
 
     const idUser = localStorage.getItem("@USERID");
 
-    if (user.dateRoll)
-      api
-        .patch(
-          `/Users/${idUser}`,
-          { gold: user.gold + ind },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          setUser({ ...user, gold: user.gold + ind });
-          console.log(response);
-        })
-        .catch((err) => console.log(err))
-        .finally(() => {
-          setRoll(false);
-          setResult(true);
-        });
+    api
+      .patch(
+        `/Users/${idUser}`,
+        { gold: user.gold + ind, dateRoll: Date.now() },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        setUser({ ...user, gold: user.gold + ind });
+        console.log(response);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setRoll(false);
+        setResult(true);
+      });
   };
 
   const toRoll = () => {
@@ -93,7 +91,7 @@ const DiceRoll = () => {
     <Modal setIs={setIsModalDice}>
       <StyledConteinerModal>
         <AnimatePresence>
-          {confirmation === true && (
+          {confirmation && (
             <StyledConfirmation
               as={motion.div}
               key={1}
