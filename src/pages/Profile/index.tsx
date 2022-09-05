@@ -40,7 +40,7 @@ const Profile = () => {
       (pokemon) => pokemon.Rarity === "Rare"
     ).length;
     setCountRares(countRaresPokemons);
-  }, [user.id, pokemons]);
+  }, [user.id]);
 
   return (
     <>
