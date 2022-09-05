@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import api from "../services/api";
+import ApiLogin from "../services/apiLogin";
 
 interface IUserProvider {
   children: ReactNode;
@@ -17,17 +18,16 @@ export interface IUserContext {
   setUser: Dispatch<SetStateAction<iUser>>;
 }
 
-interface iUser {
+export interface iUser {
   id: number;
   gold: number;
   email: string;
   name: string;
   password: string;
   dateRoll: number;
-  dateLastRoll: number;
 }
 
-export const UserContext = createContext({} as IUserContext);
+export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 const UserProvider = ({ children }: IUserProvider) => {
   const [user, setUser] = useState<iUser>({} as iUser);
