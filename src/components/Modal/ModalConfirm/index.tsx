@@ -25,22 +25,26 @@ const ModalConfirm = ({ boosterTitle, boosterPrice }: iModalConfirm) => {
       <StyledModalConfirm>
         {user.gold >= boosterPrice ? (
           <>
-            <p>
+            <h3>
               Deseja comprar {boosterTitle} por <span> {boosterPrice}g </span> ?
-            </p>
+            </h3>
 
-            <Button width={55} onClick={() => submitBuy()}>Comprar</Button>
+            <Button width={55} onClick={() => submitBuy()}>
+              Comprar
+            </Button>
           </>
         ) : (
           <>
-            <p>Saldo Insuficiente para comprar {boosterTitle} </p>
-            <button onClick={() => setUser({ ...user, gold: user.gold + 1000 })}>
+            <h3>Saldo Insuficiente para comprar {boosterTitle} </h3>
+            <button
+              onClick={() => setUser({ ...user, gold: user.gold + 1000 })}
+            >
               pobre
             </button>
           </>
         )}
         <Button
-        width={40}
+          width={40}
           backgroundColor="var(--color-gray-1)"
           hover="var(--color-gray-0)"
           onClick={() => setIsModalConfirm(false)}
