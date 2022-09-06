@@ -24,7 +24,6 @@ const ModalHeader = () => {
     navigate("/login", { replace: true });
   };
 
-  const navigate = useNavigate();
   const token = window.localStorage.getItem("@TOKEN");
 
   return (

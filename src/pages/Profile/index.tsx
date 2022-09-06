@@ -1,7 +1,5 @@
 import StyledContainer from "../../components/Container/styles";
 import Header from "../../components/Header";
-import imgPikachu from "../../assets/imgs/Profile/pikachu 1.svg";
-import imgBulba from "../../assets/imgs/Profile/bulbasaur2 1.svg";
 import imgAsh from "../../assets/imgs/Profile/ash 1.svg";
 import imgCharmander from "../../assets/imgs/Profile/Charmander.svg";
 import { StyledCharmImg, StyledDiv, StyledList, StyledSection } from "./styles";
@@ -10,7 +8,6 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
-import { count } from "console";
 import AnimationPages from "../../components/AnimationPages";
 
 interface IData {
@@ -164,17 +161,17 @@ const Profile = () => {
             </form>
 
             <StyledList>
-              {pokemons.length >= 1 ? (
-                <form className="form" onSubmit={showProducts}>
-                  <input
-                    type="text"
-                    placeholder="Pesquisar Pokemon..."
-                    onChange={(event) => {
-                      setUserInput(event.target.value);
-                      filteredInput(userInput);
-                    }}
-                  />
-                </form>
+             
+              <form className="form" onSubmit={showProducts}>
+                <input
+                  type="text"
+                  placeholder="Pesquisar Pokemon..."
+                  onChange={(event) => {
+                    setUserInput(event.target.value);
+                    filteredInput(userInput);
+                  }}
+                />
+              </form>
               ) : (
                 <></>
               )}
