@@ -16,7 +16,6 @@ import { StyledSideHeader } from "./style";
 const ModalHeader = () => {
   const { setIsModalHeader, setIsModalDice } = useContext(ModalContext);
   const { user, isLogged, setIsLogged } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
