@@ -60,7 +60,6 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       pokemonCommon.forEach((pokemon) => pokemonFiltered.push(pokemon));
       pokemonRare.forEach((pokemon) => pokemonFiltered.push(pokemon));
 
-      console.log(pokemonFiltered)
       if (boosterTitle !== boosters[0].title) {
         pokemonEpic.forEach((pokemon) => pokemonFiltered.push(pokemon));
       }
@@ -77,7 +76,6 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
           pokemon.id = pokemonID;
           pokemon.userId = user.id;
 
-          // console.log(pokemon);
           pokemonArry.push(pokemon);
         }
       };
@@ -98,7 +96,7 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       }
     };
 
-    // pokemonsResult.forEach(async (pokemon) => await addPokemon(pokemon));
+    pokemonsResult.forEach(async (pokemon) => await addPokemon(pokemon));
   }, [pokemonsResult, user.id]);
 
   return (
@@ -106,7 +104,7 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       <Modal setIs={setisModalHome}>
         <StyledModalHome>
           <h2>Recompensas</h2>
-          {pokemonsResult.map(({ Pokemon, id }, index) => (
+          {pokemonsResult.map(({ Pokemon, id }) => (
             <li key={id}>
               <img
                 src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}

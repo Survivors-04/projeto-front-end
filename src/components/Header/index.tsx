@@ -62,13 +62,13 @@ const Header = () => {
                 {isLogged ? (
                   <>
                     <li>
-                      <span>{user.gold}</span>
+                      <span>{user.gold}g</span>
                     </li>
                     <li>
                       <StyledNavButton
                         onClick={() => navigate("/profile", { replace: true })}
                       >
-                        <img src={iconUserHeader} alt="" />
+                        <img src={iconUserHeader} alt="Icone de usuário" />
                       </StyledNavButton>
                     </li>
                   </>

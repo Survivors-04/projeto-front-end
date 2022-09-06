@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
+import { UserContext } from "../../../Context/UserContext";
 import Button from "../../Button";
 import Modal from "../ModalBase";
-import { ModalHome } from "../ModalHome";
-import { StyledModalHome } from "../ModalHome/styled";
+import { StyledModalConfirm } from "../ModalHome/styled";
 
 interface iModalConfirm {
   boosterTitle: string;
@@ -11,38 +11,44 @@ interface iModalConfirm {
 }
 
 const ModalConfirm = ({ boosterTitle, boosterPrice }: iModalConfirm) => {
-  const { setIsModalConfirm, isModalHome, setisModalHome } =
-    useContext(ModalContext);
+  const { setIsModalConfirm, setisModalHome } = useContext(ModalContext);
+  const { user, setUser } = useContext(UserContext);
 
   const submitBuy = () => {
-    if (boosterPrice === 100) {
-    }
+    setUser({ ...user, gold: user.gold - boosterPrice });
+    setisModalHome(true);
+    setIsModalConfirm(false);
   };
 
   return (
-    <>
-      <Modal setIs={setIsModalConfirm}>
-        <StyledModalHome>
-          <p> {boosterTitle} </p>
-          <span> {boosterPrice} </span>
-          <Button
-            onClick={() => {
-              setisModalHome(true);
-              setIsModalConfirm(false)
-            }}
-          >
-            Confirmar
-          </Button>
-          <Button
-            backgroundColor="var(--color-gray-1)"
-            hover=""
-            onClick={() => setIsModalConfirm(false)}
-          >
-            Fechar
-          </Button>
-        </StyledModalHome>
-      </Modal>
-    </>
+    <Modal setIs={setIsModalConfirm}>
+      <StyledModalConfirm>
+        {user.gold >= boosterPrice ? (
+          <>
+            <p>
+              Deseja comprar {boosterTitle} por <span> {boosterPrice}g </span> ?
+            </p>
+
+            <Button width={55} onClick={() => submitBuy()}>Comprar</Button>
+          </>
+        ) : (
+          <>
+            <p>Saldo Insuficiente para comprar {boosterTitle} </p>
+            <button onClick={() => setUser({ ...user, gold: user.gold + 1000 })}>
+              pobre
+            </button>
+          </>
+        )}
+        <Button
+        width={40}
+          backgroundColor="var(--color-gray-1)"
+          hover="var(--color-gray-0)"
+          onClick={() => setIsModalConfirm(false)}
+        >
+          Fechar
+        </Button>
+      </StyledModalConfirm>
+    </Modal>
   );
 };
 
