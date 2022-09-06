@@ -6,7 +6,6 @@ const StyledEmptyCart = styled.div`
     background: #212529;
     border: 2px solid #868E96;
     border-radius: 20px;
-    position: relative;
     margin-top: 7%;
     margin-left: 7%;
     @media only screen and (max-width: 779px) {

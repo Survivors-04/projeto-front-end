@@ -1,4 +1,8 @@
+
+import Cart from "../../components/Cart";
+
 import AnimationPages from "../../components/AnimationPages";
+
 import EmptyCart from "../../components/Cart/Emptycart";
 import FullCart from "../../components/Cart/FullCart";
 import Header from "../../components/Header";
@@ -12,6 +16,7 @@ import StyledDivsMarket, {
 const Marketplace = () => {
   return (
     <>
+
       <AnimationPages>
         <Header />
         <StyledDivsMarket>
@@ -24,6 +29,7 @@ const Marketplace = () => {
           </StyledDivSearchCard>
         </StyledDivsMarket>
       </AnimationPages>
+
     </>
   );
 };
