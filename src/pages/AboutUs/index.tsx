@@ -7,6 +7,7 @@ import gabrielImg from "../../assets/imgs/AboutUsImgs/Gabriel.jpg";
 import pauloImg from "../../assets/imgs/AboutUsImgs/Paulo.jpg";
 import { StyledList, StyledListParagraph, StyledMain } from "./styles";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
+import AnimationPages from "../../components/AnimationPages";
 
 const AboutUs = () => {
   const data = [
@@ -48,7 +49,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <>
+    <AnimationPages>
       <Header />
       <StyledContainer>
         <StyledMain>
@@ -91,7 +92,7 @@ const AboutUs = () => {
           </StyledListParagraph>
         </StyledMain>
       </StyledContainer>
-    </>
+    </AnimationPages>
   );
 };
 

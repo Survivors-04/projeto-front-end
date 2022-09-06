@@ -1,5 +1,6 @@
+import { AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AboutUs from "../pages/AboutUs";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -19,24 +20,27 @@ const PrivateRoute = ({ children, redirectTo }: IPrivateRoute) => {
 };
 
 const MainRoutes = () => {
+  const location = useLocation();
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+    <AnimatePresence exitBeforeEnter>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
 
-      <Route
-        path="/profile"
-        element={
-          <PrivateRoute redirectTo="/">
-            <Profile />
-          </PrivateRoute>
-        }
-      />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute redirectTo="/">
+              <Profile />
+            </PrivateRoute>
+          }
+        />
 
-      <Route path="/register" element={<Register />} />
-      <Route path="/marketplace" element={<Marketplace />} />
-      <Route path="/aboutus" element={<AboutUs />} />
-    </Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+      </Routes>
+    </AnimatePresence>
   );
 };
 
