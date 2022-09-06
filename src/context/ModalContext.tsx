@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 
-interface iModalContext {
+export interface iModalContext {
   isModalHome: boolean;
   setisModalHome: Dispatch<SetStateAction<boolean>>;
   isModalDice: boolean;
@@ -17,6 +17,8 @@ interface iModalContext {
   setIsModalSearch: Dispatch<SetStateAction<boolean>>;
   isModalConfirm: boolean;
   setIsModalConfirm: Dispatch<SetStateAction<boolean>>;
+  isModalConfirmMarket: boolean;
+  setIsModalConfirmMarket: Dispatch<SetStateAction<boolean>>;
   isModalLogout: boolean;
   setIsModalLogout: Dispatch<SetStateAction<boolean>>;
 }
@@ -33,6 +35,7 @@ const ModalProvider = ({ children }: iModalProvider) => {
   const [isModalHeader, setIsModalHeader] = useState(false);
   const [isModalSearch, setIsModalSearch] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
+  const [isModalConfirmMarket, setIsModalConfirmMarket] = useState(false);
   const [isModalLogout, setIsModalLogout] = useState(false);
 
   return (
@@ -48,6 +51,8 @@ const ModalProvider = ({ children }: iModalProvider) => {
         setIsModalSearch,
         isModalConfirm,
         setIsModalConfirm,
+        isModalConfirmMarket,
+        setIsModalConfirmMarket,
         isModalLogout,
         setIsModalLogout,
       }}
