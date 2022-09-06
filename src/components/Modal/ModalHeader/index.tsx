@@ -7,12 +7,15 @@ import { IoIosHelpCircle } from "react-icons/io";
 import { IoPeopleSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
+import { UserContext } from "../../../Context/UserContext";
 import { StyledNavButton } from "../../Header/style";
 import Modal from "../ModalBase";
 import { StyledSideHeader } from "./style";
 
 const ModalHeader = () => {
   const { setIsModalHeader, setIsModalDice } = useContext(ModalContext);
+  const { user } = useContext(UserContext);
+
   return (
     <>
       <Modal setIs={setIsModalHeader}>
@@ -26,8 +29,8 @@ const ModalHeader = () => {
         >
           <ul>
             <li>
-              Jotinha
-              <span>100g</span>
+              {user.name}
+              <span>{user.gold}g</span>
             </li>
             <li>
               <FaUser />

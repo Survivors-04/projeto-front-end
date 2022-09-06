@@ -9,6 +9,7 @@ export default createGlobalStyle`
     --color-gray-3-background: rgba(33, 37, 41, 0.85);
     --color-gray-2: #343B41;
     --color-gray-1: #868E96;
+    --color-gray-0: #F8F9FA;
     --color-yellow: #FFD700;
     --color-yellow-focus: #FFDB4D;
     --color-blue: #4169E1;
@@ -27,7 +28,7 @@ export default createGlobalStyle`
     --color-type-water: #46A0F8;
     --color-type-bug: #AFBF45;
     --color-type-dark: #826152;
-    --color-type-fighthing: #B15747;
+    --color-type-fighting: #B15747;
     --color-type-ghost: #6E6DBB;
     --color-type-steel: #B3B2C4;
     --color-type-flying: #6E97EF;
