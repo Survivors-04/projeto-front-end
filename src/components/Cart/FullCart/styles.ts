@@ -72,7 +72,7 @@ export const StyledDivTotal = styled.div`
         button{
             background-color: yellow;            
             position: absolute;
-            bottom: 0;
+            bottom: 14px;
         }
         
 `

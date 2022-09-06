@@ -7,74 +7,102 @@ import apiPokemonList from "../../../services/apiPokemonList";
 import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "../../../Context/UserContext";
 import api from "../../../services/api";
+import boosters from "../../../pages/Home/boosters";
 
-interface iPokemon {
+interface iModalHome {
+  boosterTitle: string;
+  boosterPrice: number;
+}
+
+export interface iPokemon {
   Pokemon: string;
   Rarity: string;
   Number: number;
   Type01: string;
   Type02: string;
-  userId: number;
-  id: string | number;
+  userId?: number;
+  id?: string | number;
 }
 
-export const ModalHome = () => {
+export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
   const { setisModalHome } = useContext(ModalContext);
   const { user } = useContext(UserContext);
-  const [teste, setTeste] = useState<iPokemon[]>([]);
+
+  const [pokemonsResult, setPokemonsResult] = useState<iPokemon[]>([]);
   const pokemonLimit = 6;
 
   useEffect(() => {
     const pokelist = async () => {
       const pokemonList = await apiPokemonList();
-      const pokemonData = pokemonList?.data;
+      const pokemonData: iPokemon[] = pokemonList?.data;
+      const pokemonFiltered: iPokemon[] = [];
       const pokemonArry: iPokemon[] = [];
+
+      const pokemonCommon = pokemonData.filter(
+        (pokemon) => pokemon.Rarity === "Common"
+      );
+
+      const pokemonRare = pokemonData.filter(
+        (pokemon) => pokemon.Rarity === "Rare"
+      );
+
+      const pokemonEpic = pokemonData.filter(
+        (pokemon) => pokemon.Rarity === "Epic"
+      );
+
+      const pokemonLegendary = pokemonData.filter(
+        (pokemon) => pokemon.Rarity === "Legendary"
+      );
+
+      pokemonCommon.forEach((pokemon) => pokemonFiltered.push(pokemon));
+      pokemonRare.forEach((pokemon) => pokemonFiltered.push(pokemon));
+
+      if (boosterTitle !== boosters[0].title) {
+        pokemonEpic.forEach((pokemon) => pokemonFiltered.push(pokemon));
+      }
+      if (boosterTitle === boosters[2].title) {
+        pokemonLegendary.forEach((pokemon) => pokemonFiltered.push(pokemon));
+      }
 
       const getrandom = () => {
         for (let i = 0; i < pokemonLimit; i++) {
           const pokemonID = uuidv4();
           const pokemon =
-            pokemonData[Math.floor(Math.random() * pokemonData.length)];
+            pokemonFiltered[Math.floor(Math.random() * pokemonFiltered.length)];
 
           pokemon.id = pokemonID;
           pokemon.userId = user.id;
 
-          // console.log(pokemon);
           pokemonArry.push(pokemon);
         }
       };
       getrandom();
 
-      setTeste(pokemonArry);
+      setPokemonsResult(pokemonArry);
     };
 
     pokelist();
-  }, [user.id]);
+  }, [user.id, boosterPrice, boosterTitle]);
 
   useEffect(() => {
-    const first = async (pokemon: iPokemon) => {
+    const addPokemon = async (pokemon: iPokemon) => {
       try {
-        const response = await api.post(
-          `/Users/${user.id}/pokedexUser`,
-          pokemon
-        );
-
-        // console.log(response.data);
+        await api.post(`/Users/${user.id}/pokedexUser`, pokemon);
       } catch (err) {
         console.log(err);
       }
     };
 
-    teste.forEach(async (poke) => await first(poke));
-  }, [teste, user.id]);
+    pokemonsResult.forEach(async (pokemon) => await addPokemon(pokemon));
+  }, [pokemonsResult, user.id]);
 
   return (
     <>
       <Modal setIs={setisModalHome}>
         <StyledModalHome>
           <h2>Recompensas</h2>
-          {teste.map(({ Pokemon }, index) => (
-            <li key={index}>
+          {pokemonsResult.map(({ Pokemon, id }) => (
+            <li key={id}>
               <img
                 src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
                 alt={Pokemon}

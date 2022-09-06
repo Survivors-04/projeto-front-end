@@ -9,7 +9,7 @@ import {
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ModalContext } from "../../Context/ModalContext";
 import DiceRoll from "../Modal/DiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
@@ -24,6 +24,7 @@ const Header = () => {
   const { isModalHeader, setIsModalHeader } = useContext(ModalContext);
   const { isLogged } = useContext(UserContext);
   const { user } = useContext(UserContext);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <>
@@ -56,17 +57,17 @@ const Header = () => {
                 <Link to={"/help"}>Ajuda</Link>
               </li>
               <li>
-                <Link to={"/aboutUs"}>Sobre nós</Link>
+                <Link to={"/aboutus"}>Sobre nós</Link>
               </li>
               <>
                 {isLogged ? (
                   <>
                     <li>
-                      <span>{user.gold}</span>
+                      <span>{user.gold}g</span>
                     </li>
                     <li>
-                      <StyledNavButton>
-                        <img src={iconUserHeader} alt="" />
+                      <StyledNavButton onClick={() => setIsOpenModal(true)}>
+                        <img src={iconUserHeader} alt="Icone de usuário" />
                       </StyledNavButton>
                     </li>
                   </>

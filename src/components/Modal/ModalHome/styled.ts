@@ -7,6 +7,7 @@ export const StyledModalHome = styled.ul`
   background-color: var(--color-gray-3-background);
   border-radius: 8px;
 
+  width: 95%;
   max-width: 670px;
 
   margin: 0 auto;
@@ -33,4 +34,8 @@ export const StyledModalHome = styled.ul`
     width: 100%;
     text-align: center;
   }
+`;
+
+export const StyledModalConfirm = styled(StyledModalHome)`
+  font-size: 20px;
 `;

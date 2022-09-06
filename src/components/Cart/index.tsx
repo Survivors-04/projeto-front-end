@@ -1,8 +1,12 @@
-const Cart = () => {
-    return (
-        <>
-        </>
-    )
-}
+import { useContext } from "react";
+import { MarketContext } from "../../Context/marketContext";
+import EmptyCart from "./Emptycart";
+import FullCart from "./FullCart";
 
-export default Cart
+const Cart = () => {
+  const { currentCart } = useContext(MarketContext);
+
+  return <>{currentCart?.length > 0 ? <FullCart /> : <EmptyCart />}</>;
+};
+
+export default Cart;
