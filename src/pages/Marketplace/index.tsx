@@ -3,23 +3,19 @@ import Header from "../../components/Header";
 import StyledDivsMarket, {
   StyledDivSearchCard,
   StyledDivPokemonsMarket,
-} from "./styles";
-import StyledFullCart, {
+  StyledDivTotal,
+  StyledFullCart,
   StyledDivOverflow,
-} from "../../components/Cart/FullCart/styles";
-import { StyledDivTotal } from "../../components/Cart/Emptycart/styles";
+  StyledDivTipo,
+  StyledSinglePokemon,
+  StyledMiniCard,
+  StyledSearchFilter,
+} from "./styles";
+
 import Button from "../../components/Button";
-import { useContext, useEffect, useState } from "react";
-import StyledSearchFilter from "../../components/SearchFilter/styles";
-import ModalSearch from "../../components/Modal/ModalSearch";
-import { ModalContext } from "../../Context/ModalContext";
-import StyledMiniCard from "../../components/Cart/MiniPokemonCard/styles";
+import { useEffect, useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import apiMarket from "../../services/apiMarket";
-import { toast } from "react-toastify";
-import StyledSinglePokemon, {
-  StyledButtonBag,
-} from "../../components/PokemonBag/styles";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
@@ -39,14 +35,13 @@ const Marketplace = () => {
   const [market, setMarket] = useState<IMarket[]>([]);
   const [currentCart, setCurrentCart] = useState<IMarket[]>([]);
   const [total, setTotal] = useState(0);
-
+ 
   const { isModalSearch, setIsModalSearch } = useContext(ModalContext);
   const { isModalConfirmMarket, setIsModalConfirmMarket } =
     useContext(ModalContext);
 
   const singleRemove = (id: string | number) => {
     const removeCartItens = currentCart.filter((e) => e.id !== id);
-
     setCurrentCart(removeCartItens);
     setTotal(total - 100);
   };
@@ -55,7 +50,6 @@ const Marketplace = () => {
     const markList = async () => {
       const marketList = await apiMarket();
       const marketData = marketList?.data;
-
       setMarket(marketData);
     };
 
@@ -67,7 +61,6 @@ const Marketplace = () => {
       console.log("igual");
     } else {
       const addToCart = market.filter((e) => e.id === id);
-
       setCurrentCart((oldCart) => [...oldCart, ...addToCart]);
       setTotal(total + price);
     }
@@ -94,6 +87,7 @@ const Marketplace = () => {
                 />
                 <h3>{Pokemon}</h3>
                 <>
+                <StyledDivTipo>
                   <StyledParagraph
                     backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
                   >
@@ -105,9 +99,11 @@ const Marketplace = () => {
                     >
                       {Type02}
                     </StyledSpan>
-                  ) : (
+                  )                  
+                  : (                    
                     <></>
                   )}
+                </StyledDivTipo>
                 </>
                 <h4>{Rarity}</h4>
                 <div>
@@ -115,16 +111,20 @@ const Marketplace = () => {
                   <p>{price}g</p>
                 </div>
                 <Button width={80} onClick={() => pokeBuy(id, price)}>
-                  Adicionar ao carrinho
+                  Adicionar
                 </Button>
               </StyledSinglePokemon>
             ))}
           </StyledDivPokemonsMarket>
 
           <StyledDivSearchCard>
-            <StyledSearchFilter onClick={() => setIsModalSearch(true)}>
-              {isModalSearch && <ModalSearch />}
-              Filtro de Pesquisa
+            
+            <StyledSearchFilter>
+            <input
+                type="text"
+                placeholder="Pesquisar Pokemon..."                
+                
+              />              
             </StyledSearchFilter>
 
             <StyledFullCart>
@@ -138,7 +138,7 @@ const Marketplace = () => {
                         alt={Pokemon}
                       />
                       <div>
-                        <p>{Pokemon}</p>
+                        <h3>{Pokemon}</h3>
                         <p>Preço</p>
                         <p>{price}</p>
                       </div>
@@ -147,12 +147,11 @@ const Marketplace = () => {
                       </button>
                     </StyledMiniCard>
                   ))}
-                </StyledDivOverflow>
+                </StyledDivOverflow>                
               ) : (
-                <p>Carrinho vazio</p>
+                <p>Carrinho Vazio</p>
               )}
-
-              <StyledDivTotal>
+              {currentCart.length > 0 ? <StyledDivTotal>
                 <h4>Valor</h4>
                 <h4>{total}g</h4>
                 <Button
@@ -162,6 +161,11 @@ const Marketplace = () => {
                   Comprar
                 </Button>
               </StyledDivTotal>
+              :
+              <>
+              </>
+              }
+              
             </StyledFullCart>
           </StyledDivSearchCard>
         </StyledDivsMarket>

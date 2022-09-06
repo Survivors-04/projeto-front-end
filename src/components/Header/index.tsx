@@ -1,5 +1,6 @@
 import {
   Nav,
+  StyledButtonMobile,
   StyledContainer,
   StyledDiv,
   StyledHeaderContainer,
@@ -17,11 +18,18 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { UserContext } from "../../Context/UserContext";
 import { AnimatePresence } from "framer-motion";
+import ModalLogout from "../Modal/ModalLogout";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isModalDice, setIsModalDice } = useContext(ModalContext);
-  const { isModalHeader, setIsModalHeader } = useContext(ModalContext);
+  const {
+    isModalDice,
+    setIsModalDice,
+    isModalHeader,
+    setIsModalHeader,
+    isModalLogout,
+    setIsModalLogout,
+  } = useContext(ModalContext);
   const { isLogged } = useContext(UserContext);
   const { user } = useContext(UserContext);
 
@@ -34,9 +42,9 @@ const Header = () => {
           </StyledDiv>
 
           <StyledHeaderMobile>
-            <button onClick={() => setIsModalHeader(true)}>
+            <StyledButtonMobile onClick={() => setIsModalHeader(true)}>
               <img src={menuLogo} alt="" />
-            </button>
+            </StyledButtonMobile>
           </StyledHeaderMobile>
 
           <Nav>
@@ -65,9 +73,7 @@ const Header = () => {
                       <span>{user.gold}g</span>
                     </li>
                     <li>
-                      <StyledNavButton
-                        onClick={() => navigate("/profile", { replace: true })}
-                      >
+                      <StyledNavButton onClick={() => setIsModalLogout(true)}>
                         <img src={iconUserHeader} alt="Icone de usuário" />
                       </StyledNavButton>
                     </li>
@@ -88,6 +94,9 @@ const Header = () => {
               </>
             </ul>
           </Nav>
+          <AnimatePresence>
+            {isModalLogout && <ModalLogout setIs={setIsModalLogout} />}
+          </AnimatePresence>
         </StyledHeaderContainer>
       </StyledContainer>
       <AnimatePresence>{isModalHeader && <ModalHeader />}</AnimatePresence>

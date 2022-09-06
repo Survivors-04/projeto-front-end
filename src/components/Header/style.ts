@@ -5,7 +5,7 @@ export const StyledContainer = styled.header`
   width: 100%;
   height: 80px;
 
-  /* position: fixed; */
+  position: fixed;
 
   display: flex;
   align-items: center;
@@ -37,12 +37,6 @@ export const StyledHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media screen and (min-width: 1024px) {
-    div > button {
-      display: none;
-    }
-  }
 `;
 
 export const StyledNavButton = styled.button`
@@ -57,6 +51,12 @@ export const StyledNavButton = styled.button`
   img {
     padding: 5px;
     width: 50px;
+  }
+`;
+
+export const StyledButtonMobile = styled(StyledNavButton)`
+  @media screen and (min-width: 1024px) {
+    display: none;
   }
 `;
 

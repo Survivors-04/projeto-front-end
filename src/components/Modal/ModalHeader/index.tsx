@@ -22,8 +22,10 @@ const ModalHeader = () => {
     localStorage.clear();
 
     setIsLogged(false);
-    navigate("/login", { replace: true })
+    navigate("/login", { replace: true });
   };
+
+  const token = window.localStorage.getItem("@TOKEN");
 
   return (
     <>
@@ -41,7 +43,7 @@ const ModalHeader = () => {
               <>
                 <li>
                   {user.name}
-                  <span>{user.gold}g</span>
+                  <span>{user.gold}</span>
                 </li>
                 <li>
                   <FaUser />
@@ -90,7 +92,9 @@ const ModalHeader = () => {
               <Link to={"/aboutus"}>Sobre nós</Link>
             </li>
             <li>
-              <StyledNavButton onClick={logout}>Sair</StyledNavButton>
+              <StyledNavButton onClick={logout}>
+                {token ? <>Sair</> : <>Entrar</>}
+              </StyledNavButton>
             </li>
           </ul>
         </StyledSideHeader>
