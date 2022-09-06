@@ -161,19 +161,17 @@ const Profile = () => {
             </form>
 
             <StyledList>
-             
-              <form className="form" onSubmit={showProducts}>
-                <input
-                  type="text"
-                  placeholder="Pesquisar Pokemon..."
-                  onChange={(event) => {
-                    setUserInput(event.target.value);
-                    filteredInput(userInput);
-                  }}
-                />
-              </form>
-              ) : (
-                <></>
+              {pokemons.length >= 1 && (
+                <form className="form" onSubmit={showProducts}>
+                  <input
+                    type="text"
+                    placeholder="Pesquisar Pokemon..."
+                    onChange={(event) => {
+                      setUserInput(event.target.value);
+                      filteredInput(userInput);
+                    }}
+                  />
+                </form>
               )}
               {pokemonsFiltered.length === 0
                 ? pokemons.map((pokemon) => (
