@@ -1,3 +1,4 @@
+import Cart from "../../components/Cart";
 import EmptyCart from "../../components/Cart/Emptycart";
 import FullCart from "../../components/Cart/FullCart";
 import Header from "../../components/Header";
@@ -15,8 +16,7 @@ const Marketplace = () => {
       </StyledDivPokemonsMarket>
       <StyledDivSearchCard>
         <SearchFilter/>
-        <EmptyCart/>
-        
+        <Cart/>       
       </StyledDivSearchCard>
     </StyledDivsMarket>
     </>

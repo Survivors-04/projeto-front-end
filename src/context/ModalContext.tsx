@@ -13,6 +13,8 @@ interface iModalContext {
   setIsModalDice: Dispatch<SetStateAction<boolean>>;
   isModalHeader: boolean;
   setIsModalHeader: Dispatch<SetStateAction<boolean>>;
+  isModalSearch: boolean;
+  setIsModalSearch: Dispatch<SetStateAction<boolean>>;
 }
 
 interface iModalProvider {
@@ -25,6 +27,7 @@ const ModalProvider = ({ children }: iModalProvider) => {
   const [isModalHome, setisModalHome] = useState(false);
   const [isModalDice, setIsModalDice] = useState(false);
   const [isModalHeader, setIsModalHeader] = useState(false);
+  const [isModalSearch, setIsModalSearch] = useState(false);
 
   return (
     <ModalContext.Provider
@@ -35,6 +38,8 @@ const ModalProvider = ({ children }: iModalProvider) => {
         setIsModalDice,
         isModalHeader,
         setIsModalHeader,
+        isModalSearch,
+        setIsModalSearch
       }}
     >
       {children}

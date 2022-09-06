@@ -15,6 +15,7 @@ const StyledSinglePokemon = styled.div`
 
     img {
     width: 57%;
+    max-height: 123px;
     border-radius: 10px;
     text-align: center;
     display: block;
@@ -70,9 +71,9 @@ export const StyledButtonBag = styled.button`
 
     background: #B0AEA1;
     border-radius: 12px;
-    width: auto;
-    height: auto;
-    margin-left: 10%;    
+    width: 65px;
+    max-width: 65px;
+    height: auto;  
     font-weight: 700;
     font-size: 15px;
     line-height: 31px;

@@ -8,8 +8,8 @@ overflow: auto;
 
 img{
 
-    border-radius: 20px;
-    width: 35%;
+    border-radius: 20px;    
+    max-width: 70px;
     height: 60%;
     display: block;
     margin: auto;
@@ -22,11 +22,18 @@ div{
     background-color:  #212529;
 }
 p{
-    margin-left: 10%;
+    margin-left: -15%;
     margin-top: 5%;
+    font-size: 15px;
+    
 }
 p + p{
     
+    margin-top: 0%;
+    
+}
+p + p + p{
+     color: #FFD700
 }
 
 `

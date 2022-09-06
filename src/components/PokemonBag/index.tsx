@@ -1,77 +1,61 @@
+import { useContext, useEffect, useState } from "react"
 import Button from "../Button"
-import StyledSinglePokemon, { StyledButtonBag } from "./styles"
+import StyledSinglePokemon, { StyledButtonBag } from "./styles";
+import apiMarket from "../../services/apiMarket"
+import { MarketContext } from "../../Context/marketContext"
+import { toast } from "react-toastify";
 
-const PokemonBag = () => {
+interface IMarket {
+    Pokemon: string;
+    Rarity: string;
+    Number: number;
+    Type01: string;
+    Type02: string;    
+    id: string | number;
+  }
+
+const PokemonBag =  () => {
+
+    const [market, setMarket] = useState<IMarket[]>([]);  
+    const { currentCart, setCurrentCart, total, setTotal } = useContext(MarketContext)
+
+        useEffect(() => {
+        const markList = async () => {
+        const marketList   =  await apiMarket();
+        const marketData   = marketList?.data        
+        console.log(marketData)
+        setMarket(marketData);
+        }
+
+        markList();
+    },[]);
+    
+    const pokeBuy = (id: string | number) => {
+        if (currentCart?.find((e) => e.id === Number(id))){         
+         toast.error("Não é possivel adicionar itens duplicados");
+        } else {
+          const addToCart = market.find((e) => e.id === id);
+          setCurrentCart([...currentCart, addToCart]);
+          setTotal(total + 100)          
+        }}     
 
 
     return (
     <>
+        {market.map((e) => (
         <StyledSinglePokemon>
-            <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2021/05/21/pikachu-preso-anime.jpeg" alt="preso"/>
-            <h2>Fui preso</h2>
-            <StyledButtonBag>Normal</StyledButtonBag>
-            <h4>Tipo Comum</h4>
+            <img src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${e.Pokemon.toLowerCase()}.gif`} alt="preso"/>
+            <h2>{e.Pokemon}</h2>
+            <StyledButtonBag>{e.Type01}</StyledButtonBag>
+            {e.Type02 === "null"? <></> : <StyledButtonBag>{e.Type02}</StyledButtonBag>}            
+            <h4>{e.Rarity}</h4>
             <div>
                 <span>Preço:</span> 
                 <p>100g</p>
             </div>
-            <Button width={80} onClick={() => console.log("ola otario")}>Adicionar ao carrinho</Button>
-        </StyledSinglePokemon> 
-         <StyledSinglePokemon>
-         <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2021/05/21/pikachu-preso-anime.jpeg" alt="preso"/>
-         <h2>Fui preso</h2>
-         <StyledButtonBag>Normal</StyledButtonBag>
-         <h4>Tipo Comum</h4>
-         <div>
-             <span>Preço:</span> 
-             <p>100g</p>
-         </div>
-         <Button width={80} onClick={() => console.log("ola otario")}>Adicionar ao carrinho</Button>
-        </StyledSinglePokemon> 
-        <StyledSinglePokemon>
-        <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2021/05/21/pikachu-preso-anime.jpeg" alt="preso"/>
-        <h2>Fui preso</h2>
-        <StyledButtonBag>Normal</StyledButtonBag>
-        <h4>Tipo Comum</h4>
-        <div>
-          <span>Preço:</span> 
-          <p>100g</p>
-        </div>
-        <Button width={80} onClick={() => console.log("ola otario")}>Adicionar ao carrinho</Button>
-        </StyledSinglePokemon> 
-        <StyledSinglePokemon>
-        <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2021/05/21/pikachu-preso-anime.jpeg" alt="preso"/>
-        <h2>Fui preso</h2>
-        <StyledButtonBag>Normal</StyledButtonBag>
-        <h4>Tipo Comum</h4>
-        <div>
-          <span>Preço:</span> 
-          <p>100g</p>
-        </div>
-        <Button width={80} onClick={() => console.log("ola otario")}>Adicionar ao carrinho</Button>
-        </StyledSinglePokemon> 
-        <StyledSinglePokemon>
-        <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2021/05/21/pikachu-preso-anime.jpeg" alt="preso"/>
-        <h2>Fui preso</h2>
-        <StyledButtonBag>Normal</StyledButtonBag>
-        <h4>Tipo Comum</h4>
-        <div>
-          <span>Preço:</span> 
-          <p>100g</p>
-        </div>
-        <Button width={80} onClick={() => console.log("ola otario")}>Adicionar ao carrinho</Button>
-        </StyledSinglePokemon> 
-        <StyledSinglePokemon>
-        <img src="https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2021/05/21/pikachu-preso-anime.jpeg" alt="preso"/>
-        <h2>Fui preso</h2>
-        <StyledButtonBag>Normal</StyledButtonBag>
-        <h4>Tipo Comum</h4>
-        <div>
-          <span>Preço:</span> 
-          <p>100g</p>
-        </div>
-        <Button width={80} onClick={() => console.log("ola otario")}>Adicionar ao carrinho</Button>
-        </StyledSinglePokemon> 
+            <Button width={80} onClick={() => pokeBuy(e.id)}>Adicionar ao carrinho</Button>
+        </StyledSinglePokemon>    
+        ))}  
   </>
     )
 }
