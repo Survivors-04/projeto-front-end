@@ -24,7 +24,7 @@ interface IPokemons {
   Type01: string;
   Type02: string;
   userId: number;
-  id: number;
+  id: number | string;
 }
 
 const Profile = () => {
@@ -90,12 +90,12 @@ const Profile = () => {
               <></>
             )}
             {pokemons.length >= 1 ? (
-              pokemons.map((pokemon, index) => (
-                <li key={index}>
+              pokemons.map((pokemon) => (
+                <li key={pokemon.id}>
                   <figure>
                     <img
                       src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
-                      alt=""
+                      alt={pokemon.Pokemon}
                     />
                   </figure>
 
