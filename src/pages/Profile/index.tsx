@@ -11,6 +11,7 @@ import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import { count } from "console";
+import AnimationPages from "../../components/AnimationPages";
 
 interface IData {
   email: string;
@@ -50,82 +51,84 @@ const Profile = () => {
 
   return (
     <>
-      <Header />
-      <StyledContainer>
-        <StyledSection>
-          <StyledDiv>
-            <figure>
-              <img src={imgAsh} alt="" />
-            </figure>
+      <AnimationPages>
+        <Header />
+        <StyledContainer>
+          <StyledSection>
+            <StyledDiv>
+              <figure>
+                <img src={imgAsh} alt="" />
+              </figure>
 
-            <ul>
-              <li>{user.name}</li>
-              <li>Coleção: {pokemons.length}</li>
-              <li>Raros: {countRares}</li>
-              <li>
-                Moedas: <span>{user.gold}</span>
-              </li>
-            </ul>
-          </StyledDiv>
-          <StyledCharmImg src={imgCharmander} alt="" />
-
-          <form>
-            <input
-              type="text"
-              placeholder="Pesquisar Pokemon..."
-              onChange={() => {}}
-            />
-          </form>
-
-          <StyledList>
-            {pokemons.length >= 1 ? (
-              <form className="form">
-                <input
-                  type="text"
-                  placeholder="Pesquisar Pokemon..."
-                  onChange={() => {}}
-                />
-              </form>
-            ) : (
-              <></>
-            )}
-            {pokemons.length >= 1 ? (
-              pokemons.map((pokemon, index) => (
-                <li key={index}>
-                  <figure>
-                    <img
-                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
-                      alt=""
-                    />
-                  </figure>
-
-                  <h3>{pokemon.Pokemon}</h3>
-
-                  <div>
-                    <StyledParagraph
-                      backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
-                    >
-                      {pokemon.Type01}
-                    </StyledParagraph>
-                    {pokemon.Type02 !== "null" ? (
-                      <StyledSpan
-                        backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
-                      >
-                        {pokemon.Type02}
-                      </StyledSpan>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
-                  <p>{pokemon.Rarity}</p>
+              <ul>
+                <li>{user.name}</li>
+                <li>Coleção: {pokemons.length}</li>
+                <li>Raros: {countRares}</li>
+                <li>
+                  Moedas: <span>{user.gold}</span>
                 </li>
-              ))
-            ) : (
-              <h2>Você ainda não possui pokemons em sua coleção :(</h2>
-            )}
-          </StyledList>
-        </StyledSection>
-      </StyledContainer>
+              </ul>
+            </StyledDiv>
+            <StyledCharmImg src={imgCharmander} alt="" />
+
+            <form>
+              <input
+                type="text"
+                placeholder="Pesquisar Pokemon..."
+                onChange={() => {}}
+              />
+            </form>
+
+            <StyledList>
+              {pokemons.length >= 1 ? (
+                <form className="form">
+                  <input
+                    type="text"
+                    placeholder="Pesquisar Pokemon..."
+                    onChange={() => {}}
+                  />
+                </form>
+              ) : (
+                <></>
+              )}
+              {pokemons.length >= 1 ? (
+                pokemons.map((pokemon, index) => (
+                  <li key={index}>
+                    <figure>
+                      <img
+                        src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                        alt=""
+                      />
+                    </figure>
+
+                    <h3>{pokemon.Pokemon}</h3>
+
+                    <div>
+                      <StyledParagraph
+                        backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                      >
+                        {pokemon.Type01}
+                      </StyledParagraph>
+                      {pokemon.Type02 !== "null" ? (
+                        <StyledSpan
+                          backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                        >
+                          {pokemon.Type02}
+                        </StyledSpan>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <p>{pokemon.Rarity}</p>
+                  </li>
+                ))
+              ) : (
+                <h2>Você ainda não possui pokemons em sua coleção :(</h2>
+              )}
+            </StyledList>
+          </StyledSection>
+        </StyledContainer>
+      </AnimationPages>
     </>
   );
 };

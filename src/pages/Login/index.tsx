@@ -8,26 +8,25 @@ import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgBulbasaur from "../../assets/imgs/Login/Bulbasaur.png";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import ApiLogin from "../../services/apiLogin";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
+import AnimationPages from "../../components/AnimationPages";
 
-
-interface iLocationState{ 
-    from: {
-      pathname: string;
-    } 
+interface iLocationState {
+  from: {
+    pathname: string;
+  };
 }
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { setUser, setIsLogged } = useContext(UserContext);
-  
+
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
     const fromPathname = () => {
-     
       if (location.state) {
         const { from } = location.state as iLocationState;
-        
+
         return from.pathname;
       } else {
         return "/profile";
@@ -42,43 +41,45 @@ const Login = () => {
         window.localStorage.setItem("@USERID", res.data.user.id);
         setUser(res.data.user);
         setIsLogged(true);
-        navigate(toNavigate, {replace:true});
+        navigate(toNavigate, { replace: true });
       })
       .catch((err) => {
         console.log(err);
       });
   };
   return (
-    <StyledContainer>
-      <HeaderUsers>
-        <img src={logoHeader} alt="Grupo4" />
-        <Button width={25} onClick={() => navigate("/")}>
-          Voltar
-        </Button>
-      </HeaderUsers>
-      <ContainerUsers imgBackground={ImgBulbasaur}>
-        <main>
-          <h2>Login</h2>
+    <AnimationPages>
+      <StyledContainer>
+        <HeaderUsers>
+          <img src={logoHeader} alt="Grupo4" />
+          <Button width={25} onClick={() => navigate("/")}>
+            Voltar
+          </Button>
+        </HeaderUsers>
+        <ContainerUsers imgBackground={ImgBulbasaur}>
+          <main>
+            <h2>Login</h2>
 
-          <Form userSubmit={onSubmitFunction}>
-            <Button width={80}>Entrar</Button>
-          </Form>
+            <Form userSubmit={onSubmitFunction}>
+              <Button width={80}>Entrar</Button>
+            </Form>
 
-          <StyledRegister>
-            <p>Ainda não possui uma conta?</p>
-            <img
-              src={
-                "https://www.pkparaiso.com/imagenes/xy/sprites/animados/charmander.gif"
-              }
-              alt="charmander"
-            />
-            <Button width={100} onClick={() => navigate("/register")}>
-              Cadastrar
-            </Button>
-          </StyledRegister>
-        </main>
-      </ContainerUsers>
-    </StyledContainer>
+            <StyledRegister>
+              <p>Ainda não possui uma conta?</p>
+              <img
+                src={
+                  "https://www.pkparaiso.com/imagenes/xy/sprites/animados/charmander.gif"
+                }
+                alt="charmander"
+              />
+              <Button width={100} onClick={() => navigate("/register")}>
+                Cadastrar
+              </Button>
+            </StyledRegister>
+          </main>
+        </ContainerUsers>
+      </StyledContainer>
+    </AnimationPages>
   );
 };
 
