@@ -8,8 +8,7 @@ function App() {
     <>
       <Context>
         <Global />
-         <MainRoutes /> 
-       
+        <MainRoutes />
       </Context>
     </>
   );
