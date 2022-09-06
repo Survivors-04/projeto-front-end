@@ -9,7 +9,10 @@ const StyledDivsMarket = styled.div`
   @media only screen and (max-width: 779px) {
     margin: 0 auto;
     width: 95%;
-    max-width: 875px;  
+
+    max-width: 875px;
+
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,6 +21,7 @@ const StyledDivsMarket = styled.div`
     justify-content: center;
   }
 `;
+
 
 export default StyledDivsMarket;
 
@@ -188,7 +192,7 @@ export const StyledSinglePokemon = styled.div`
     line-height: 35px;
     color: #868E96;
     display: flex;
-    justify-content: space-around;      
+    justify-content: space-around;    
     
     
   }
@@ -203,7 +207,6 @@ export const StyledSinglePokemon = styled.div`
     margin-left: 10%;
     
   }
-
 `
 
 
@@ -228,7 +231,6 @@ overflow: auto;
 margin-right: 3%;
 width: 95%;
 max-width: 253px;
-
 
 img{
 
@@ -268,10 +270,7 @@ button:hover{
   background: transparent;
   color: white;
 }
-
 `
-
-
 
 export const StyledSearchFilter = styled.form`
 width: 280px;
@@ -319,7 +318,6 @@ input:focus {
     margin-left: 0%;
 }
 `
-
 
 
 
