@@ -8,13 +8,22 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
 import { UserContext } from "../../../Context/UserContext";
+import Button from "../../Button";
 import { StyledNavButton } from "../../Header/style";
 import Modal from "../ModalBase";
 import { StyledSideHeader } from "./style";
 
 const ModalHeader = () => {
   const { setIsModalHeader, setIsModalDice } = useContext(ModalContext);
-  const { user } = useContext(UserContext);
+  const { user, isLogged, setIsLogged } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+
+    setIsLogged(false);
+    navigate("/login", { replace: true })
+  };
 
   const navigate = useNavigate();
   const token = window.localStorage.getItem("@TOKEN");
@@ -31,14 +40,32 @@ const ModalHeader = () => {
           transition={{ duration: 0.2 }}
         >
           <ul>
-            <li>
-              {user.name}
-              <span>{user.gold}</span>
-            </li>
-            <li>
-              <FaUser />
-              <Link to={"/profile"}>Perfil</Link>
-            </li>
+          
+            {isLogged ? (
+              <>
+                <li>
+                  {user.name}
+                  <span>{user.gold}</span>
+                </li>
+                <li>
+                  <FaUser />
+                  <Link to={"/profile"}>Perfil</Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Button
+                  width={50}
+                  onClick={() => navigate("/login", { replace: true })}
+                  textColor={"var(--color-blue)"}
+                  backgroundColor={"var(--color-yellow)"}
+                  hover={"var(--color-yellow-focus)"}
+                >
+                  Login
+                </Button>
+              </li>
+            )}
+
             <li>
               <FaHome />
               <Link to={"/"}>Inicio</Link>
@@ -64,17 +91,12 @@ const ModalHeader = () => {
             </li>
             <li>
               <IoPeopleSharp />
-              <Link to={"/"}>Sobre nós</Link>
+              <Link to={"/aboutus"}>Sobre nós</Link>
             </li>
             <li>
-              <StyledNavButton
-                onClick={() => {
-                  localStorage.clear();
-                  navigate("/login", { replace: true });
-                }}
-              >
-                {token ? <>Sair</> : <>Entrar</>}
-              </StyledNavButton>
+              
+              <StyledNavButton onClick={logout}>{token ? <>Sair</> : <>Entrar</>}</StyledNavButton>
+
             </li>
           </ul>
         </StyledSideHeader>

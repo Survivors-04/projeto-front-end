@@ -103,17 +103,17 @@ export default createGlobalStyle`
   }
   /* Track */
   ::-webkit-scrollbar-track {
-    background: var(--color-text-focus);
+    background: var(--color-red);
     margin: 1rem;
     border-radius: 1.6rem;
   }
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--color-primary-negative);
+    background: var(--color-gray-2);
     border-radius: 1.6rem;
   }
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background: var(--color-gray-4);
   }
 `;

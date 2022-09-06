@@ -1,5 +1,5 @@
-import styled from "styled-components";
 
+import styled from "styled-components";
 const StyledDivsMarket = styled.div`
   display: flex;
   flex-direction: row;

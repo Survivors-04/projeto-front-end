@@ -25,7 +25,7 @@ interface IPokemons {
   Type01: string;
   Type02: string;
   userId: number;
-  id: number;
+  id: number | string;
 }
 
 const Profile = () => {
@@ -79,27 +79,27 @@ const Profile = () => {
               />
             </form>
 
-            <StyledList>
-              {pokemons.length >= 1 ? (
-                <form className="form">
-                  <input
-                    type="text"
-                    placeholder="Pesquisar Pokemon..."
-                    onChange={() => {}}
-                  />
-                </form>
-              ) : (
-                <></>
-              )}
-              {pokemons.length >= 1 ? (
-                pokemons.map((pokemon, index) => (
-                  <li key={index}>
-                    <figure>
-                      <img
-                        src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
-                        alt=""
-                      />
-                    </figure>
+          <StyledList>
+            {pokemons.length >= 1 ? (
+              <form className="form">
+                <input
+                  type="text"
+                  placeholder="Pesquisar Pokemon..."
+                  onChange={() => {}}
+                />
+              </form>
+            ) : (
+              <></>
+            )}
+            {pokemons.length >= 1 ? (
+              pokemons.map((pokemon) => (
+                <li key={pokemon.id}>
+                  <figure>
+                    <img
+                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                      alt={pokemon.Pokemon}
+                    />
+                  </figure>
 
                     <h3>{pokemon.Pokemon}</h3>
 
