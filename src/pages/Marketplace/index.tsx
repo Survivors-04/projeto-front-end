@@ -22,15 +22,17 @@ import StyledSinglePokemon, {
 } from "../../components/PokemonBag/styles";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
+import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
 
-interface IMarket {
+export interface IMarket {
   Pokemon: string;
   Rarity: string;
   Number: number;
   Type01: string;
   Type02: string;
   id: string | number;
-  userId?: number;
+  userId: string | number;
+  price: number;
 }
 
 const Marketplace = () => {
@@ -39,6 +41,8 @@ const Marketplace = () => {
   const [total, setTotal] = useState(0);
 
   const { isModalSearch, setIsModalSearch } = useContext(ModalContext);
+  const { isModalConfirmMarket, setIsModalConfirmMarket } =
+    useContext(ModalContext);
 
   const singleRemove = (id: string | number) => {
     const removeCartItens = currentCart.filter((e) => e.id !== id);
@@ -58,14 +62,14 @@ const Marketplace = () => {
     markList();
   }, []);
 
-  const pokeBuy = (id: string | number) => {
+  const pokeBuy = (id: string | number, price: number) => {
     if (currentCart.find((e) => e.id === id)) {
       console.log("igual");
     } else {
       const addToCart = market.filter((e) => e.id === id);
 
       setCurrentCart((oldCart) => [...oldCart, ...addToCart]);
-      setTotal(total + 100);
+      setTotal(total + price);
     }
   };
 
@@ -74,14 +78,21 @@ const Marketplace = () => {
       <AnimationPages>
         <Header />
         <StyledDivsMarket>
+          {isModalConfirmMarket && (
+            <ModalConfirmMarket
+              currentCart={currentCart}
+              setCurrentCart={setCurrentCart}
+              setTotal={setTotal}
+            />
+          )}
           <StyledDivPokemonsMarket>
-            {market.map(({ id, Pokemon, Rarity, Type01, Type02 }) => (
+            {market.map(({ id, Pokemon, Rarity, Type01, Type02, price }) => (
               <StyledSinglePokemon key={id}>
                 <img
                   src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
                   alt={Pokemon}
                 />
-                <h2>{Pokemon}</h2>
+                <h3>{Pokemon}</h3>
                 <>
                   <StyledParagraph
                     backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
@@ -101,9 +112,9 @@ const Marketplace = () => {
                 <h4>{Rarity}</h4>
                 <div>
                   <span>Preço:</span>
-                  <p>100g</p>
+                  <p>{price}g</p>
                 </div>
-                <Button width={80} onClick={() => pokeBuy(id)}>
+                <Button width={80} onClick={() => pokeBuy(id, price)}>
                   Adicionar ao carrinho
                 </Button>
               </StyledSinglePokemon>
@@ -120,7 +131,7 @@ const Marketplace = () => {
               <h2>Carrinho</h2>
               {currentCart.length > 0 ? (
                 <StyledDivOverflow>
-                  {currentCart.map(({ id, Pokemon }) => (
+                  {currentCart.map(({ id, Pokemon, price }) => (
                     <StyledMiniCard key={id}>
                       <img
                         src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
@@ -129,7 +140,7 @@ const Marketplace = () => {
                       <div>
                         <p>{Pokemon}</p>
                         <p>Preço</p>
-                        <p>100</p>
+                        <p>{price}</p>
                       </div>
                       <button>
                         <BsTrash onClick={() => singleRemove(id)} />
@@ -144,7 +155,10 @@ const Marketplace = () => {
               <StyledDivTotal>
                 <h4>Valor</h4>
                 <h4>{total}g</h4>
-                <Button width={80} onClick={() => console.log("ola babaca")}>
+                <Button
+                  width={80}
+                  onClick={() => setIsModalConfirmMarket(true)}
+                >
                   Comprar
                 </Button>
               </StyledDivTotal>

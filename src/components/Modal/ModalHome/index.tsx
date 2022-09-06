@@ -20,8 +20,9 @@ export interface iPokemon {
   Number: number;
   Type01: string;
   Type02: string;
-  userId?: number;
-  id?: string | number;
+  id: string | number;
+  userId: string | number;
+  price: number;
 }
 
 export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
