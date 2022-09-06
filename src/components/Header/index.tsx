@@ -56,17 +56,19 @@ const Header = () => {
                 <Link to={"/help"}>Ajuda</Link>
               </li>
               <li>
-                <Link to={"/aboutUs"}>Sobre nós</Link>
+                <Link to={"/aboutus"}>Sobre nós</Link>
               </li>
               <>
                 {isLogged ? (
                   <>
                     <li>
-                      <span>{user.gold}</span>
+                      <span>{user.gold}g</span>
                     </li>
                     <li>
-                      <StyledNavButton>
-                        <img src={iconUserHeader} alt="" />
+                      <StyledNavButton
+                        onClick={() => navigate("/profile", { replace: true })}
+                      >
+                        <img src={iconUserHeader} alt="Icone de usuário" />
                       </StyledNavButton>
                     </li>
                   </>

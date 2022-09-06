@@ -9,6 +9,7 @@ export default createGlobalStyle`
     --color-gray-3-background: rgba(33, 37, 41, 0.85);
     --color-gray-2: #343B41;
     --color-gray-1: #868E96;
+    --color-gray-0: #F8F9FA;
     --color-yellow: #FFD700;
     --color-yellow-focus: #FFDB4D;
     --color-blue: #4169E1;

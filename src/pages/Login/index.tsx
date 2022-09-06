@@ -2,7 +2,7 @@ import StyledContainer from "../../components/Container/styles";
 import { ContainerUsers } from "../../components/StylerUser/styles";
 import { Form, IOnSubmitFunctionProps } from "../../components/Form";
 import { StyledRegister } from "../../components/StylerUser/styles";
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgBulbasaur from "../../assets/imgs/Login/Bulbasaur.png";
@@ -12,14 +12,41 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "../../Context/UserContext";
 
 
-
-
+interface iLocationState{ 
+    from: {
+      pathname: string;
+    } 
+}
 const Login = () => {
   const navigate = useNavigate();
- 
+  const location = useLocation();
+  const { setUser, setIsLogged } = useContext(UserContext);
   
-  const onSubmitFunction = (data: IOnSubmitFunctionProps) => {     
+  const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
+    const fromPathname = () => {
+     
+      if (location.state) {
+        const { from } = location.state as iLocationState;
+        
+        return from.pathname;
+      } else {
+        return "/profile";
+      }
+    };
+    const toNavigate = fromPathname();
+
     ApiLogin(data)
+      .then((res) => {
+        window.localStorage.clear();
+        window.localStorage.setItem("@TOKEN", res.data.accessToken);
+        window.localStorage.setItem("@USERID", res.data.user.id);
+        setUser(res.data.user);
+        setIsLogged(true);
+        navigate(toNavigate, {replace:true});
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <StyledContainer>
@@ -34,9 +61,7 @@ const Login = () => {
           <h2>Login</h2>
 
           <Form userSubmit={onSubmitFunction}>
-            <Button width={80} >
-              Entrar
-            </Button>
+            <Button width={80}>Entrar</Button>
           </Form>
 
           <StyledRegister>
