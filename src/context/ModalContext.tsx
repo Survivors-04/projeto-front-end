@@ -17,6 +17,8 @@ interface iModalContext {
   setIsModalSearch: Dispatch<SetStateAction<boolean>>;
   isModalConfirm: boolean;
   setIsModalConfirm: Dispatch<SetStateAction<boolean>>;
+  isModalLogout: boolean;
+  setIsModalLogout: Dispatch<SetStateAction<boolean>>;
 }
 
 interface iModalProvider {
@@ -31,6 +33,7 @@ const ModalProvider = ({ children }: iModalProvider) => {
   const [isModalHeader, setIsModalHeader] = useState(false);
   const [isModalSearch, setIsModalSearch] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
+  const [isModalLogout, setIsModalLogout] = useState(false);
 
   return (
     <ModalContext.Provider
@@ -45,6 +48,8 @@ const ModalProvider = ({ children }: iModalProvider) => {
         setIsModalSearch,
         isModalConfirm,
         setIsModalConfirm,
+        isModalLogout,
+        setIsModalLogout,
       }}
     >
       {children}

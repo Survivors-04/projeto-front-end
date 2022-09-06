@@ -11,7 +11,7 @@ export const StyledBoosterList = styled.ul`
   display: flex;
   justify-content: space-between;
 
-  margin-top: 100px;
+  margin-top: 50px;
 
   height: 85%;
   max-height: 560px;

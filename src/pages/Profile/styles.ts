@@ -4,19 +4,16 @@ export const StyledSection = styled.section`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 150px;
 
   @media screen and (min-width: 700px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 30px;
-    margin-top: 100px;
   }
 
   @media screen and (min-width: 1024px) {
     gap: 100px;
-    margin-top: 50px;
   }
 
   form {
