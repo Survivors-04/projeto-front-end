@@ -65,7 +65,9 @@ const Header = () => {
                       <span>{user.gold}</span>
                     </li>
                     <li>
-                      <StyledNavButton>
+                      <StyledNavButton
+                        onClick={() => navigate("/profile", { replace: true })}
+                      >
                         <img src={iconUserHeader} alt="" />
                       </StyledNavButton>
                     </li>
