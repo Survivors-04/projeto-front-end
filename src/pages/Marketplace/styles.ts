@@ -9,7 +9,9 @@ const StyledDivsMarket = styled.div`
   @media only screen and (max-width: 779px) {
     margin: 0 auto;
     width: 95%;
+
     max-width: 875px;
+
 
     display: flex;
     flex-direction: column;
