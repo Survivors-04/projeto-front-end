@@ -8,9 +8,9 @@ function App() {
   return (
     <>
       <Context>
+        <Global />
+        <MainRoutes />
         <ToastContainer/>
-          <Global />
-          <MainRoutes />
       </Context>
     </>
   );
