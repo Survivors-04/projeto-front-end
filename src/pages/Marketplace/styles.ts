@@ -1,49 +1,49 @@
 
 import styled from "styled-components";
 const StyledDivsMarket = styled.div`
-display: flex;
-flex-direction: row;
-margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 10%;
+  padding-top: 100px;
 
-@media only screen and (max-width: 779px) {
-    
+  @media only screen and (max-width: 779px) {
     margin: 0 auto;
     width: 95%;
-    max-width: 875px;    
+    max-width: 875px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     -webkit-box-align: center;
     -webkit-box-pack: center;
-    justify-content: center;   
+    justify-content: center;
+  }
+`;
 
-}
-`
 
-export default StyledDivsMarket
+export default StyledDivsMarket;
 
 export const StyledDivPokemonsMarket = styled.div`
-display: flex;
-flex-wrap: wrap;
-flex-direction: row;
-width: 60vw;
-@media only screen and (max-width: 779px) {
-    
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 60vw;
+  @media only screen and (max-width: 779px) {
     display: flex;
     flex-flow: row;
     overflow: auto;
     width: 80vw;
-    margin-left: 0;   
-
-}`
+    margin-left: 0;
+  }
+`;
 
 export const StyledDivSearchCard = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-@media only screen and (max-width: 779px) {
-    
+  @media only screen and (max-width: 779px) {
     display: flex;
+
     flex-direction: column;   
 
 }
@@ -190,7 +190,7 @@ export const StyledSinglePokemon = styled.div`
     line-height: 35px;
     color: #868E96;
     display: flex;
-    justify-content: space-around;      
+    justify-content: space-around;    
     
     
   }
@@ -205,7 +205,6 @@ export const StyledSinglePokemon = styled.div`
     margin-left: 10%;
     
   }
-
 `
 
 
@@ -230,7 +229,6 @@ overflow: auto;
 margin-right: 3%;
 width: 95%;
 max-width: 253px;
-
 
 img{
 
@@ -270,10 +268,7 @@ button:hover{
   background: transparent;
   color: white;
 }
-
 `
-
-
 
 export const StyledSearchFilter = styled.form`
 width: 280px;
@@ -321,4 +316,7 @@ input:focus {
     margin-left: 0%;
 }
 `
+
+
+
 
