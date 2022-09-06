@@ -16,13 +16,12 @@ import { StyledSideHeader } from "./style";
 const ModalHeader = () => {
   const { setIsModalHeader, setIsModalDice } = useContext(ModalContext);
   const { user, isLogged, setIsLogged } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
 
     setIsLogged(false);
-    navigate("/login", { replace: true })
+    navigate("/login", { replace: true });
   };
 
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ const ModalHeader = () => {
           transition={{ duration: 0.2 }}
         >
           <ul>
-          
             {isLogged ? (
               <>
                 <li>
@@ -94,9 +92,9 @@ const ModalHeader = () => {
               <Link to={"/aboutus"}>Sobre nós</Link>
             </li>
             <li>
-              
-              <StyledNavButton onClick={logout}>{token ? <>Sair</> : <>Entrar</>}</StyledNavButton>
-
+              <StyledNavButton onClick={logout}>
+                {token ? <>Sair</> : <>Entrar</>}
+              </StyledNavButton>
             </li>
           </ul>
         </StyledSideHeader>
