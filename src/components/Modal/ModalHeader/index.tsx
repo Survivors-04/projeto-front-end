@@ -5,7 +5,7 @@ import { FaHome, FaUser } from "react-icons/fa";
 import { GiOpenTreasureChest } from "react-icons/gi";
 import { IoIosHelpCircle } from "react-icons/io";
 import { IoPeopleSharp } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ModalContext } from "../../../Context/ModalContext";
 import { UserContext } from "../../../Context/UserContext";
 import { StyledNavButton } from "../../Header/style";
@@ -15,6 +15,9 @@ import { StyledSideHeader } from "./style";
 const ModalHeader = () => {
   const { setIsModalHeader, setIsModalDice } = useContext(ModalContext);
   const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+  const token = window.localStorage.getItem("@TOKEN");
 
   return (
     <>
@@ -30,7 +33,7 @@ const ModalHeader = () => {
           <ul>
             <li>
               {user.name}
-              <span>{user.gold}g</span>
+              <span>{user.gold}</span>
             </li>
             <li>
               <FaUser />
@@ -64,7 +67,14 @@ const ModalHeader = () => {
               <Link to={"/"}>Sobre nós</Link>
             </li>
             <li>
-              <StyledNavButton>Sair</StyledNavButton>
+              <StyledNavButton
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/login", { replace: true });
+                }}
+              >
+                {token ? <>Sair</> : <>Entrar</>}
+              </StyledNavButton>
             </li>
           </ul>
         </StyledSideHeader>
