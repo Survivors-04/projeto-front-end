@@ -11,7 +11,7 @@ const apiPatchUser = async (userId: string | number, data: iData) => {
   try {
     const response = await api.patch(`/Users/${userId}`, data);
 
-    return response
+    return response;
   } catch (err) {
     console.log(err);
   }

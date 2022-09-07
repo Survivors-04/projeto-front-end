@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyledSpan } from "./styles";
 
 interface ISpan {
-  children: React.ReactNode;
+  children: ReactNode;
   backgroundColor?: string;
 }
 
