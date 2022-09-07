@@ -8,7 +8,6 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
-
 import Button from "../../components/Button";
 import ModalSell from "../../components/Modal/ModalSell";
 import { ModalContext } from "../../Context/ModalContext";
@@ -178,7 +177,11 @@ const Profile = () => {
                     <li key={pokemon.id}>
                       <figure>
                         <img
-                          src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                          src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                            pokemon.Pokemon === "Nidoran-M"
+                              ? "nidorino" : pokemon.Pokemon === "Nidoran-F" ? "nidorina"
+                              : pokemon.Pokemon.toLowerCase()
+                          }.gif`}
                           alt={pokemon.Pokemon}
                         />
                       </figure>
@@ -206,8 +209,11 @@ const Profile = () => {
                         width={80}
                         onClick={() => {
                           setIsModalSell(true);
+
                           pokemon.price = 0
                           setPokemonSell(pokemon);
+
+
                         }}
                       >
                         Vender

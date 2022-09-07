@@ -20,8 +20,6 @@ const ModalSell = ( {pokemonSell}:IModalSell) => {
   const [valueSell, setValueSell] = useState("");
   const priceSell = pokemonSell.price = Number(valueSell)
 
-
-  
   return (
     <Modal setIs={setIsModalSell}>
       <StyledModaSell>
@@ -32,7 +30,6 @@ const ModalSell = ( {pokemonSell}:IModalSell) => {
           onChange={(e) => setValueSell(e.target.value)}
         />
 
-        
         <StyledContainerButton>
           <StyledButtonVender width={70} onClick={() => {
            apiMarketPost(pokemonSell)

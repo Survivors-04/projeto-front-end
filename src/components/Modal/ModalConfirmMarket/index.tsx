@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useContext } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
-import { iUser, UserContext } from "../../../Context/UserContext";
+import { UserContext } from "../../../Context/UserContext";
 import { IMarket } from "../../../pages/Marketplace";
-import api from "../../../services/api";
+import { v4 as uuidv4 } from "uuid";
 import apiAddPokemon from "../../../services/apiAddPokemon";
 import apiGetUserID from "../../../services/apiGetUserID";
 import apiMarketDelete from "../../../services/apiMarketDelete";
@@ -29,12 +29,11 @@ const ModalConfirmMarket = ({
     return currentPrice.price + oldPrice;
   }, 0);
 
-  const submitBuy = () => {
+  const submitBuy = async () => {
+    await apiPatchUser(user.id, { gold: user.gold - totalValue });
     setUser({ ...user, gold: user.gold - totalValue });
 
     currentCart.forEach(async (pokemon) => {
-      console.log("Pokemon", (pokemon.userId = user.id));
-
       apiMarketDelete(pokemon.id);
 
       const seller: iData = await apiGetUserID(pokemon.userId);
@@ -43,15 +42,11 @@ const ModalConfirmMarket = ({
 
       await apiPatchUser(pokemon.userId, totalGold);
 
-      const newPokemon = ({...pokemon, userId: user.id});
-      console.log(newPokemon)
+      const pokemonId = uuidv4();
 
-      const teste = await apiAddPokemon(user.id, newPokemon);
-      const aaa = await api.post(`/Users/${user.id}/pokedexUser`, newPokemon);
+      const newPokemon = { ...pokemon, userId: user.id, id: pokemonId };
 
-      console.log("UserID", user.id);
-      console.log("Add 01", teste);
-      console.log("Add 02", aaa);
+      await apiAddPokemon(user.id, newPokemon);
     });
 
     setCurrentCart([]);
@@ -72,14 +67,7 @@ const ModalConfirmMarket = ({
             </Button>
           </>
         ) : (
-          <>
-            <h3>Saldo Insuficiente para comprar os Pokemons </h3>
-            <button
-              onClick={() => setUser({ ...user, gold: user.gold + 1000 })}
-            >
-              pobre
-            </button>
-          </>
+          <h3>Saldo Insuficiente para comprar os Pokemons </h3>
         )}
         <Button
           width={40}

@@ -2,13 +2,13 @@ import "../../style/Global";
 import styled from "styled-components";
 
 interface IContainerProps {
-  imgBackground:string;
+  imgBackground: string;
 }
 export const ContainerUsers = styled.div<IContainerProps>`
   width: 400px;
   max-width: 300px;
   height: 458px;
-  margin:  0px;
+  margin: 0px;
   background: rgba(255, 215, 0, 0.9);
   margin-top: 0px;
 
@@ -29,7 +29,7 @@ export const ContainerUsers = styled.div<IContainerProps>`
         rgba(255, 255, 255, 0.2),
         rgba(255, 255, 255, 0.2)
       ),
-      url(${({imgBackground})=>imgBackground});
+      url(${({ imgBackground }) => imgBackground});
     background-position: center;
     background-size: 300px;
     background-repeat: no-repeat;
@@ -107,22 +107,21 @@ export const StyledRegister = styled.div`
     font-size: 14px;
     color: var(--color-gray-4);
   }
-`
+`;
 export const HeaderUsers = styled.div`
-margin: 0;
-width:400px;
-max-width: 300px;
-display: flex;
-justify-content: space-between;
-padding: 10px;
+  margin: 0;
+  width: 400px;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 
-
-img{
+  img {
     height: 50;
     width: 130px;
-}
-button{   
+  }
+  button {
     height: 35px;
-    padding:5px 
-    }
-`
+    padding: 5px;
+  }
+`;

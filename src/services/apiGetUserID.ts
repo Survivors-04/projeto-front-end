@@ -4,7 +4,7 @@ const apiGetUserID = async (userId: string | number) => {
   try {
     const response = await api.get(`/Users/${userId}`);
 
-    return response.data
+    return response.data;
   } catch (err) {
     console.log(err);
   }
