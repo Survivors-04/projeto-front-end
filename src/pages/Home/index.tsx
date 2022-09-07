@@ -10,7 +10,7 @@ import ModalConfirm from "../../components/Modal/ModalConfirm";
 import AnimationPages from "../../components/AnimationPages";
 
 const Home = () => {
-  const { isModalHome, setisModalHome, isModalConfirm, setIsModalConfirm } =
+  const { isModalHome, isModalConfirm, setIsModalConfirm } =
     useContext(ModalContext);
   const [boosterTitle, setBoosterTitle] = useState("");
   const [boosterPrice, setBoosterPrice] = useState(0);

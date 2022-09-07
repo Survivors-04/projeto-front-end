@@ -13,12 +13,13 @@ import StyledDivsMarket, {
 } from "./styles";
 
 import Button from "../../components/Button";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsTrash } from "react-icons/bs";
 import apiMarket from "../../services/apiMarket";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
+import { ModalContext } from "../../Context/ModalContext";
 
 export interface IMarket {
   Pokemon: string;
@@ -35,7 +36,7 @@ const Marketplace = () => {
   const [market, setMarket] = useState<IMarket[]>([]);
   const [currentCart, setCurrentCart] = useState<IMarket[]>([]);
   const [total, setTotal] = useState(0);
- 
+
   const { isModalSearch, setIsModalSearch } = useContext(ModalContext);
   const { isModalConfirmMarket, setIsModalConfirmMarket } =
     useContext(ModalContext);
@@ -87,23 +88,22 @@ const Marketplace = () => {
                 />
                 <h3>{Pokemon}</h3>
                 <>
-                <StyledDivTipo>
-                  <StyledParagraph
-                    backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
-                  >
-                    {Type01}
-                  </StyledParagraph>
-                  {Type02 !== "null" ? (
-                    <StyledSpan
-                      backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
+                  <StyledDivTipo>
+                    <StyledParagraph
+                      backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
                     >
-                      {Type02}
-                    </StyledSpan>
-                  )                  
-                  : (                    
-                    <></>
-                  )}
-                </StyledDivTipo>
+                      {Type01}
+                    </StyledParagraph>
+                    {Type02 !== "null" ? (
+                      <StyledSpan
+                        backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
+                      >
+                        {Type02}
+                      </StyledSpan>
+                    ) : (
+                      <></>
+                    )}
+                  </StyledDivTipo>
                 </>
                 <h4>{Rarity}</h4>
                 <div>
@@ -118,13 +118,8 @@ const Marketplace = () => {
           </StyledDivPokemonsMarket>
 
           <StyledDivSearchCard>
-            
             <StyledSearchFilter>
-            <input
-                type="text"
-                placeholder="Pesquisar Pokemon..."                
-                
-              />              
+              <input type="text" placeholder="Pesquisar Pokemon..." />
             </StyledSearchFilter>
 
             <StyledFullCart>
@@ -147,25 +142,24 @@ const Marketplace = () => {
                       </button>
                     </StyledMiniCard>
                   ))}
-                </StyledDivOverflow>                
+                </StyledDivOverflow>
               ) : (
                 <p>Carrinho Vazio</p>
               )}
-              {currentCart.length > 0 ? <StyledDivTotal>
-                <h4>Valor</h4>
-                <h4>{total}g</h4>
-                <Button
-                  width={80}
-                  onClick={() => setIsModalConfirmMarket(true)}
-                >
-                  Comprar
-                </Button>
-              </StyledDivTotal>
-              :
-              <>
-              </>
-              }
-              
+              {currentCart.length > 0 ? (
+                <StyledDivTotal>
+                  <h4>Valor</h4>
+                  <h4>{total}g</h4>
+                  <Button
+                    width={80}
+                    onClick={() => setIsModalConfirmMarket(true)}
+                  >
+                    Comprar
+                  </Button>
+                </StyledDivTotal>
+              ) : (
+                <></>
+              )}
             </StyledFullCart>
           </StyledDivSearchCard>
         </StyledDivsMarket>
