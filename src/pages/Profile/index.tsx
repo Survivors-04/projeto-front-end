@@ -208,6 +208,7 @@ const Profile = () => {
                       <p>{pokemon.Rarity}</p>
                       <Button
                         width={80}
+                        hover={'var(--color-yellow-focus)'}
                         onClick={() => {
                           setIsModalSell(true);
 
@@ -249,6 +250,7 @@ const Profile = () => {
                       <p>{pokemon.Rarity}</p>
                       <Button
                         width={80}
+                        hover={'var(--color-yellow-focus)'}
                         onClick={() => {
                           setIsModalSell(true);
                           setPokemonSell(pokemon);

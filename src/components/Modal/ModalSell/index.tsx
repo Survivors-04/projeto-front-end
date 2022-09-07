@@ -36,8 +36,8 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
         />
 
         <StyledContainerButton>
-          <StyledButtonVender
-            width={70}
+          <Button
+            width={60}
             onClick={() => {
               apiMarketPost(pokemonSell);
               apiDeletePokedex(pokemonSell.id);
@@ -50,9 +50,11 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
             }}
           >
             Vender
-          </StyledButtonVender>
+          </Button>
           <Button
-            width={30}
+            width={40}
+            backgroundColor="var(--color-gray-1)"
+            hover="var(--color-gray-0)"
             onClick={() => {
               setIsModalSell(false);
             }}

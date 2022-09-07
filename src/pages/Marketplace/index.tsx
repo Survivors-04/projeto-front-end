@@ -10,6 +10,7 @@ import StyledDivsMarket, {
   StyledSinglePokemon,
   StyledMiniCard,
   StyledSearchFilter,
+  StyledCartPrice,
 } from "./styles";
 
 import Button from "../../components/Button";
@@ -36,7 +37,7 @@ const Marketplace = () => {
   const [market, setMarket] = useState<IMarket[]>([]);
   const [currentCart, setCurrentCart] = useState<IMarket[]>([]);
   const [total, setTotal] = useState(0);
-  const [search, setSearch]= useState("");
+  const [search, setSearch] = useState("");
   const [marketFilter, SetMarketFilter] = useState<IMarket[]>([]);
 
   const { isModalSearch, setIsModalSearch } = useContext(ModalContext);
@@ -49,7 +50,6 @@ const Marketplace = () => {
     setTotal(total - 100);
   };
 
-  
   useEffect(() => {
     const filteredInput = (str: string) => {
       let search = str
@@ -128,93 +128,103 @@ const Marketplace = () => {
             />
           )}
           <StyledDivPokemonsMarket>
-            {search.trim().length === 0 ?
-            market.map(({ id, Pokemon, Rarity, Type01, Type02, price }) => (
-              <StyledSinglePokemon key={id}>
-                <img
-                  src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                    Pokemon === "Nidoran-M"
-                      ? "nidorino"
-                      : Pokemon === "Nidoran-F"
-                      ? "nidorina"
-                      : Pokemon.toLowerCase()
-                  }.gif`}
-                  alt={Pokemon}
-                />
-                <h3>{Pokemon}</h3>
-                <>
-                  <StyledDivTipo>
-                    <StyledParagraph
-                      backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
+            {search.trim().length === 0
+              ? market.map(({ id, Pokemon, Rarity, Type01, Type02, price }) => (
+                  <StyledSinglePokemon key={id}>
+                    <img
+                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                        Pokemon === "Nidoran-M"
+                          ? "nidorino"
+                          : Pokemon === "Nidoran-F"
+                          ? "nidorina"
+                          : Pokemon.toLowerCase()
+                      }.gif`}
+                      alt={Pokemon}
+                    />
+                    <h3>{Pokemon}</h3>
+                    <>
+                      <StyledDivTipo>
+                        <StyledParagraph
+                          backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
+                        >
+                          {Type01.charAt(0).toUpperCase() + Type01.slice(1)}
+                        </StyledParagraph>
+                        {Type02 !== "null" ? (
+                          <StyledSpan
+                            backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
+                          >
+                            {Type02.charAt(0).toUpperCase() + Type02.slice(1)}
+                          </StyledSpan>
+                        ) : (
+                          <></>
+                        )}
+                      </StyledDivTipo>
+                    </>
+                    <h4>{Rarity}</h4>
+                    <div>
+                      <p>
+                        Preço: <span> {price}g</span>
+                      </p>
+                    </div>
+                    <Button
+                      width={80}
+                      hover={"var(--color-red-focus)"}
+                      onClick={() => pokeBuy(id, price)}
                     >
-                      {Type01}
-                    </StyledParagraph>
-                    {Type02 !== "null" ? (
-                      <StyledSpan
-                        backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
+                      Adicionar
+                    </Button>
+                  </StyledSinglePokemon>
+                ))
+              : marketFilter.map(
+                  ({ id, Pokemon, Rarity, Type01, Type02, price }) => (
+                    <StyledSinglePokemon key={id}>
+                      <img
+                        src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
+                        alt={Pokemon}
+                      />
+                      <h3>{Pokemon}</h3>
+                      <>
+                        <StyledDivTipo>
+                          <StyledParagraph
+                            backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
+                          >
+                            {Type01.charAt(0).toUpperCase() + Type01.slice(1)}
+                          </StyledParagraph>
+                          {Type02 !== "null" ? (
+                            <StyledSpan
+                              backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
+                            >
+                              {Type02.charAt(0).toUpperCase() + Type02.slice(1)}
+                            </StyledSpan>
+                          ) : (
+                            <></>
+                          )}
+                        </StyledDivTipo>
+                      </>
+                      <h4>{Rarity}</h4>
+                      <div>
+                        <p>
+                          Preço: <span> {price}g</span>
+                        </p>
+                      </div>
+                      <Button
+                        width={80}
+                        hover={"var(--color-red-focus)"}
+                        onClick={() => pokeBuy(id, price)}
                       >
-                        {Type02}
-                      </StyledSpan>
-                    ) : (
-                      <></>
-                    )}
-                  </StyledDivTipo>
-                </>
-                <h4>{Rarity}</h4>
-                <div>
-                  <span>Preço:</span>
-                  <p>{price}g</p>
-                </div>
-                <Button width={80} onClick={() => pokeBuy(id, price)}>
-                  Adicionar
-                </Button>
-              </StyledSinglePokemon>
-            ))
-          :
-            marketFilter.map(({ id, Pokemon, Rarity, Type01, Type02, price }) => (
-            <StyledSinglePokemon key={id}>
-              <img
-                src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
-                alt={Pokemon}
-              />
-              <h3>{Pokemon}</h3>
-              <>
-                <StyledDivTipo>
-                  <StyledParagraph
-                    backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
-                  >
-                    {Type01}
-                  </StyledParagraph>
-                  {Type02 !== "null" ? (
-                    <StyledSpan
-                      backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
-                    >
-                      {Type02}
-                    </StyledSpan>
-                  ) : (
-                    <></>
-                  )}
-                </StyledDivTipo>
-              </>
-              <h4>{Rarity}</h4>
-              <div>
-                <span>Preço:</span>
-                <p>{price}g</p>
-              </div>
-              <Button width={80} onClick={() => pokeBuy(id, price)}>
-                Adicionar
-              </Button>
-            </StyledSinglePokemon>
-          ))
-          }
+                        Adicionar
+                      </Button>
+                    </StyledSinglePokemon>
+                  )
+                )}
           </StyledDivPokemonsMarket>
 
           <StyledDivSearchCard>
             <StyledSearchFilter>
-              <input 
-              type="text" 
-              placeholder="Pesquisar Pokemon..." 
-              value={search}
+              <input
+                type="text"
+                placeholder="Pesquisar Pokemon..."
+                value={search}
                 onChange={(event) => {
                   setSearch(event.target.value);
                 }}
@@ -231,10 +241,10 @@ const Marketplace = () => {
                         src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
                         alt={Pokemon}
                       />
-                        <h3>{Pokemon}</h3>
+                      <h3>{Pokemon}</h3>
                       <div>
                         <p>Preço</p>
-                        <p>{price}</p>
+                        <StyledCartPrice>{price}g</StyledCartPrice>
                       </div>
                       <button>
                         <BsTrash onClick={() => singleRemove(id)} />
@@ -251,6 +261,7 @@ const Marketplace = () => {
                   <h4>{total}g</h4>
                   <Button
                     width={80}
+                    hover={"var(--color-yellow-focus)"}
                     onClick={() => setIsModalConfirmMarket(true)}
                   >
                     Comprar

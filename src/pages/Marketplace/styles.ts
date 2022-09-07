@@ -50,8 +50,8 @@ export const StyledDivSearchCard = styled.div`
 export const StyledFullCart = styled.div`
   width: 280px;
   height: 525px;
-  background: #212529;
-  border: 2px solid #868e96;
+  background: var(--color-gray-3);
+  border: 2px solid var(--color-gray-1);
   border-radius: 20px;
   margin-top: 7%;
   margin-left: 7%;
@@ -61,7 +61,7 @@ export const StyledFullCart = styled.div`
   }
 
   h2 {
-    background: #c80b0b;
+    background: var(--color-red);
     height: 18%;
     width: 100%;
     border-radius: 20px 20px 0 0;
@@ -90,7 +90,7 @@ export const StyledDivTotal = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background: #c80b0b;
+  background: var(--color-red);
   width: 100%;
   height: 22%;
   border-radius: 0 0 20px 20px;
@@ -106,7 +106,7 @@ export const StyledDivTotal = styled.div`
   }
 
   h4 + h4 {
-    color: #ffd700;
+    color: var(--color-yellow);
   }
 
   button {
@@ -125,7 +125,7 @@ export const StyledDivTipo = styled.div`
 
   p {
     font-size: 13px;
-    width: 54px;
+    width: 60px;
     height: 22px;
     padding: 4px;
     line-height: 1;
@@ -189,12 +189,7 @@ export const StyledSinglePokemon = styled.div`
     display: flex;
     justify-content: space-around;
   }
-  span {
-    color: #868e96;
-  }
-  p {
-    color: yellow;
-  }
+
   button {
     margin-left: 10%;
 
@@ -311,3 +306,8 @@ export const StyledSearchFilter = styled.form`
     margin-left: 0%;
   }
 `;
+
+
+export const StyledCartPrice = styled.p`
+  color: var(--color-yellow);
+`
