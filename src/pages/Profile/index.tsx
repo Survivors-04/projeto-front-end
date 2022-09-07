@@ -11,6 +11,13 @@ import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import { count } from "console";
+import Button from "../../components/Button";
+import ModalSell from "../../components/Modal/ModalSell";
+import { ModalContext } from "../../Context/ModalContext";
+
+
+
+
 
 interface IData {
   email: string;
@@ -30,7 +37,12 @@ interface IPokemons {
 const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
   const [countRares, setCountRares] = useState(0);
+  const [pokemonSell,setPokemonSell] = useState<string>("")
   const { user } = useContext(UserContext);
+  const {  isModalSell,setIsModalSell } = useContext(ModalContext);
+ 
+  
+ 
 
   useEffect(() => {
     api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
@@ -91,7 +103,9 @@ const Profile = () => {
             )}
             {pokemons.length >= 1 ? (
               pokemons.map((pokemon, index) => (
+               
                 <li key={index}>
+                  
                   <figure>
                     <img
                       src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
@@ -118,11 +132,19 @@ const Profile = () => {
                     )}
                   </div>
                   <p>{pokemon.Rarity}</p>
+                  <Button width={80} onClick={() => {
+                    setIsModalSell(true)
+                    setPokemonSell(pokemon.Pokemon)
+                  }}> 
+                                      
+                    Vender
+                  </Button>
                 </li>
               ))
             ) : (
               <h2>Você ainda não possui pokemons em sua coleção :(</h2>
             )}
+            {isModalSell&&<ModalSell pokemonSell={pokemonSell} />}
           </StyledList>
         </StyledSection>
       </StyledContainer>

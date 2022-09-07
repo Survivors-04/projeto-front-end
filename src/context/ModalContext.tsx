@@ -15,6 +15,9 @@ interface iModalContext {
   setIsModalHeader: Dispatch<SetStateAction<boolean>>;
   isModalConfirm: boolean;
   setIsModalConfirm: Dispatch<SetStateAction<boolean>>;
+  isModalSell:boolean;
+  setIsModalSell:Dispatch<SetStateAction<boolean>>
+
 }
 
 interface iModalProvider {
@@ -28,6 +31,7 @@ const ModalProvider = ({ children }: iModalProvider) => {
   const [isModalDice, setIsModalDice] = useState(false);
   const [isModalHeader, setIsModalHeader] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
+  const [isModalSell,setIsModalSell] = useState(false)
 
   return (
     <ModalContext.Provider
@@ -40,6 +44,8 @@ const ModalProvider = ({ children }: iModalProvider) => {
         setIsModalHeader,
         isModalConfirm,
         setIsModalConfirm,
+        isModalSell,
+        setIsModalSell
       }}
     >
       {children}

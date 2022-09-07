@@ -9,6 +9,8 @@ import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from  "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import apiRegister from "../../services/apiRegister";
+import { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 
 
 interface IOnSubmitFunctionProps { 
@@ -23,6 +25,7 @@ interface IOnSubmitFunctionProps {
 
 const Register = () => {
   const navigate = useNavigate();
+  
 
   const {
     register,
@@ -37,6 +40,8 @@ const Register = () => {
      const dateRoll =  data.dateRoll = 0;
 ;     const dataUser = data;
      apiRegister(dataUser)
+     data?navigate("/login"):navigate("/register")
+     
     
   }
 
@@ -82,7 +87,7 @@ const Register = () => {
             />
             <span>{errors.password?.message}</span>
 
-            <Button width={100} onClick={() => navigate("/register")}>
+            <Button width={100}  >
               Cadastrar
             </Button>
           </form>
