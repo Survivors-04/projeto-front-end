@@ -19,7 +19,7 @@ interface IData {
   password: string;
 }
 
-interface IPokemons {
+export interface IPokemons {
   Pokemon: string;
   Rarity: string;
   Number: number;
@@ -27,13 +27,14 @@ interface IPokemons {
   Type02: string;
   userId: number;
   id: number | string;
+  price:number
 }
 
 const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
   const [countCommons, setCountCommons] = useState(0);
   const [countRares, setCountRares] = useState(0);
-  const [pokemonSell, setPokemonSell] = useState<string>("");
+  const [pokemonSell, setPokemonSell] = useState({} as IPokemons);
   const { isModalSell, setIsModalSell } = useContext(ModalContext);
   const [countEpics, setCountEpics] = useState(0);
   const [countLegendary, setCountLegendary] = useState(0);
@@ -173,6 +174,7 @@ const Profile = () => {
               )}
               {userInput.trim().length === 0
                 ? pokemons.map((pokemon) => (
+                  
                     <li key={pokemon.id}>
                       <figure>
                         <img
@@ -200,6 +202,16 @@ const Profile = () => {
                         )}
                       </div>
                       <p>{pokemon.Rarity}</p>
+                      <Button
+                        width={80}
+                        onClick={() => {
+                          setIsModalSell(true);
+                          pokemon.price = 0
+                          setPokemonSell(pokemon);
+                        }}
+                      >
+                        Vender
+                      </Button>
                     </li>
                   ))
                 : pokemonsFiltered.map((pokemon) => (
@@ -234,7 +246,7 @@ const Profile = () => {
                         width={80}
                         onClick={() => {
                           setIsModalSell(true);
-                          setPokemonSell(pokemon.Pokemon);
+                          setPokemonSell(pokemon);
                         }}
                       >
                         Vender

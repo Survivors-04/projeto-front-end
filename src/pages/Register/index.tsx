@@ -12,8 +12,7 @@ import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import apiRegister from "../../services/apiRegister";
-import { useContext } from "react";
-import { UserContext } from "../../Context/UserContext";
+
 
 import AnimationPages from "../../components/AnimationPages";
 
@@ -46,11 +45,6 @@ const Register = () => {
     apiRegister(dataUser);
     
   }
-
-   
-  };
-
-
   return (
     <AnimationPages>
       <StyledContainer>
@@ -99,6 +93,7 @@ const Register = () => {
     </AnimationPages>
 
   );
+
 };
 
 export default Register;
