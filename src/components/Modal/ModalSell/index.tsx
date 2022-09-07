@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
+import { IPokemons } from "../../../pages/Profile";
+import apiMarketPost from "../../../services/apiPostMarktet";
 import Button from "../../Button";
 import Modal from "../ModalBase";
 import {
@@ -8,14 +10,16 @@ import {
   StyledModaSell,
 } from "./style";
 
-interface IModalSell {
-  pokemonSell: string;
+interface IModalSell{
+  pokemonSell:IPokemons
 }
 
-const ModalSell = ({ pokemonSell }: IModalSell) => {
+
+const ModalSell = ( {pokemonSell}:IModalSell) => {
   const { setIsModalSell } = useContext(ModalContext);
   const [valueSell, setValueSell] = useState("");
-  console.log(pokemonSell);
+  const priceSell = pokemonSell.price = Number(valueSell)
+
   return (
     <Modal setIs={setIsModalSell}>
       <StyledModaSell>
@@ -23,11 +27,14 @@ const ModalSell = ({ pokemonSell }: IModalSell) => {
         <input
           type="number"
           placeholder="ex: 100"
-          onChange={(e) => setValueSell(String(e.target.value))}
+          onChange={(e) => setValueSell(e.target.value)}
         />
 
         <StyledContainerButton>
-          <StyledButtonVender width={70} onClick={() => {}}>
+          <StyledButtonVender width={70} onClick={() => {
+           apiMarketPost(pokemonSell)
+            
+          }}>
             Vender
           </StyledButtonVender>
           <Button

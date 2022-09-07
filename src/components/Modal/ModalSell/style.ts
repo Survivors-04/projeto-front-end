@@ -17,6 +17,11 @@ justify-content: center;
 max-width: 600px;
 
 font-weight: 800;
+
+form{
+    height: 100%;
+    width: 100%;
+}
 `
 
 export const  StyledContainerButton = styled.div`
