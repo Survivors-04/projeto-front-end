@@ -1,10 +1,7 @@
 import Button from "../../components/Button";
 import StyledContainer from "../../components/Container/styles";
 import { useNavigate } from "react-router-dom";
-import {
-  ContainerUsers,
-  StyledRegister,
-} from "../../components/StylerUser/styles";
+import { ContainerUsers } from "../../components/StylerUser/styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../../validations/RegisterValidations";
@@ -40,6 +37,7 @@ const Register = () => {
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
     data.gold = 100;
     data.dateRoll = 0;
+
     const dataUser = data;
     apiRegister(dataUser);
   };
