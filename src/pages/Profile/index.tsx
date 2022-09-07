@@ -235,7 +235,7 @@ const Profile = () => {
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            sssss {pokemon.Type02}
+                            {pokemon.Type02}
                           </StyledSpan>
                         ) : (
                           <></>
