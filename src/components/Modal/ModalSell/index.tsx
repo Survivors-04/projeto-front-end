@@ -25,7 +25,7 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
   return (
     <Modal setIs={setIsModalSell}>
       <StyledModaSell>
-        <p>Digite o valor Que deseja vender seu pokemon</p>
+        <p>Digite o valor que deseja vender seu pokemon</p>
 
         <input
           type="number"
