@@ -5,7 +5,7 @@ const apiAddPokemon = async (userId: string | number, data: iPokemon) => {
   try {
     const response = await api.post(`/Users/${userId}/pokedexUser`, data);
 
-    return response.data
+    return response.data;
   } catch (err) {
     console.log(err);
   }

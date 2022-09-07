@@ -17,13 +17,12 @@ export interface iModalContext {
   setIsModalSearch: Dispatch<SetStateAction<boolean>>;
   isModalConfirm: boolean;
   setIsModalConfirm: Dispatch<SetStateAction<boolean>>;
-  isModalSell:boolean;
-  setIsModalSell:Dispatch<SetStateAction<boolean>>
+  isModalSell: boolean;
+  setIsModalSell: Dispatch<SetStateAction<boolean>>;
   isModalConfirmMarket: boolean;
   setIsModalConfirmMarket: Dispatch<SetStateAction<boolean>>;
   isModalLogout: boolean;
   setIsModalLogout: Dispatch<SetStateAction<boolean>>;
-
 }
 
 interface iModalProvider {
@@ -38,10 +37,9 @@ const ModalProvider = ({ children }: iModalProvider) => {
   const [isModalHeader, setIsModalHeader] = useState(false);
   const [isModalSearch, setIsModalSearch] = useState(false);
   const [isModalConfirm, setIsModalConfirm] = useState(false);
-  const [isModalSell,setIsModalSell] = useState(false)
+  const [isModalSell, setIsModalSell] = useState(false);
   const [isModalConfirmMarket, setIsModalConfirmMarket] = useState(false);
   const [isModalLogout, setIsModalLogout] = useState(false);
-
 
   return (
     <ModalContext.Provider
@@ -63,7 +61,6 @@ const ModalProvider = ({ children }: iModalProvider) => {
         setIsModalConfirmMarket,
         isModalLogout,
         setIsModalLogout,
-
       }}
     >
       {children}

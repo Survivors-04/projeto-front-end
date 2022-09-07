@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { StyledParagraph } from "./styles";
 
 interface IParagraph {
-  children: React.ReactNode;
+  children: ReactNode;
   backgroundColor?: string;
 }
 

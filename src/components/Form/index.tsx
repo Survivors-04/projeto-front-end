@@ -8,21 +8,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 interface IForm {
   children: ReactNode;
   userSubmit: SubmitHandler<FieldValues>;
-
 }
 export interface IOnSubmitFunctionProps {
   email?: string;
-  password?: string; 
+  password?: string;
 }
 
-
-export const Form = ({ children,userSubmit }: IForm) => {
+export const Form = ({ children, userSubmit }: IForm) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IOnSubmitFunctionProps>({
-    resolver: yupResolver(loginSchema)
+    resolver: yupResolver(loginSchema),
   });
 
   return (

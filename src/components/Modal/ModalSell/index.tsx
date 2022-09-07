@@ -15,7 +15,7 @@ interface IModalSell {
 const ModalSell = ({ pokemonSell }: IModalSell) => {
   const { setIsModalSell } = useContext(ModalContext);
   const [valueSell, setValueSell] = useState("");
-  console.log(pokemonSell)
+  console.log(pokemonSell);
   return (
     <Modal setIs={setIsModalSell}>
       <StyledModaSell>
@@ -26,7 +26,6 @@ const ModalSell = ({ pokemonSell }: IModalSell) => {
           onChange={(e) => setValueSell(String(e.target.value))}
         />
 
-        
         <StyledContainerButton>
           <StyledButtonVender width={70} onClick={() => {}}>
             Vender
