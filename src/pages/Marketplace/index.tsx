@@ -1,4 +1,5 @@
 import AnimationPages from "../../components/AnimationPages";
+import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../components/Header";
 import StyledDivsMarket, {
   StyledDivSearchCard,
@@ -21,6 +22,7 @@ import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
 import { ModalContext } from "../../Context/ModalContext";
+import { toast } from "react-toastify";
 
 export interface IMarket {
   Pokemon: string;
@@ -37,17 +39,16 @@ const Marketplace = () => {
   const [market, setMarket] = useState<IMarket[]>([]);
   const [currentCart, setCurrentCart] = useState<IMarket[]>([]);
   const [total, setTotal] = useState(0);
-  const [search, setSearch] = useState("");
-  const [marketFilter, SetMarketFilter] = useState<IMarket[]>([]);
+  const [search, setSearch]= useState("");
+  const [marketFilter, SetMarketFilter] = useState<IMarket[]>([]);  
 
-  const { isModalSearch, setIsModalSearch } = useContext(ModalContext);
   const { isModalConfirmMarket, setIsModalConfirmMarket } =
     useContext(ModalContext);
 
-  const singleRemove = (id: string | number) => {
+  const singleRemove = (id: string | number, price: number) => {
     const removeCartItens = currentCart.filter((e) => e.id !== id);
     setCurrentCart(removeCartItens);
-    setTotal(total - 100);
+    setTotal(total - price);
   };
 
   useEffect(() => {
@@ -89,9 +90,7 @@ const Marketplace = () => {
     filteredInput(search);
   }, [search, market]);
 
-  const showProducts = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-  };
+ 
 
   useEffect(() => {
     const markList = async () => {
@@ -105,7 +104,7 @@ const Marketplace = () => {
 
   const pokeBuy = (id: string | number, price: number) => {
     if (currentCart.find((e) => e.id === id)) {
-      console.log("igual");
+      toast.error("Pokemon já está no carrinho");
     } else {
       const addToCart = market.filter((e) => e.id === id);
       setCurrentCart((oldCart) => [...oldCart, ...addToCart]);
@@ -115,6 +114,7 @@ const Marketplace = () => {
 
   return (
     <>
+      
       <AnimationPages>
         <Header />
         <StyledDivsMarket>
@@ -247,7 +247,7 @@ const Marketplace = () => {
                         <StyledCartPrice>{price}g</StyledCartPrice>
                       </div>
                       <button>
-                        <BsTrash onClick={() => singleRemove(id)} />
+                        <BsTrash onClick={() => singleRemove(id, price)} />
                       </button>
                     </StyledMiniCard>
                   ))}

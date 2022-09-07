@@ -9,6 +9,7 @@ function App() {
         <Global />
         <MainRoutes />
       </Context>
+      <ToastContainer/>
     </>
   );
 }
