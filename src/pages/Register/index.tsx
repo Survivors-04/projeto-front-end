@@ -10,7 +10,6 @@ import ImgSquirtle from "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import apiRegister from "../../services/apiRegister";
 
-
 import AnimationPages from "../../components/AnimationPages";
 
 interface IOnSubmitFunctionProps {
@@ -38,10 +37,8 @@ const Register = () => {
     data.dateRoll = 0;
 
     const dataUser = data;
-    apiRegister(dataUser);
-
-    
-  }
+    apiRegister(dataUser).then(() => navigate("/login", { replace: true }));
+  };
 
   return (
     <AnimationPages>
@@ -89,7 +86,6 @@ const Register = () => {
       </StyledContainer>
     </AnimationPages>
   );
-
 };
 
 export default Register;
