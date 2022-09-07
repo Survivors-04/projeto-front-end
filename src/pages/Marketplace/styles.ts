@@ -283,17 +283,17 @@ export const StyledSearchFilter = styled.form`
     border-bottom: 2px solid #3f3f3f;
     caret-color: #3f3f3f;
     background-color: #212121;
+    color: var(--color-gray-0);
     border-radius: 5px;
     padding: 5px;
     transition: 0.5s linear;
     font-family: monospace;
     letter-spacing: 1px;
-    color: white;
   }
   input:focus {
     border: 2px solid #ffd700;
     caret-color: #ffd700;
-    color: white;
+    color: var(--color-gray-0);
     box-shadow: 4px 4px 10px #070707;
   }
 

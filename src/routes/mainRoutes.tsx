@@ -2,6 +2,7 @@ import { AnimatePresence } from "framer-motion";
 import { ReactNode } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AboutUs from "../pages/AboutUs";
+import Help from "../pages/Help";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Marketplace from "../pages/Marketplace";
@@ -39,6 +40,7 @@ const MainRoutes = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/help" element={<Help />} />
       </Routes>
     </AnimatePresence>
   );

@@ -12,6 +12,8 @@ import Button from "../../Button";
 import { StyledNavButton } from "../../Header/style";
 import Modal from "../ModalBase";
 import { StyledSideHeader } from "./style";
+import { ImExit } from "react-icons/im";
+import { BiLogInCircle } from "react-icons/bi";
 
 const ModalHeader = () => {
   const { setIsModalHeader, setIsModalDice } = useContext(ModalContext);
@@ -93,7 +95,15 @@ const ModalHeader = () => {
             </li>
             <li>
               <StyledNavButton onClick={logout}>
-                {token ? <>Sair</> : <>Entrar</>}
+                {token ? (
+                  <>
+                    <ImExit /> Sair
+                  </>
+                ) : (
+                  <>
+                    <BiLogInCircle /> Entrar
+                  </>
+                )}
               </StyledNavButton>
             </li>
           </ul>
