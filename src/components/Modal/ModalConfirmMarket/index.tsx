@@ -16,7 +16,7 @@ interface iModalConfirmMarket {
   setCurrentCart: (value: SetStateAction<IMarket[]>) => void;
   setTotal: Dispatch<SetStateAction<number>>;
   setMarket: Dispatch<SetStateAction<IMarket[]>>;
-  market: IMarket[]
+  market: IMarket[];
 }
 
 const ModalConfirmMarket = ({
@@ -27,7 +27,7 @@ const ModalConfirmMarket = ({
   market,
 }: iModalConfirmMarket) => {
   const { setIsModalConfirmMarket } = useContext(ModalContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, isLogged } = useContext(UserContext);
 
   const totalValue = currentCart.reduce((oldPrice, currentPrice) => {
     return currentPrice.price + oldPrice;
@@ -65,7 +65,9 @@ const ModalConfirmMarket = ({
   return (
     <Modal setIs={setIsModalConfirmMarket}>
       <StyledModalConfirm>
-        {user.gold >= totalValue ? (
+        {!isLogged ? (
+          <h3> Você precisa estar conectado para fazer a compra </h3>
+        ) : user.gold >= totalValue ? (
           <>
             <h3>
               Deseja comprar os Pokemons por <span> {totalValue}g </span> ?
@@ -77,6 +79,7 @@ const ModalConfirmMarket = ({
         ) : (
           <h3>Saldo Insuficiente para comprar os Pokemons </h3>
         )}
+        {}
         <Button
           width={40}
           backgroundColor="var(--color-gray-1)"

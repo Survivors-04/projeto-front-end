@@ -8,6 +8,7 @@ interface iButton {
   textColor?: string;
   backgroundColor?: string;
   hover?: string;
+  transform?: string;
 }
 
 const Button = ({
@@ -17,6 +18,7 @@ const Button = ({
   textColor,
   backgroundColor,
   hover,
+  transform,
 }: iButton) => {
   return (
     <StyledButton
@@ -25,6 +27,7 @@ const Button = ({
       textColor={textColor}
       backgroundColor={backgroundColor}
       hover={hover}
+      transform={transform}
     >
       {children}
     </StyledButton>
