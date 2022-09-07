@@ -183,12 +183,27 @@ export const StyledList = styled.ul`
     flex-direction: column;
     align-items: center;
     width: 260px;
+
     margin-top: 15px;
     background-color: var(--color-gray-3);
     border-radius: 10px;
-    max-height: 180px;
+    max-height: 210px;
 
     padding: 10px;
+
+    button {
+      height: 30px;
+      border: none;
+      margin-bottom: 10px;
+      color: var(--color-blue);
+      background-color: var(--color-yellow);
+      padding: 2.5px;
+      font-weight: 900;
+      font-size: 18px;
+      border: 1px solid var(--color-blue);
+      border-radius: 8px;
+      box-shadow: 1.6px 1.6px;
+    }
 
     img {
       padding: 10px;
@@ -200,6 +215,9 @@ export const StyledList = styled.ul`
     @media screen and (min-width: 700px) {
       width: 110px;
 
+      button {
+        width: 80px;
+      }
       img {
         padding: 10px;
         width: 70px;
@@ -217,7 +235,7 @@ export const StyledList = styled.ul`
     @media screen and (min-width: 1024px) {
       padding: 10px;
       width: 140px;
-      height: 180px;
+      height: 210px;
 
       img {
         padding: 5px;

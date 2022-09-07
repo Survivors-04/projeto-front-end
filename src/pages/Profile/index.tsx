@@ -8,7 +8,16 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
+
+import Button from "../../components/Button";
+import ModalSell from "../../components/Modal/ModalSell";
+import { ModalContext } from "../../Context/ModalContext";
 import AnimationPages from "../../components/AnimationPages";
+
+interface IData {
+  email: string;
+  password: string;
+}
 
 interface IPokemons {
   Pokemon: string;
@@ -24,6 +33,8 @@ const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
   const [countCommons, setCountCommons] = useState(0);
   const [countRares, setCountRares] = useState(0);
+  const [pokemonSell, setPokemonSell] = useState<string>("");
+  const { isModalSell, setIsModalSell } = useContext(ModalContext);
   const [countEpics, setCountEpics] = useState(0);
   const [countLegendary, setCountLegendary] = useState(0);
   const { user } = useContext(UserContext);
@@ -219,11 +230,21 @@ const Profile = () => {
                         )}
                       </div>
                       <p>{pokemon.Rarity}</p>
+                      <Button
+                        width={80}
+                        onClick={() => {
+                          setIsModalSell(true);
+                          setPokemonSell(pokemon.Pokemon);
+                        }}
+                      >
+                        Vender
+                      </Button>
                     </li>
                   ))}
               {pokemons.length < 1 && (
                 <h2>Você ainda não possui pokemons em sua coleção </h2>
               )}
+              {isModalSell && <ModalSell pokemonSell={pokemonSell} />}
             </StyledList>
           </StyledSection>
         </StyledContainer>

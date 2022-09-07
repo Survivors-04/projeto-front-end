@@ -1,16 +1,20 @@
+import { useContext } from "react";
+
+import { UserContext } from "../Context/UserContext";
 import Api from "./api";
 
-export interface IApiRegister{
-    name?: string;
-    email?: string;
-    password?: string;
-    confirmPassword?: string;
-    gold?:number;
+export interface IApiRegister {
+  name?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  gold?: number;
+}
+const apiRegister = async (data: IApiRegister) => {
+    
+    
+  await Api.post("/users", data).then((response) => console.log(response) );
   
- }
- const apiRegister = async (data:IApiRegister) => {
- await  Api.post("/users",data)
- .then((response)=>console.log(response))
- };
+};
 
- export default apiRegister
+export default apiRegister;
