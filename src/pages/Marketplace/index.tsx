@@ -123,6 +123,8 @@ const Marketplace = () => {
               currentCart={currentCart}
               setCurrentCart={setCurrentCart}
               setTotal={setTotal}
+              setMarket={setMarket}
+              market={market}
             />
           )}
           <StyledDivPokemonsMarket>
