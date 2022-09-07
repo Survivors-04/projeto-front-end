@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
   width: 90%;
-  height: 100vh;
+  height: 90vh;
   margin: 0 auto;
-  padding-top: 20vh;
 `;
