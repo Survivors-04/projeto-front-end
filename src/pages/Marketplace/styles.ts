@@ -133,15 +133,18 @@ display: flex;
 flex-direction: row;
 width: 150px;
 height: 30px;
+margin-top: 18%;
 
         p{
-            font-size: 12px;
-            width: 51px;
-            height: 16px;
-            padding: 2px;
-            line-height: 1;
-            color: black;
-   
+          font-size: 13px;
+          width: 54px;
+          height: 22px;
+          padding: 4px;
+          line-height: 1;
+          color: black;
+          text-align: center;
+          align-items: center;
+          margin-right: 4%;   
         }
 `
 
@@ -161,6 +164,7 @@ export const StyledSinglePokemon = styled.div`
     img {
     width: 80px;
     padding: 5%;
+    height: 65px;
     max-height: 65px;
     border-radius: 10px;
     text-align: center;
@@ -175,6 +179,9 @@ export const StyledSinglePokemon = styled.div`
     color: #f8f9fa;
     text-align: center;
     margin-top: 5%;
+  }
+  h3{
+    text-align: center;
   }
   
   h4{
@@ -205,7 +212,7 @@ export const StyledSinglePokemon = styled.div`
   }
   button{
     margin-left: 10%;
-    
+    margin-top: 15%;
   }
 `
 
@@ -229,47 +236,55 @@ display: flex;
 background-color:  #212529;
 overflow: auto;
 margin-right: 3%;
-width: 95%;
-max-width: 253px;
+height: 56px;
+width: 253px;
+margin-top: 3%;
 
 img{
 
     border-radius: 20px;    
-    max-width: 70px;
-    height: 60%;
+    width: 55px;
+    height: 55px;
     display: block;
     margin: auto;
 }
 div{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 52%;
     height: 100%;
     background-color:  #212529;
+    text-align: center;
+    margin:auto;
+    justify-content: center
     
+    
+}
+h3{
+  text-align: center;
+  font-size: 12px;
+  margin:auto;
+  display: flex;
+  justify-content: center
 }
 p{
-    margin-left: -15%;
-    margin-top: 5%;
-    font-size: 15px;
+  text-align: center;
+    font-size: 12px;
+    margin: auto;    
+    display: flex;    
+    justify-content: center;
     
 }
-p + p{
-    
-    margin-top: 0%;
-    
-}
-p + p + p{
-     color: #FFD700
-}
+
+
 button{
   height: 20px;
-  margin-top: 25px
-}
-button:hover{
+  margin-top: 22px;
   background: transparent;
+  border: none;
   color: white;
 }
+
 `
 
 export const StyledSearchFilter = styled.form`
