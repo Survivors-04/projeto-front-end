@@ -256,7 +256,7 @@ const Profile = () => {
               {pokemons.length < 1 && (
                 <h2>Você ainda não possui pokemons em sua coleção </h2>
               )}
-              {isModalSell && <ModalSell pokemonSell={pokemonSell} />}
+              {isModalSell && <ModalSell pokemonSell={pokemonSell} pokemons={pokemons} setPokemons={setPokemons} />}
             </StyledList>
           </StyledSection>
         </StyledContainer>

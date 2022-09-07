@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
 import { IPokemons } from "../../../pages/Profile";
+import apiDeletePokedex from "../../../services/apiDeletePokedex";
 import apiMarketPost from "../../../services/apiPostMarktet";
 import Button from "../../Button";
 import Modal from "../ModalBase";
@@ -11,11 +12,13 @@ import {
 } from "./style";
 
 interface IModalSell{
-  pokemonSell:IPokemons
+  pokemonSell:IPokemons,
+  pokemons:IPokemons[],
+  setPokemons:Dispatch<SetStateAction<IPokemons[]>>
 }
 
 
-const ModalSell = ( {pokemonSell}:IModalSell) => {
+const ModalSell = ( {pokemonSell,pokemons,setPokemons}:IModalSell) => {
   const { setIsModalSell } = useContext(ModalContext);
   const [valueSell, setValueSell] = useState("");
   const priceSell = pokemonSell.price = Number(valueSell)
@@ -36,7 +39,14 @@ const ModalSell = ( {pokemonSell}:IModalSell) => {
         <StyledContainerButton>
           <StyledButtonVender width={70} onClick={() => {
            apiMarketPost(pokemonSell)
-            
+           apiDeletePokedex(pokemonSell.id)
+
+           const newPokemons = pokemons.filter((elem)=>{
+            return elem.id !== pokemonSell.id
+           })
+           setPokemons(newPokemons)
+           setIsModalSell(false)
+          
           }}>
             Vender
           </StyledButtonVender>
