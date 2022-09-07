@@ -31,6 +31,28 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
 
   const [pokemonsResult, setPokemonsResult] = useState<iPokemon[]>([]);
 
+  const newPokemon = (
+    Pokemon: string,
+    Rarity: string,
+    Number: number,
+    Type01: string,
+    Type02: string,
+    id: string | number,
+    userId: string | number,
+    price: number
+  ) => {
+    return {
+      Pokemon: Pokemon,
+      Rarity: Rarity,
+      Number: Number,
+      Type01: Type01,
+      Type02: Type02,
+      id: id,
+      userId: userId,
+      price: price,
+    };
+  };
+
   useEffect(() => {
     const pokelist = async () => {
       const pokemonList = await apiPokemonList();
@@ -65,13 +87,26 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       }
 
       const getRandom = (chanceArray: iPokemon[]) => {
-        const pokemonID = uuidv4();
-        const pokemon = chanceArray[Math.floor(Math.random() * chanceArray.length)];
+        const pokemonId = uuidv4();
 
-        pokemon.id = pokemonID;
-        pokemon.userId = user.id;
+        const randomPokemon =
+          chanceArray[Math.floor(Math.random() * chanceArray.length)];
+
+        const { Pokemon, Rarity, Number, Type01, Type02 } = randomPokemon;
+
+        const pokemon = newPokemon(
+          Pokemon,
+          Rarity,
+          Number,
+          Type01,
+          Type02,
+          pokemonId,
+          user.id,
+          0
+        );
 
         pokemonArry.push(pokemon);
+        console.log(pokemonArry);
       };
 
       const chancePokemon = () => {
