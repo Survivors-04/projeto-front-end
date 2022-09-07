@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 const StyledDivsMarket = styled.div`
   display: flex;
@@ -12,7 +11,6 @@ const StyledDivsMarket = styled.div`
 
     max-width: 875px;
 
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +19,6 @@ const StyledDivsMarket = styled.div`
     justify-content: center;
   }
 `;
-
 
 export default StyledDivsMarket;
 
@@ -46,89 +43,81 @@ export const StyledDivSearchCard = styled.div`
   @media only screen and (max-width: 779px) {
     display: flex;
 
-    flex-direction: column;   
-
-}
-`
-
+    flex-direction: column;
+  }
+`;
 
 export const StyledFullCart = styled.div`
-    width: 280px;
-    height: 525px;
-    background: #212529;
-    border: 2px solid #868E96;
-    border-radius: 20px;
-    margin-top: 7%;
-    margin-left: 7%;
-    @media only screen and (max-width: 779px) {
-    
+  width: 280px;
+  height: 525px;
+  background: #212529;
+  border: 2px solid #868e96;
+  border-radius: 20px;
+  margin-top: 7%;
+  margin-left: 7%;
+  @media only screen and (max-width: 779px) {
     margin-top: 2%;
     margin-left: 2%;
-}
-       
-        h2{
-            background: #C80B0B;
-            height: 18%;
-            width: 100%;
-            border-radius: 20px 20px 0 0 ;
-            color: black;
-            display: flex;
-            align-items: center; 
-            justify-content: center;
-        }
-        p{  
-            height: 60%;
-            width: 100%;
-            display: flex;
-            align-items: center; 
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 800;
-        }   
+  }
 
-       
-`
+  h2 {
+    background: #c80b0b;
+    height: 18%;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+  }
+`;
 
 export const StyledDivOverflow = styled.div`
- 
-        height: 56%;
-        overflow: auto;
-    
-`
+  height: 56%;
+  overflow: auto;
+`;
 
 export const StyledDivTotal = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background: #C80B0B;    
-    width: 100%;   
-    height: 22%;        
-    border-radius:  0 0 20px 20px;
-    position: relative;
-    bottom: -21px;
-    
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: #c80b0b;
+  width: 100%;
+  height: 22%;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  bottom: -21px;
 
-        h4 {
-        font-weight: 700;
-        font-size: 23px;
-        line-height: 27px;
-        color: #121214;
-        margin-top: 2%;
-        }
+  h4 {
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    color: #121214;
+    margin-top: 2%;
+  }
 
-        h4 + h4 {        
-        color: #FFD700;
-        }
+  h4 + h4 {
+    color: #ffd700;
+  }
 
-        button{
-            background-color: yellow;            
-            position: absolute;
-            bottom: 14px;
-        }
-        
-`
+  button {
+    background-color: yellow;
+    position: absolute;
+    bottom: 14px;
+  }
+`;
 
 export const StyledDivTipo = styled.div`
+
 display: flex;
 flex-direction: row;
 width: 150px;
@@ -148,20 +137,21 @@ margin-top: 18%;
         }
 `
 
-export const StyledSinglePokemon = styled.div`
-    background-color: #212529;
-    height: 40%;
-    width: 40%;
-    min-width: 150px;
-    max-width: 150px;
-    min-height: 300px;
-    max-height: 300px;
-    border-radius: 20px;
-    border: 2px solid #868E96;
-    margin-left: 2%;
-    margin-top: 2%;
 
-    img {
+export const StyledSinglePokemon = styled.div`
+  background-color: #212529;
+  height: 40%;
+  width: 40%;
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 300px;
+  max-height: 300px;
+  border-radius: 20px;
+  border: 2px solid #868e96;
+  margin-left: 2%;
+  margin-top: 2%;
+
+  img {
     width: 80px;
     padding: 5%;
     height: 65px;
@@ -172,7 +162,7 @@ export const StyledSinglePokemon = styled.div`
     margin: auto;
     margin-top: 5%;
   }
-  h2{
+  h2 {
     font-weight: 700;
     font-size: 18px;
     line-height: 43px;
@@ -180,58 +170,56 @@ export const StyledSinglePokemon = styled.div`
     text-align: center;
     margin-top: 5%;
   }
+
   h3{
     text-align: center;
   }
   
   h4{
+
     font-weight: 700;
     font-size: 13px;
     line-height: 26px;
-    color: #868E96;
+    color: #868e96;
     text-align: center;
-    
   }
 
-  div{
+  div {
     font-weight: 700;
     font-size: 15px;
     line-height: 35px;
-    color: #868E96;
+    color: #868e96;
     display: flex;
-    justify-content: space-around;    
-    
-    
+    justify-content: space-around;
   }
-  span{
-    color: #868E96; 
+  span {
+    color: #868e96;
   }
-  p{
+  p {
     color: yellow;
-
   }
-  button{
+  button {
     margin-left: 10%;
-    margin-top: 15%;
-  }
-`
 
+    margin-top: 15%;
+
+  }
+`;
 
 export const StyledButtonBag = styled.button`
-
-    background: #B0AEA1;
-    border-radius: 12px;
-    width: 65px;
-    max-width: 65px;
-    height: auto;  
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 31px;
-    margin-top: 5%;
-  
-`
+  background: #b0aea1;
+  border-radius: 12px;
+  width: 65px;
+  max-width: 65px;
+  height: auto;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 31px;
+  margin-top: 5%;
+`;
 
 export const StyledMiniCard = styled.div`
+
 display: flex;
 background-color:  #212529;
 overflow: auto;
@@ -245,14 +233,16 @@ img{
     border-radius: 20px;    
     width: 55px;
     height: 55px;
+
     display: block;
     margin: auto;
-}
-div{
+  }
+  div {
     display: flex;
     flex-direction: row;
     width: 52%;
     height: 100%;
+
     background-color:  #212529;
     text-align: center;
     margin:auto;
@@ -287,21 +277,22 @@ button{
 
 `
 
+
 export const StyledSearchFilter = styled.form`
-width: 280px;
-height: 50px;
-background: #C80B0B;
-border-radius: 12px;
-font-weight: 400;
-font-size: 35px;
-line-height: 35px;
-color: #121214;
-margin-top: 5%;
-margin-left: 7%;
-:hover{
-    background: #FFD700;
-}
-input{
+  width: 280px;
+  height: 50px;
+  background: #c80b0b;
+  border-radius: 12px;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 35px;
+  color: #121214;
+  margin-top: 5%;
+  margin-left: 7%;
+  :hover {
+    background: #ffd700;
+  }
+  input {
     width: 95%;
     margin-left: 2%;
     border: 2px solid transparent;
@@ -315,25 +306,20 @@ input{
     font-family: monospace;
     letter-spacing: 1px;
     color: white;
-}
-input:focus {
-    border: 2px solid #FFD700;
-    caret-color:  #FFD700;
+  }
+  input:focus {
+    border: 2px solid #ffd700;
+    caret-color: #ffd700;
     color: white;
     box-shadow: 4px 4px 10px #070707;
   }
 
   input:focus::placeholder {
-    color:  #3f3f3f;
+    color: #3f3f3f;
   }
 
-@media only screen and (max-width: 779px) {
-    
+  @media only screen and (max-width: 779px) {
     margin-top: 2%;
     margin-left: 0%;
-}
-`
-
-
-
-
+  }
+`;

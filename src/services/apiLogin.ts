@@ -1,6 +1,3 @@
-
-import { useContext } from "react";
-import { UserContext } from "../Context/UserContext";
 import api from "./api";
 
 export interface IApiLogin {
@@ -9,10 +6,8 @@ export interface IApiLogin {
 }
 
 const ApiLogin = (data: IApiLogin) => {
-
-  const response = api.post("/login", data)
-   return response
-
+  const response = api.post("/login", data);
+  return response;
 };
 
 export default ApiLogin;

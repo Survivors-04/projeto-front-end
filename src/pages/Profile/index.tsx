@@ -8,9 +8,17 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
+import Button from "../../components/Button";
+import ModalSell from "../../components/Modal/ModalSell";
+import { ModalContext } from "../../Context/ModalContext";
 import AnimationPages from "../../components/AnimationPages";
 
-interface IPokemons {
+interface IData {
+  email: string;
+  password: string;
+}
+
+export interface IPokemons {
   Pokemon: string;
   Rarity: string;
   Number: number;
@@ -18,12 +26,15 @@ interface IPokemons {
   Type02: string;
   userId: number;
   id: number | string;
+  price:number
 }
 
 const Profile = () => {
   const [pokemons, setPokemons] = useState<IPokemons[]>([]);
   const [countCommons, setCountCommons] = useState(0);
   const [countRares, setCountRares] = useState(0);
+  const [pokemonSell, setPokemonSell] = useState({} as IPokemons);
+  const { isModalSell, setIsModalSell } = useContext(ModalContext);
   const [countEpics, setCountEpics] = useState(0);
   const [countLegendary, setCountLegendary] = useState(0);
   const { user } = useContext(UserContext);
@@ -162,10 +173,15 @@ const Profile = () => {
               )}
               {userInput.trim().length === 0
                 ? pokemons.map((pokemon) => (
+                  
                     <li key={pokemon.id}>
                       <figure>
                         <img
-                          src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                          src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                            pokemon.Pokemon === "Nidoran-M"
+                              ? "nidorino" : pokemon.Pokemon === "Nidoran-F" ? "nidorina"
+                              : pokemon.Pokemon.toLowerCase()
+                          }.gif`}
                           alt={pokemon.Pokemon}
                         />
                       </figure>
@@ -189,6 +205,19 @@ const Profile = () => {
                         )}
                       </div>
                       <p>{pokemon.Rarity}</p>
+                      <Button
+                        width={80}
+                        onClick={() => {
+                          setIsModalSell(true);
+
+                          pokemon.price = 0
+                          setPokemonSell(pokemon);
+
+
+                        }}
+                      >
+                        Vender
+                      </Button>
                     </li>
                   ))
                 : pokemonsFiltered.map((pokemon) => (
@@ -219,11 +248,21 @@ const Profile = () => {
                         )}
                       </div>
                       <p>{pokemon.Rarity}</p>
+                      <Button
+                        width={80}
+                        onClick={() => {
+                          setIsModalSell(true);
+                          setPokemonSell(pokemon);
+                        }}
+                      >
+                        Vender
+                      </Button>
                     </li>
                   ))}
               {pokemons.length < 1 && (
                 <h2>Você ainda não possui pokemons em sua coleção </h2>
               )}
+              {isModalSell && <ModalSell pokemonSell={pokemonSell} />}
             </StyledList>
           </StyledSection>
         </StyledContainer>

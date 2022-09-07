@@ -20,7 +20,7 @@ const StyledButton = styled.button<iStyledButton>`
   font-weight: 900;
   font-size: 18px;
 
-  border: 3px solid ${({ textColor }) => (textColor ? textColor : "black")};;
+  border: 3px solid ${({ textColor }) => (textColor ? textColor : "black")};
   border-radius: 8px;
   box-shadow: 1.6px 1.6px;
 

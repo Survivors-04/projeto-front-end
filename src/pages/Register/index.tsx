@@ -1,10 +1,7 @@
 import Button from "../../components/Button";
 import StyledContainer from "../../components/Container/styles";
 import { useNavigate } from "react-router-dom";
-import {
-  ContainerUsers,
-  StyledRegister,
-} from "../../components/StylerUser/styles";
+import { ContainerUsers } from "../../components/StylerUser/styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchema } from "../../validations/RegisterValidations";
@@ -12,6 +9,8 @@ import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import ImgSquirtle from "../../assets/imgs/Register/squirtle.svg";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import apiRegister from "../../services/apiRegister";
+
+
 import AnimationPages from "../../components/AnimationPages";
 
 interface IOnSubmitFunctionProps {
@@ -35,11 +34,14 @@ const Register = () => {
   });
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-    const goldUser = (data.gold = 100);
-    const dateRoll = (data.dateRoll = 0);
+    data.gold = 100;
+    data.dateRoll = 0;
+
     const dataUser = data;
     apiRegister(dataUser);
-  };
+
+    
+  }
 
   return (
     <AnimationPages>
@@ -87,6 +89,7 @@ const Register = () => {
       </StyledContainer>
     </AnimationPages>
   );
+
 };
 
 export default Register;

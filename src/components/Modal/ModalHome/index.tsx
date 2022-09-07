@@ -105,7 +105,13 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
           {pokemonsResult.map(({ Pokemon, id }) => (
             <li key={id}>
               <img
-                src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
+                src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                  Pokemon === "Nidoran-M"
+                    ? "nidorino"
+                    : Pokemon === "Nidoran-F"
+                    ? "nidorina"
+                    : Pokemon.toLowerCase()
+                }.gif`}
                 alt={Pokemon}
               />
               <h3>{Pokemon}</h3>

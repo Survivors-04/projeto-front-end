@@ -11,6 +11,7 @@ import ApiLogin from "../../services/apiLogin";
 import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
+import api from "../../services/api";
 
 interface iLocationState {
   from: {
@@ -40,6 +41,11 @@ const Login = () => {
         window.localStorage.setItem("@TOKEN", res.data.accessToken);
         window.localStorage.setItem("@USERID", res.data.user.id);
         setUser(res.data.user);
+
+        const token = localStorage.getItem("@TOKEN");
+
+        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
         setIsLogged(true);
         navigate(toNavigate, { replace: true });
       })
@@ -59,6 +65,7 @@ const Login = () => {
         <ContainerUsers imgBackground={ImgBulbasaur}>
           <main>
             <h2>Login</h2>
+          
 
             <Form userSubmit={onSubmitFunction}>
               <Button width={80}>Entrar</Button>
