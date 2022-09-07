@@ -30,7 +30,28 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
   const { user } = useContext(UserContext);
 
   const [pokemonsResult, setPokemonsResult] = useState<iPokemon[]>([]);
-  const pokemonLimit = 6;
+
+  const newPokemon = (
+    Pokemon: string,
+    Rarity: string,
+    Number: number,
+    Type01: string,
+    Type02: string,
+    id: string | number,
+    userId: string | number,
+    price: number
+  ) => {
+    return {
+      Pokemon: Pokemon,
+      Rarity: Rarity,
+      Number: Number,
+      Type01: Type01,
+      Type02: Type02,
+      id: id,
+      userId: userId,
+      price: price,
+    };
+  };
 
   useEffect(() => {
     const pokelist = async () => {
@@ -65,19 +86,69 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
         pokemonLegendary.forEach((pokemon) => pokemonFiltered.push(pokemon));
       }
 
-      const getrandom = () => {
-        for (let i = 0; i < pokemonLimit; i++) {
-          const pokemonID = uuidv4();
-          const pokemon =
-            pokemonFiltered[Math.floor(Math.random() * pokemonFiltered.length)];
+      const getRandom = (chanceArray: iPokemon[]) => {
+        const pokemonId = uuidv4();
 
-          pokemon.id = pokemonID;
-          pokemon.userId = user.id;
+        const randomPokemon =
+          chanceArray[Math.floor(Math.random() * chanceArray.length)];
 
-          pokemonArry.push(pokemon);
+        const { Pokemon, Rarity, Number, Type01, Type02 } = randomPokemon;
+
+        const pokemon = newPokemon(
+          Pokemon,
+          Rarity,
+          Number,
+          Type01,
+          Type02,
+          pokemonId,
+          user.id,
+          0
+        );
+
+        pokemonArry.push(pokemon);
+        console.log(pokemonArry);
+      };
+
+      const chancePokemon = () => {
+        for (let i = 0; i < 6; i++) {
+          const chance = Math.random() * 100;
+
+          const chanceArray: iPokemon[] = [];
+
+          if (boosterTitle === boosters[0].title) {
+            if (chance <= 75) {
+              pokemonCommon.forEach((pokemon) => chanceArray.push(pokemon));
+            } else {
+              pokemonRare.forEach((pokemon) => chanceArray.push(pokemon));
+            }
+          }
+
+          if (boosterTitle === boosters[1].title) {
+            if (chance <= 60) {
+              pokemonCommon.forEach((pokemon) => chanceArray.push(pokemon));
+            } else if (chance <= 75 && chance <= 95) {
+              pokemonRare.forEach((pokemon) => chanceArray.push(pokemon));
+            } else {
+              pokemonEpic.forEach((pokemon) => chanceArray.push(pokemon));
+            }
+          }
+
+          if (boosterTitle === boosters[2].title) {
+            if (chance <= 55) {
+              pokemonCommon.forEach((pokemon) => chanceArray.push(pokemon));
+            } else if (chance <= 56 && chance <= 94) {
+              pokemonRare.forEach((pokemon) => chanceArray.push(pokemon));
+            } else if (chance <= 95 && chance <= 99) {
+              pokemonEpic.forEach((pokemon) => chanceArray.push(pokemon));
+            } else {
+              pokemonLegendary.forEach((pokemon) => chanceArray.push(pokemon));
+            }
+          }
+
+          getRandom(chanceArray);
         }
       };
-      getrandom();
+      chancePokemon();
 
       setPokemonsResult(pokemonArry);
     };

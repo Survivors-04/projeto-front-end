@@ -24,11 +24,11 @@ Futuramente pretendemos adicionar mais funcionalidades, como por exemplo, batalh
 
 ### Este é o mercado pokemon, onde o usuário pode comprar seus pokemons. Confira abaixo:
 
-![MarketplacePage](por enquanto não tem foto)
+![MarketplacePage](https://i.ibb.co/9vj69dF/Market-Place.png)
 
-### Esta é a página do usuário, onde ele tem acesso a sua coleção pokemon. Também pode visualizar a quantidade de pokemons em sua coleção. Confira abaixo:
+### Esta é a página do usuário, onde ele tem acesso a sua coleção pokemon. Também pode visualizar a quantidade de pokemons em sua coleção e vender os pokemons desejados. Confira abaixo:
 
-![ProfilePage](por enquanto não tem foto)
+![ProfilePage](https://i.ibb.co/64XSdts/profile.png)
 
 #### Tecnologias usadas:
 

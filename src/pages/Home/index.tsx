@@ -43,7 +43,10 @@ const Home = () => {
                     <p>
                       preço: <span>{`${price}g`}</span>
                     </p>
-                    <Button width={100} onClick={() => submitBuy(title, price)}>
+                    <Button
+                      transform="none"
+                      onClick={() => submitBuy(title, price)}
+                    >
                       Comprar
                     </Button>
                   </>

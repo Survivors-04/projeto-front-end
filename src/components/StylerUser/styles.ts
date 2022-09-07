@@ -68,6 +68,7 @@ export const ContainerUsers = styled.div<IContainerProps>`
         caret-color: #3f3f3f;
         background-color: #212121;
         padding: 5px;
+        color: var(--color-gray-0);
         transition: 0.5s linear;
         letter-spacing: 1px;
       }

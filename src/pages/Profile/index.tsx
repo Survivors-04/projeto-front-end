@@ -26,7 +26,7 @@ export interface IPokemons {
   Type02: string;
   userId: number;
   id: number | string;
-  price:number
+  price: number;
 }
 
 const Profile = () => {
@@ -173,13 +173,14 @@ const Profile = () => {
               )}
               {userInput.trim().length === 0
                 ? pokemons.map((pokemon) => (
-                  
                     <li key={pokemon.id}>
                       <figure>
                         <img
                           src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
                             pokemon.Pokemon === "Nidoran-M"
-                              ? "nidorino" : pokemon.Pokemon === "Nidoran-F" ? "nidorina"
+                              ? "nidorino"
+                              : pokemon.Pokemon === "Nidoran-F"
+                              ? "nidorina"
                               : pokemon.Pokemon.toLowerCase()
                           }.gif`}
                           alt={pokemon.Pokemon}
@@ -192,13 +193,13 @@ const Profile = () => {
                         <StyledParagraph
                           backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01}
+                          {pokemon.Type01.charAt(0).toUpperCase() + pokemon.Type01.slice(1)}
                         </StyledParagraph>
                         {pokemon.Type02 !== "null" ? (
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02}
+                            {pokemon.Type02.charAt(0).toUpperCase() + pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
@@ -207,13 +208,12 @@ const Profile = () => {
                       <p>{pokemon.Rarity}</p>
                       <Button
                         width={80}
+                        hover={'var(--color-yellow-focus)'}
                         onClick={() => {
                           setIsModalSell(true);
 
-                          pokemon.price = 0
+                          pokemon.price = 0;
                           setPokemonSell(pokemon);
-
-
                         }}
                       >
                         Vender
@@ -235,13 +235,13 @@ const Profile = () => {
                         <StyledParagraph
                           backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01}
+                          {pokemon.Type01.charAt(0).toUpperCase() + pokemon.Type01.slice(1)}
                         </StyledParagraph>
                         {pokemon.Type02 !== "null" ? (
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02}
+                            {pokemon.Type02.charAt(0).toUpperCase() + pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
@@ -250,6 +250,7 @@ const Profile = () => {
                       <p>{pokemon.Rarity}</p>
                       <Button
                         width={80}
+                        hover={'var(--color-yellow-focus)'}
                         onClick={() => {
                           setIsModalSell(true);
                           setPokemonSell(pokemon);
@@ -262,7 +263,13 @@ const Profile = () => {
               {pokemons.length < 1 && (
                 <h2>Você ainda não possui pokemons em sua coleção </h2>
               )}
-              {isModalSell && <ModalSell pokemonSell={pokemonSell} />}
+              {isModalSell && (
+                <ModalSell
+                  pokemonSell={pokemonSell}
+                  pokemons={pokemons}
+                  setPokemons={setPokemons}
+                />
+              )}
             </StyledList>
           </StyledSection>
         </StyledContainer>
