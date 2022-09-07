@@ -5,6 +5,7 @@ interface iStyledButton {
   hover?: string;
   textColor?: string;
   backgroundColor?: string;
+  transform?: string;
 }
 
 const StyledButton = styled.button<iStyledButton>`
@@ -27,12 +28,14 @@ const StyledButton = styled.button<iStyledButton>`
   :hover {
     background-color: ${({ hover }) =>
       hover ? hover : "var(--color-red-focus)"};
-    transform: translate(-1px, -1px);
+    transform: ${({ transform }) =>
+      transform ? transform : "translate(-1px, -1px)"};
     box-shadow: 2.4px 2.4px;
   }
 
   :active {
-    transform: translate(1px, 1px);
+    transform: ${({ transform }) =>
+      transform ? transform : "translate(1px, 1px)"};
     box-shadow: 1px 1px;
   }
 `;

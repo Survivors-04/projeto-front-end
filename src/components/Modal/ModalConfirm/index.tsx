@@ -13,7 +13,7 @@ interface iModalConfirm {
 
 const ModalConfirm = ({ boosterTitle, boosterPrice }: iModalConfirm) => {
   const { setIsModalConfirm, setisModalHome } = useContext(ModalContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, isLogged } = useContext(UserContext);
 
   const submitBuy = async () => {
     await apiPatchUser(user.id, { gold: user.gold - boosterPrice });
@@ -25,7 +25,9 @@ const ModalConfirm = ({ boosterTitle, boosterPrice }: iModalConfirm) => {
   return (
     <Modal setIs={setIsModalConfirm}>
       <StyledModalConfirm>
-        {user.gold >= boosterPrice ? (
+        {!isLogged ? (
+          <h3> Você precisa estar conectado para fazer a compra </h3>
+        ) : user.gold >= boosterPrice ? (
           <>
             <h3>
               Deseja comprar {boosterTitle} por <span> {boosterPrice}g </span> ?
