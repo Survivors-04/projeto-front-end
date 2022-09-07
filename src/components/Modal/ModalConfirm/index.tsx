@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
 import { UserContext } from "../../../Context/UserContext";
+import apiPatchUser from "../../../services/apiPatchUser";
 import Button from "../../Button";
 import Modal from "../ModalBase";
 import { StyledModalConfirm } from "../ModalHome/styled";
@@ -14,7 +15,8 @@ const ModalConfirm = ({ boosterTitle, boosterPrice }: iModalConfirm) => {
   const { setIsModalConfirm, setisModalHome } = useContext(ModalContext);
   const { user, setUser } = useContext(UserContext);
 
-  const submitBuy = () => {
+  const submitBuy = async () => {
+    await apiPatchUser(user.id, { gold: user.gold - boosterPrice });
     setUser({ ...user, gold: user.gold - boosterPrice });
     setisModalHome(true);
     setIsModalConfirm(false);
@@ -34,14 +36,7 @@ const ModalConfirm = ({ boosterTitle, boosterPrice }: iModalConfirm) => {
             </Button>
           </>
         ) : (
-          <>
-            <h3>Saldo Insuficiente para comprar {boosterTitle} </h3>
-            <button
-              onClick={() => setUser({ ...user, gold: user.gold + 1000 })}
-            >
-              pobre
-            </button>
-          </>
+          <h3>Saldo Insuficiente para comprar {boosterTitle} </h3>
         )}
         <Button
           width={40}
