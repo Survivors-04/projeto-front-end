@@ -50,6 +50,7 @@ export const StyledSection = styled.section`
     border-radius: 5px;
     padding: 5px;
     transition: 0.5s linear;
+    color: var(--color-gray-0);
     font-family: monospace;
     letter-spacing: 1px;
   }
@@ -131,7 +132,7 @@ export const StyledDiv = styled.div`
 export const StyledList = styled.ul`
   margin-top: 15px;
   width: 260px;
-  max-width: 300px;
+  max-width: 1000px;
   display: flex;
   overflow-x: auto;
   overflow-y: scroll;
@@ -182,14 +183,18 @@ export const StyledList = styled.ul`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 260px;
+    width: 110px;
 
     margin-top: 15px;
     background-color: var(--color-gray-3);
     border-radius: 10px;
-    max-height: 210px;
+    max-height: 300px;
 
     padding: 10px;
+
+    h3 {
+      font-size: 14px;
+    }
 
     button {
       height: 30px;

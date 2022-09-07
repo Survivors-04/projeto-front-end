@@ -117,26 +117,24 @@ export const StyledDivTotal = styled.div`
 `;
 
 export const StyledDivTipo = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  height: 30px;
+  margin-top: 18%;
 
-display: flex;
-flex-direction: row;
-width: 150px;
-height: 30px;
-margin-top: 18%;
-
-        p{
-          font-size: 13px;
-          width: 54px;
-          height: 22px;
-          padding: 4px;
-          line-height: 1;
-          color: black;
-          text-align: center;
-          align-items: center;
-          margin-right: 4%;   
-        }
-`
-
+  p {
+    font-size: 13px;
+    width: 54px;
+    height: 22px;
+    padding: 4px;
+    line-height: 1;
+    color: black;
+    text-align: center;
+    align-items: center;
+    margin-right: 4%;
+  }
+`;
 
 export const StyledSinglePokemon = styled.div`
   background-color: #212529;
@@ -171,12 +169,11 @@ export const StyledSinglePokemon = styled.div`
     margin-top: 5%;
   }
 
-  h3{
+  h3 {
     text-align: center;
   }
-  
-  h4{
 
+  h4 {
     font-weight: 700;
     font-size: 13px;
     line-height: 26px;
@@ -202,7 +199,6 @@ export const StyledSinglePokemon = styled.div`
     margin-left: 10%;
 
     margin-top: 15%;
-
   }
 `;
 
@@ -219,18 +215,16 @@ export const StyledButtonBag = styled.button`
 `;
 
 export const StyledMiniCard = styled.div`
+  display: flex;
+  background-color: #212529;
+  overflow: auto;
+  margin-right: 3%;
+  height: 56px;
+  width: 253px;
+  margin-top: 3%;
 
-display: flex;
-background-color:  #212529;
-overflow: auto;
-margin-right: 3%;
-height: 56px;
-width: 253px;
-margin-top: 3%;
-
-img{
-
-    border-radius: 20px;    
+  img {
+    border-radius: 20px;
     width: 55px;
     height: 55px;
 
@@ -243,40 +237,34 @@ img{
     width: 52%;
     height: 100%;
 
-    background-color:  #212529;
+    background-color: #212529;
     text-align: center;
-    margin:auto;
-    justify-content: center
-    
-    
-}
-h3{
-  text-align: center;
-  font-size: 12px;
-  margin:auto;
-  display: flex;
-  justify-content: center
-}
-p{
-  text-align: center;
-    font-size: 12px;
-    margin: auto;    
-    display: flex;    
+    margin: auto;
     justify-content: center;
-    
-}
+  }
+  h3 {
+    text-align: center;
+    font-size: 12px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+  p {
+    text-align: center;
+    font-size: 12px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
 
-
-button{
-  height: 20px;
-  margin-top: 22px;
-  background: transparent;
-  border: none;
-  color: white;
-}
-
-`
-
+  button {
+    height: 20px;
+    margin-top: 22px;
+    background: transparent;
+    border: none;
+    color: white;
+  }
+`;
 
 export const StyledSearchFilter = styled.form`
   width: 280px;
@@ -300,17 +288,17 @@ export const StyledSearchFilter = styled.form`
     border-bottom: 2px solid #3f3f3f;
     caret-color: #3f3f3f;
     background-color: #212121;
+    color: var(--color-gray-0);
     border-radius: 5px;
     padding: 5px;
     transition: 0.5s linear;
     font-family: monospace;
     letter-spacing: 1px;
-    color: white;
   }
   input:focus {
     border: 2px solid #ffd700;
     caret-color: #ffd700;
-    color: white;
+    color: var(--color-gray-0);
     box-shadow: 4px 4px 10px #070707;
   }
 
