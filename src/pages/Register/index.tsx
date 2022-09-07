@@ -17,7 +17,6 @@ import { UserContext } from "../../Context/UserContext";
 
 import AnimationPages from "../../components/AnimationPages";
 
-
 interface IOnSubmitFunctionProps {
   name?: string;
   email?: string;
@@ -29,27 +28,21 @@ interface IOnSubmitFunctionProps {
 
 const Register = () => {
   const navigate = useNavigate();
-  
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IOnSubmitFunctionProps>({
-    resolver: yupResolver(formSchema)
+    resolver: yupResolver(formSchema),
   });
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
-  const goldUser = (data.gold = 100);
-    const dateRoll = (data.dateRoll = 0);
+    data.gold = 100;
+    data.dateRoll = 0;
     const dataUser = data;
     apiRegister(dataUser);
-    
-  }
-
-   
   };
-
 
   return (
     <AnimationPages>
@@ -88,7 +81,6 @@ const Register = () => {
               />
               <span>{errors.password?.message}</span>
 
-
               <Button width={100} onClick={() => navigate("/register")}>
                 Cadastrar
               </Button>
@@ -97,7 +89,6 @@ const Register = () => {
         </ContainerUsers>
       </StyledContainer>
     </AnimationPages>
-
   );
 };
 
