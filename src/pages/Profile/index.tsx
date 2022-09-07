@@ -193,13 +193,13 @@ const Profile = () => {
                         <StyledParagraph
                           backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01}
+                          {pokemon.Type01.charAt(0).toUpperCase() + pokemon.Type01.slice(1)}
                         </StyledParagraph>
                         {pokemon.Type02 !== "null" ? (
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02}
+                            {pokemon.Type02.charAt(0).toUpperCase() + pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
@@ -235,13 +235,13 @@ const Profile = () => {
                         <StyledParagraph
                           backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01}
+                          {pokemon.Type01.charAt(0).toUpperCase() + pokemon.Type01.slice(1)}
                         </StyledParagraph>
                         {pokemon.Type02 !== "null" ? (
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02}
+                            {pokemon.Type02.charAt(0).toUpperCase() + pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
