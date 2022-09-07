@@ -15,12 +15,16 @@ interface iModalConfirmMarket {
   currentCart: IMarket[];
   setCurrentCart: (value: SetStateAction<IMarket[]>) => void;
   setTotal: Dispatch<SetStateAction<number>>;
+  setMarket: Dispatch<SetStateAction<IMarket[]>>;
+  market: IMarket[]
 }
 
 const ModalConfirmMarket = ({
   currentCart,
   setCurrentCart,
   setTotal,
+  setMarket,
+  market,
 }: iModalConfirmMarket) => {
   const { setIsModalConfirmMarket } = useContext(ModalContext);
   const { user, setUser } = useContext(UserContext);
@@ -35,6 +39,10 @@ const ModalConfirmMarket = ({
 
     currentCart.forEach(async (pokemon) => {
       apiMarketDelete(pokemon.id);
+      const newPokemons = market.filter((poke) => {
+        return poke.id !== pokemon.id;
+      });
+      setMarket(newPokemons);
 
       const seller: iData = await apiGetUserID(pokemon.userId);
 
