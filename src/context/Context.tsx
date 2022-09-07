@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import MarketProvider from "./marketContext";
 import ModalProvider from "./ModalContext";
 import UserProvider from "./UserContext";
@@ -11,7 +11,7 @@ const Context = ({ children }: iContext) => {
   return (
     <UserProvider>
       <MarketProvider>
-      <ModalProvider>{children}</ModalProvider>
+        <ModalProvider>{children}</ModalProvider>
       </MarketProvider>
     </UserProvider>
   );

@@ -133,7 +133,7 @@ export const StyledList = styled.ul`
   width: 260px;
   max-width: 300px;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: scroll;
   background-color: var(--color-red);
   gap: 10px;
@@ -161,7 +161,7 @@ export const StyledList = styled.ul`
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
-    height: 480px;
+    height: 80vh;
 
     .form {
       display: flex;
@@ -170,10 +170,12 @@ export const StyledList = styled.ul`
 
   @media screen and (min-width: 1024px) {
     width: 650px;
+    height: 80vh;
   }
 
   @media screen and (min-width: 1024px) {
     width: 700px;
+    height: 80vh;
   }
 
   li {

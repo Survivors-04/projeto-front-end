@@ -10,11 +10,6 @@ import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import AnimationPages from "../../components/AnimationPages";
 
-interface IData {
-  email: string;
-  password: string;
-}
-
 interface IPokemons {
   Pokemon: string;
   Rarity: string;
@@ -23,10 +18,6 @@ interface IPokemons {
   Type02: string;
   userId: number;
   id: number | string;
-}
-
-interface IInputValue {
-  str: string;
 }
 
 const Profile = () => {
@@ -52,76 +43,72 @@ const Profile = () => {
       ).length;
       setCountRares(countRaresPokemons);
     };
-    countRares();
-  }, [pokemons]);
-
-  useEffect(() => {
     const countCommons = () => {
       let countCommonsPokemons = pokemons.filter(
         (pokemon) => pokemon.Rarity === "Common"
       ).length;
       setCountCommons(countCommonsPokemons);
     };
-    countCommons();
-  }, [pokemons]);
-
-  useEffect(() => {
     const countEpics = () => {
       let countEpicsPokemons = pokemons.filter(
         (pokemon) => pokemon.Rarity === "Epic"
       ).length;
       setCountEpics(countEpicsPokemons);
     };
-    countEpics();
-  }, [pokemons]);
-
-  useEffect(() => {
     const countLegendary = () => {
       let countLegendaryPokemons = pokemons.filter(
         (pokemon) => pokemon.Rarity === "Legendary"
       ).length;
       setCountLegendary(countLegendaryPokemons);
     };
+
+    countRares();
+    countCommons();
+    countEpics();
     countLegendary();
   }, [pokemons]);
 
+  useEffect(() => {
+    const filteredInput = (str: string) => {
+      let search = str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+
+      const filter = pokemons.filter((poke) => {
+        let name = poke.Pokemon.normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+        let rarity = poke.Rarity.normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+
+        let type01 = poke.Type01.normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+
+        let type02 = poke.Type02.normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+
+        if (
+          name.includes(search) ||
+          rarity.includes(search) ||
+          type01.includes(search) ||
+          type02.includes(search)
+        ) {
+          return poke;
+        }
+      });
+
+      setPokemonsFiltered(filter);
+    };
+
+    filteredInput(userInput);
+  }, [userInput, pokemons]);
+
   const showProducts = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-  };
-
-  const filteredInput = (str: string) => {
-    let search = str
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-
-    const filter = pokemons.filter((poke) => {
-      let name = poke.Pokemon.normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-      let rarity = poke.Rarity.normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-
-      let type01 = poke.Type01.normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-
-      let type02 = poke.Type02.normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase();
-
-      if (
-        name.includes(search) ||
-        rarity.includes(search) ||
-        type01.includes(search) ||
-        type02.includes(search)
-      ) {
-        return poke;
-      }
-    });
-
-    setPokemonsFiltered(filter);
   };
 
   return (
@@ -153,9 +140,9 @@ const Profile = () => {
               <input
                 type="text"
                 placeholder="Pesquisar Pokemon..."
+                value={userInput}
                 onChange={(event) => {
                   setUserInput(event.target.value);
-                  filteredInput(userInput);
                 }}
               />
             </form>
@@ -166,14 +153,14 @@ const Profile = () => {
                   <input
                     type="text"
                     placeholder="Pesquisar Pokemon..."
+                    value={userInput}
                     onChange={(event) => {
                       setUserInput(event.target.value);
-                      filteredInput(userInput);
                     }}
                   />
                 </form>
               )}
-              {pokemonsFiltered.length === 0
+              {userInput.trim().length === 0
                 ? pokemons.map((pokemon) => (
                     <li key={pokemon.id}>
                       <figure>
