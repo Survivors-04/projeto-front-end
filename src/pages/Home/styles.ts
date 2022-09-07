@@ -11,6 +11,8 @@ export const StyledBoosterList = styled.ul`
   display: flex;
   justify-content: space-between;
 
+  margin-top: 50px;
+
   height: 85%;
   max-height: 560px;
   max-width: 93%;
@@ -35,6 +37,5 @@ export const StyledBoosterList = styled.ul`
     font-size: 24px;
     justify-self: center;
     align-self: center;
-    
   }
 `;

@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "../../../Context/UserContext";
 import api from "../../../services/api";
 import boosters from "../../../pages/Home/boosters";
-import { newPokemons } from "./pokemons";
 
 interface iModalHome {
   boosterTitle: string;
@@ -21,8 +20,9 @@ export interface iPokemon {
   Number: number;
   Type01: string;
   Type02: string;
-  userId?: number;
-  id?: string | number;
+  id: string | number;
+  userId: string | number;
+  price: number;
 }
 
 export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
@@ -38,8 +38,6 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       const pokemonData: iPokemon[] = pokemonList?.data;
       const pokemonFiltered: iPokemon[] = [];
       const pokemonArry: iPokemon[] = [];
-
-      newPokemons.forEach((pokemon) => pokemonData.push(pokemon));
 
       const pokemonCommon = pokemonData.filter(
         (pokemon) => pokemon.Rarity === "Common"

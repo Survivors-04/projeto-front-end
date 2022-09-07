@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Pokedex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O projeto é voltado para o
+entretenimento do usuário onde é simulado uma Pokedex do anime Pokemon. O usuário pode logar ou se cadastrar caso não tenha uma conta.
+Além disso o usuário pode comprar Pokemons específicos ou pacotes onde as recompensas são pokemons de diferentes categorias e raridades.
+Há também a Página do usuário onde ele pode visualizar quantos e quais pokemons ele possui.
+Futuramente pretendemos adicionar mais funcionalidades, como por exemplo, batalhas, novos pokemons, interação entre usuários e etc.
 
-## Available Scripts
+### Esta é a homepage do projeto onde o usuário pode comprar pacotes com pokemons aleatórios!
 
-In the project directory, you can run:
+![PokedexHomepage](https://i.ibb.co/fdvx4v5/Homepage-Pokedex.png)
 
-### `yarn start`
+### O usuário tem direito a um giro de dados diário, onde ele pode conseguir uma quantia aleatória para conseguir comprar seus pokemons ou pacotes. É necessário estar logado para a compra. Confira abaixo:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![RecompensaHomepage](https://i.ibb.co/vLCYDMz/recompensahomepage.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Esta é a página de cadastro onde é necessário o nickname, email e senha do usuário. Confira abaixo:
 
-### `yarn test`
+![RegisterPage](https://i.ibb.co/pXpvJkn/register-Page.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Usuário cadastrado pode se logar usando seu email e senha cadastrados anteriormente. Confira abaixo:
 
-### `yarn build`
+![LoginPage](https://i.ibb.co/p0Xsgvv/login-Page.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Este é o mercado pokemon, onde o usuário pode comprar seus pokemons. Confira abaixo:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![MarketplacePage](por enquanto não tem foto)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Esta é a página do usuário, onde ele tem acesso a sua coleção pokemon. Também pode visualizar a quantidade de pokemons em sua coleção. Confira abaixo:
 
-### `yarn eject`
+![ProfilePage](por enquanto não tem foto)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Tecnologias usadas:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- TypeScript
+- Context
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Bibliotecas e hooks usados:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Axios
+- style-components
+- React Router Dom
+- React Hook Form
+- Yup
+- Framer Motion
+- React Icons
+- React toastify

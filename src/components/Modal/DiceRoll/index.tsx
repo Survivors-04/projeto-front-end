@@ -14,8 +14,8 @@ import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
-import api from "../../../services/api";
 import { UserContext } from "../../../Context/UserContext";
+import axios from "axios";
 
 const DiceRoll = () => {
   const [confirmation, setConsfirmation] = useState(true);
@@ -28,6 +28,7 @@ const DiceRoll = () => {
 
   const { setIsModalDice } = useContext(ModalContext);
   const { user, setUser } = useContext(UserContext);
+  console.log(user);
 
   useEffect(() => {
     const tokenUser = localStorage.getItem("@TOKEN");
@@ -51,14 +52,16 @@ const DiceRoll = () => {
     setAnimationResult(false);
 
     const idUser = localStorage.getItem("@USERID");
+    const tokenUser = localStorage.getItem("@TOKEN");
 
-    api
+    axios
       .patch(
-        `/Users/${idUser}`,
+        `https://projeto-front-end-json-server.herokuapp.com/Users/${idUser}`,
         { gold: user.gold + ind, dateRoll: Date.now() },
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${tokenUser}`,
           },
         }
       )

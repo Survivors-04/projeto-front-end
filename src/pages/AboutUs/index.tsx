@@ -7,6 +7,7 @@ import gabrielImg from "../../assets/imgs/AboutUsImgs/Gabriel.jpg";
 import pauloImg from "../../assets/imgs/AboutUsImgs/Paulo.jpg";
 import { StyledList, StyledListParagraph, StyledMain } from "./styles";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
+import AnimationPages from "../../components/AnimationPages";
 
 const AboutUs = () => {
   const data = [
@@ -48,7 +49,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <>
+    <AnimationPages>
       <Header />
       <StyledContainer>
         <StyledMain>
@@ -74,24 +75,24 @@ const AboutUs = () => {
           <StyledListParagraph>
             <li>
               <p>
-                Este projeto foi feito por nós 4 no nosso período de estudo na
+                Este projeto foi feito por nós 5 em nosso período de estudo na
                 Kenzie Academy Brasil durante o modulo final de Front-End. Nele
-                utilizamos de tudo que aprendemos desde então e principalmente
-                do utilizando React. O projeto é voltado para o entretenimento
-                do usuário onde é simulado uma Pokedex do anime Pokemon. O
-                usuário pode logar ou se cadastrar caso não tenha uma conta.
-                Além disso o usuário pode comprar Pokemons específicos ou
-                pacotes onde as recompensas são pokemons de diferentes
-                categorias e raridades. Há também a Página do usuário onde ele
-                pode visualizar quantos e quais pokemons ele possui. Futuramente
-                pretendemos adicionar mais funcionalidades, como por exemplo,
-                batalhas, novos pokemons, interação entre usuários e etc.
+                utilizamos de tudo que aprendemos desde então, principalmente o
+                React. O projeto é voltado para o entretenimento do usuário onde
+                é simulado uma Pokedex do anime Pokemon. O usuário pode logar ou
+                se cadastrar caso não tenha uma conta. Além disso o usuário pode
+                comprar Pokemons específicos ou pacotes onde as recompensas são
+                pokemons de diferentes categorias e raridades. Há também a
+                página do usuário onde ele pode visualizar quantos e quais
+                pokemons ele possui. Futuramente pretendemos adicionar mais
+                funcionalidades, como por exemplo, batalhas, novos pokemons,
+                interação entre usuários e etc.
               </p>
             </li>
           </StyledListParagraph>
         </StyledMain>
       </StyledContainer>
-    </>
+    </AnimationPages>
   );
 };
 

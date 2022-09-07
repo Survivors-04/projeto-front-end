@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ReactNode, useEffect, useRef } from "react";
 import { StyledModalBox, StyledModalContainer } from "./style";
 
-interface iModal {
+export interface iModal {
   children: ReactNode;
   setIs: (arg0: boolean) => void;
 }

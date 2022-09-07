@@ -7,9 +7,10 @@ import { useContext, useState } from "react";
 import { ModalContext } from "../../Context/ModalContext";
 import { ModalHome } from "../../components/Modal/ModalHome";
 import ModalConfirm from "../../components/Modal/ModalConfirm";
+import AnimationPages from "../../components/AnimationPages";
 
 const Home = () => {
-  const { isModalHome, setisModalHome, isModalConfirm, setIsModalConfirm } =
+  const { isModalHome, isModalConfirm, setIsModalConfirm } =
     useContext(ModalContext);
   const [boosterTitle, setBoosterTitle] = useState("");
   const [boosterPrice, setBoosterPrice] = useState(0);
@@ -22,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <AnimationPages>
       <Header />
       {isModalHome && (
         <ModalHome boosterTitle={boosterTitle} boosterPrice={boosterPrice} />
@@ -52,7 +53,7 @@ const Home = () => {
           ))}
         </StyledBoosterList>
       </StyledContainer>
-    </>
+    </AnimationPages>
   );
 };
 export default Home;
