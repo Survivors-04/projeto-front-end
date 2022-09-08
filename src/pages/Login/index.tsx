@@ -9,7 +9,7 @@ import ImgBulbasaur from "../../assets/imgs/Login/Bulbasaur.png";
 import { HeaderUsers } from "../../components/StylerUser/styles";
 import ApiLogin from "../../services/apiLogin";
 import { useContext } from "react";
-import { UserContext } from "../../Context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
 import api from "../../services/api";
 import { toastError } from "../../components/ToastifyConfig";

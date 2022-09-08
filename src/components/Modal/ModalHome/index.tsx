@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import Modal from "../ModalBase";
-import { ModalContext } from "../../../Context/ModalContext";
+import { ModalContext } from "../../../context/ModalContext";
 import Button from "../../Button";
 import { StyledModalHome } from "./styled";
 import apiPokemonList from "../../../services/apiPokemonList";
 import { v4 as uuidv4 } from "uuid";
-import { UserContext } from "../../../Context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import api from "../../../services/api";
 import boosters from "../../../pages/Home/boosters";
 import { toastSuccess } from "../../ToastifyConfig";

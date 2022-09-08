@@ -5,18 +5,13 @@ import imgCharmander from "../../assets/imgs/Profile/Charmander.svg";
 import { StyledCharmImg, StyledDiv, StyledList, StyledSection } from "./styles";
 import api from "../../services/api";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../Context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import Button from "../../components/Button";
 import ModalSell from "../../components/Modal/ModalSell";
-import { ModalContext } from "../../Context/ModalContext";
+import { ModalContext } from "../../context/ModalContext";
 import AnimationPages from "../../components/AnimationPages";
-
-interface IData {
-  email: string;
-  password: string;
-}
 
 export interface IPokemons {
   Pokemon: string;

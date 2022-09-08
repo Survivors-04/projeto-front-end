@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useContext } from "react";
-import { ModalContext } from "../../../Context/ModalContext";
-import { UserContext } from "../../../Context/UserContext";
+import { ModalContext } from "../../../context/ModalContext";
+import { UserContext } from "../../../context/UserContext";
 import { IMarket } from "../../../pages/Marketplace";
 import { v4 as uuidv4 } from "uuid";
 import apiAddPokemon from "../../../services/apiAddPokemon";
@@ -62,7 +62,7 @@ const ModalConfirmMarket = ({
     setTotal(0);
     setIsModalConfirmMarket(false);
 
-    toastSuccess('Pokemons comprados')
+    toastSuccess("Pokemons comprados");
   };
 
   return (
@@ -82,7 +82,7 @@ const ModalConfirmMarket = ({
         ) : (
           <h3>Saldo Insuficiente para comprar os Pokemons </h3>
         )}
-        
+
         <Button
           width={40}
           backgroundColor="var(--color-gray-1)"

@@ -1,9 +1,9 @@
 import { StyledContainer, StyledLogoutButton } from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { ImExit } from "react-icons/im";
 import { useContext, useEffect, useRef } from "react";
-import { UserContext } from "../../../Context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import { motion } from "framer-motion";
 
 interface iModalLogout {
@@ -57,9 +57,7 @@ const ModalLogout = ({ setIs }: iModalLogout) => {
       >
         <FaUser /> Perfil
       </StyledLogoutButton>
-      {/* <Link to={"/profile"}>
-        <FaUser /> Perfil
-      </Link> */}
+
       <StyledLogoutButton onClick={logout}>
         <ImExit />
         Sair
