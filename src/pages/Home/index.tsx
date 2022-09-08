@@ -4,7 +4,7 @@ import boosters from "./boosters";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import { useContext, useState } from "react";
-import { ModalContext } from "../../Context/ModalContext";
+import { ModalContext } from "../../context/ModalContext";
 import { ModalHome } from "../../components/Modal/ModalHome";
 import ModalConfirm from "../../components/Modal/ModalConfirm";
 import AnimationPages from "../../components/AnimationPages";
@@ -89,7 +89,10 @@ const Home = () => {
               Pokemons <span> lendários</span>.
             </li>
           </ul>
-          <Button max_width={380} onClick={() => setIsModalInfo(true)}> Mais informações </Button>
+          <Button max_width={380} onClick={() => setIsModalInfo(true)}>
+            {" "}
+            Mais informações{" "}
+          </Button>
         </StyledInfo>
       </StyledInfoContainer>
     </AnimationPages>

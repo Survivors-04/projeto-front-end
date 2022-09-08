@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useContext } from "react";
-import { ModalContext } from "../../../Context/ModalContext";
+import { ModalContext } from "../../../context/ModalContext";
 import { IMarket } from "../../../pages/Marketplace";
 import apiAddPokemon from "../../../services/apiAddPokemon";
 import apiMarketDelete from "../../../services/apiMarketDelete";

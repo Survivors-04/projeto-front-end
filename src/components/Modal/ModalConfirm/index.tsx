@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ModalContext } from "../../../Context/ModalContext";
-import { UserContext } from "../../../Context/UserContext";
+import { ModalContext } from "../../../context/ModalContext";
+import { UserContext } from "../../../context/UserContext";
 import apiPatchUser from "../../../services/apiPatchUser";
 import Button from "../../Button";
 import Modal from "../ModalBase";

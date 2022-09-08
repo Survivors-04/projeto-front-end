@@ -11,12 +11,12 @@ import logoHeader from "../../assets/imgs/HeaderSvg/logoHeader.svg";
 import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
 import { useContext } from "react";
-import { ModalContext } from "../../Context/ModalContext";
+import { ModalContext } from "../../context/ModalContext";
 import DiceRoll from "../Modal/ModalDiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
-import { UserContext } from "../../Context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { AnimatePresence } from "framer-motion";
 import ModalLogout from "../Modal/ModalLogout";
 
