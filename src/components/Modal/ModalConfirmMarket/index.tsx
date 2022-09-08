@@ -79,7 +79,7 @@ const ModalConfirmMarket = ({
         ) : (
           <h3>Saldo Insuficiente para comprar os Pokemons </h3>
         )}
-        {}
+        
         <Button
           width={40}
           backgroundColor="var(--color-gray-1)"

@@ -42,7 +42,7 @@ export const StyledList = styled.ul`
     h3,
     p,
     a {
-      color: var(--color-gray-1);
+      color: var(--color-gray-0);
     }
 
     a:hover {

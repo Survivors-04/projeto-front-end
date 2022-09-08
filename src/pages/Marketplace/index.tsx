@@ -1,5 +1,5 @@
 import AnimationPages from "../../components/AnimationPages";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Header from "../../components/Header";
 import StyledDivsMarket, {
   StyledDivSearchCard,
@@ -23,6 +23,10 @@ import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
 import { ModalContext } from "../../Context/ModalContext";
 import { toast } from "react-toastify";
+import { UserContext } from "../../Context/UserContext";
+import apiDeletePokedex from "../../services/apiDeletePokedex";
+import apiAddPokemon from "../../services/apiAddPokemon";
+import apiMarketDelete from "../../services/apiMarketDelete";
 
 export interface IMarket {
   Pokemon: string;
@@ -39,16 +43,31 @@ const Marketplace = () => {
   const [market, setMarket] = useState<IMarket[]>([]);
   const [currentCart, setCurrentCart] = useState<IMarket[]>([]);
   const [total, setTotal] = useState(0);
-  const [search, setSearch]= useState("");
-  const [marketFilter, SetMarketFilter] = useState<IMarket[]>([]);  
+  const [search, setSearch] = useState("");
+  const [marketFilter, SetMarketFilter] = useState<IMarket[]>([]);
 
   const { isModalConfirmMarket, setIsModalConfirmMarket } =
     useContext(ModalContext);
+  const { user } = useContext(UserContext);
 
   const singleRemove = (id: string | number, price: number) => {
     const removeCartItens = currentCart.filter((e) => e.id !== id);
     setCurrentCart(removeCartItens);
     setTotal(total - price);
+  };
+
+  const removePokemon = async (
+    pokemonId: string | number,
+    userId: string | number,
+    pokemon: IMarket
+  ) => {
+    await apiMarketDelete(pokemonId);
+
+    await apiAddPokemon(userId, pokemon);
+
+    const removeCartItens = market.filter((e) => e.id !== pokemonId);
+
+    setMarket(removeCartItens);
   };
 
   useEffect(() => {
@@ -90,8 +109,6 @@ const Marketplace = () => {
     filteredInput(search);
   }, [search, market]);
 
- 
-
   useEffect(() => {
     const markList = async () => {
       const marketList = await apiMarket();
@@ -114,7 +131,6 @@ const Marketplace = () => {
 
   return (
     <>
-      
       <AnimationPages>
         <Header />
         <StyledDivsMarket>
@@ -129,94 +145,120 @@ const Marketplace = () => {
           )}
           <StyledDivPokemonsMarket>
             {search.trim().length === 0
-              ? market.map(({ id, Pokemon, Rarity, Type01, Type02, price }) => (
-                  <StyledSinglePokemon key={id}>
+              ? market.map((pokemon) => (
+                  <StyledSinglePokemon key={pokemon.id}>
                     <img
                       src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                        Pokemon === "Nidoran-M"
+                        pokemon.Pokemon === "Nidoran-M"
                           ? "nidorino"
-                          : Pokemon === "Nidoran-F"
+                          : pokemon.Pokemon === "Nidoran-F"
                           ? "nidorina"
-                          : Pokemon.toLowerCase()
+                          : pokemon.Pokemon.toLowerCase()
                       }.gif`}
-                      alt={Pokemon}
+                      alt={pokemon.Pokemon}
                     />
-                    <h3>{Pokemon}</h3>
+                    <h3>{pokemon.Pokemon}</h3>
                     <>
                       <StyledDivTipo>
                         <StyledParagraph
-                          backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
+                          backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {Type01.charAt(0).toUpperCase() + Type01.slice(1)}
+                          {pokemon.Type01.charAt(0).toUpperCase() +
+                            pokemon.Type01.slice(1)}
                         </StyledParagraph>
-                        {Type02 !== "null" ? (
+                        {pokemon.Type02 !== "null" ? (
                           <StyledSpan
-                            backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
+                            backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {Type02.charAt(0).toUpperCase() + Type02.slice(1)}
+                            {pokemon.Type02.charAt(0).toUpperCase() +
+                              pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
                         )}
                       </StyledDivTipo>
                     </>
-                    <h4>{Rarity}</h4>
+                    <h4>{pokemon.Rarity}</h4>
                     <div>
                       <p>
-                        Preço: <span> {price}g</span>
+                        Preço: <span> {pokemon.price}g</span>
                       </p>
                     </div>
-                    <Button
-                      width={80}
-                      hover={"var(--color-red-focus)"}
-                      onClick={() => pokeBuy(id, price)}
-                    >
-                      Adicionar
-                    </Button>
-                  </StyledSinglePokemon>
-                ))
-              : marketFilter.map(
-                  ({ id, Pokemon, Rarity, Type01, Type02, price }) => (
-                    <StyledSinglePokemon key={id}>
-                      <img
-                        src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
-                        alt={Pokemon}
-                      />
-                      <h3>{Pokemon}</h3>
-                      <>
-                        <StyledDivTipo>
-                          <StyledParagraph
-                            backgroundColor={`var(--color-type-${Type01.toLowerCase()})`}
-                          >
-                            {Type01.charAt(0).toUpperCase() + Type01.slice(1)}
-                          </StyledParagraph>
-                          {Type02 !== "null" ? (
-                            <StyledSpan
-                              backgroundColor={`var(--color-type-${Type02.toLowerCase()})`}
-                            >
-                              {Type02.charAt(0).toUpperCase() + Type02.slice(1)}
-                            </StyledSpan>
-                          ) : (
-                            <></>
-                          )}
-                        </StyledDivTipo>
-                      </>
-                      <h4>{Rarity}</h4>
-                      <div>
-                        <p>
-                          Preço: <span> {price}g</span>
-                        </p>
-                      </div>
+                    {String(user.id) === pokemon.userId ? (
                       <Button
                         width={80}
                         hover={"var(--color-red-focus)"}
-                        onClick={() => pokeBuy(id, price)}
+                        onClick={() =>
+                          removePokemon(pokemon.id, pokemon.userId, pokemon)
+                        }
+                      >
+                        Remover
+                      </Button>
+                    ) : (
+                      <Button
+                        width={80}
+                        hover={"var(--color-red-focus)"}
+                        onClick={() => pokeBuy(pokemon.id, pokemon.price)}
                       >
                         Adicionar
                       </Button>
-                    </StyledSinglePokemon>
-                  )
-                )}
+                    )}
+                  </StyledSinglePokemon>
+                ))
+              : marketFilter.map((pokemon) => (
+                  <StyledSinglePokemon key={pokemon.id}>
+                    <img
+                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                      alt={pokemon.Pokemon}
+                    />
+                    <h3>{pokemon.Pokemon}</h3>
+                    <>
+                      <StyledDivTipo>
+                        <StyledParagraph
+                          backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                        >
+                          {pokemon.Type01.charAt(0).toUpperCase() +
+                            pokemon.Type01.slice(1)}
+                        </StyledParagraph>
+                        {pokemon.Type02 !== "null" ? (
+                          <StyledSpan
+                            backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                          >
+                            {pokemon.Type02.charAt(0).toUpperCase() +
+                              pokemon.Type02.slice(1)}
+                          </StyledSpan>
+                        ) : (
+                          <></>
+                        )}
+                      </StyledDivTipo>
+                    </>
+                    <h4>{pokemon.Rarity}</h4>
+                    <div>
+                      <p>
+                        Preço: <span> {pokemon.price}g</span>
+                      </p>
+                    </div>
+                    {String(user.id) === pokemon.userId ? (
+                      <Button
+                        width={80}
+                        hover={"var(--color-red-focus)"}
+                        onClick={() =>
+                          removePokemon(pokemon.id, pokemon.userId, pokemon)
+                        }
+                      >
+                        Remover
+                      </Button>
+                    ) : (
+                      <Button
+                        width={80}
+                        hover={"var(--color-red-focus)"}
+                        onClick={() => pokeBuy(pokemon.id, pokemon.price)}
+                      >
+                        Adicionar
+                      </Button>
+                    )}
+                  </StyledSinglePokemon>
+                ))}
           </StyledDivPokemonsMarket>
 
           <StyledDivSearchCard>

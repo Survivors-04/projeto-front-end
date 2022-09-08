@@ -106,7 +106,6 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
         );
 
         pokemonArry.push(pokemon);
-        console.log(pokemonArry);
       };
 
       const chancePokemon = () => {
