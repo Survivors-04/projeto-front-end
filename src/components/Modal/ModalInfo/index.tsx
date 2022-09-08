@@ -11,36 +11,40 @@ const ModalInfo = () => {
     <Modal setIs={setIsModalInfo}>
       <StyledInfo>
         <table>
-          <tr>
-            <th>Raridade</th>
-            <th>Pacote 01</th>
-            <th>Pacote 02</th>
-            <th>Pacote 03</th>
-          </tr>
-          <tr>
-            <td>Comum</td>
-            <td>75%</td>
-            <td>60%</td>
-            <td>55%</td>
-          </tr>
-          <tr>
-            <td>Raro</td>
-            <td>25%</td>
-            <td>35%</td>
-            <td>39%</td>
-          </tr>
-          <tr>
-            <td>Épico</td>
-            <td>0%</td>
-            <td>5%</td>
-            <td>5%</td>
-          </tr>
-          <tr>
-            <td>Lendário</td>
-            <td>0%</td>
-            <td>0%</td>
-            <td>1%</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Raridade</th>
+              <th>Pacote 01</th>
+              <th>Pacote 02</th>
+              <th>Pacote 03</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Comum</td>
+              <td>75%</td>
+              <td>60%</td>
+              <td>55%</td>
+            </tr>
+            <tr>
+              <td>Raro</td>
+              <td>25%</td>
+              <td>35%</td>
+              <td>39%</td>
+            </tr>
+            <tr>
+              <td>Épico</td>
+              <td>0%</td>
+              <td>5%</td>
+              <td>5%</td>
+            </tr>
+            <tr>
+              <td>Lendário</td>
+              <td>0%</td>
+              <td>0%</td>
+              <td>1%</td>
+            </tr>
+          </tbody>
         </table>
         <Button
           width={40}

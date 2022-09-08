@@ -6,11 +6,12 @@ const StyledInfo = styled(StyledModalConfirm)`
   color: var(--color-gray-0);
 
   text-align: center;
+  font-size: 18px;
 
   table,
   th,
   td {
-    border: 4px solid transparent;
+    border: 3px solid transparent;
   }
 `;
 

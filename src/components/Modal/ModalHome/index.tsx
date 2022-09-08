@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "../../../Context/UserContext";
 import api from "../../../services/api";
 import boosters from "../../../pages/Home/boosters";
-import { toast } from "react-toastify";
+import { toastSuccess } from "../../ToastifyConfig";
 
 interface iModalHome {
   boosterTitle: string;
@@ -165,7 +165,6 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       }
     };
 
-    toast.success("Pokemons adicionados a sua coleção");
     pokemonsResult.forEach(async (pokemon) => await addPokemon(pokemon));
   }, [pokemonsResult, user.id]);
 
@@ -191,7 +190,13 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
               <h3>{Pokemon}</h3>
             </li>
           ))}
-          <Button width={60} onClick={() => setisModalHome(false)}>
+          <Button
+            width={60}
+            onClick={() => {
+              toastSuccess("Pokemons adicionados a sua coleção");
+              setisModalHome(false);
+            }}
+          >
             Confirmar
           </Button>
         </StyledModalHome>

@@ -40,51 +40,51 @@ const DiceRoll = () => {
   }, [user]);
 
   useEffect(() => {
+    const toRoll = () => {
+      for (var i = 1; i <= 22; i++) {
+        (function (ind) {
+          setTimeout(function () {
+            const numberRandom = Math.floor(Math.random() * (101 - 30) + 30);
+            setNumberResult(numberRandom);
+            if (ind === 22) {
+              showResult(numberRandom);
+            }
+          }, 400 * ind);
+        })(i);
+      }
+    };
+
+    const showResult = async (ind: number) => {
+      setAnimationResult(false);
+
+      const idUser = localStorage.getItem("@USERID");
+
+      api
+        .patch(
+          `/Users/${idUser}`,
+          { gold: user.gold + ind, dateRoll: Date.now() },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          setUser({ ...user, gold: user.gold + ind, dateRoll: Date.now() });
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setRoll(false);
+          setResult(true);
+        });
+    };
+
     if (roll) {
       setTimeout(() => {
         toRoll();
       }, 1800);
     }
-  }, [roll]);
-
-  const showResult = async (ind: number) => {
-    setAnimationResult(false);
-
-    const idUser = localStorage.getItem("@USERID");
-
-    api
-      .patch(
-        `/Users/${idUser}`,
-        { gold: user.gold + ind, dateRoll: Date.now() },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        setUser({ ...user, gold: user.gold + ind, dateRoll: Date.now() });
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setRoll(false);
-        setResult(true);
-      });
-  };
-
-  const toRoll = () => {
-    for (var i = 1; i <= 22; i++) {
-      (function (ind) {
-        setTimeout(function () {
-          const numberRandom = Math.floor(Math.random() * (101 - 30) + 30);
-          setNumberResult(numberRandom);
-          if (ind === 22) {
-            showResult(numberRandom);
-          }
-        }, 400 * ind);
-      })(i);
-    }
-  };
+  }, [roll, setUser, user]);
 
   return (
     <Modal setIs={setIsModalDice}>

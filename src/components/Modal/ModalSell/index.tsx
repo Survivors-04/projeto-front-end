@@ -1,13 +1,12 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { toast } from "react-toastify";
 import { ModalContext } from "../../../Context/ModalContext";
 import { IPokemons } from "../../../pages/Profile";
 import apiDeletePokedex from "../../../services/apiDeletePokedex";
 import apiMarketPost from "../../../services/apiPostMarktet";
 import Button from "../../Button";
+import { toastSuccess } from "../../ToastifyConfig";
 import Modal from "../ModalBase";
 import {
-  StyledButtonVender,
   StyledContainerButton,
   StyledModaSell,
 } from "./style";
@@ -49,7 +48,7 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
               setPokemons(newPokemons);
               setIsModalSell(false);
 
-              toast.success("Pokemon adicionado ao mercado");
+              toastSuccess("Pokemon adicionado ao mercado");
             }}
           >
             Vender

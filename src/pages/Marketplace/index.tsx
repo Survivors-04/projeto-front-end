@@ -22,11 +22,9 @@ import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
 import { ModalContext } from "../../Context/ModalContext";
-import { toast } from "react-toastify";
 import { UserContext } from "../../Context/UserContext";
-import apiDeletePokedex from "../../services/apiDeletePokedex";
-import apiAddPokemon from "../../services/apiAddPokemon";
-import apiMarketDelete from "../../services/apiMarketDelete";
+import ModalConfirmRemove from "../../components/Modal/ModalConfirmRemove";
+import { toastError } from "../../components/ToastifyConfig";
 
 export interface IMarket {
   Pokemon: string;
@@ -44,9 +42,15 @@ const Marketplace = () => {
   const [currentCart, setCurrentCart] = useState<IMarket[]>([]);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
+  const [pokemonID, setPokemonID] = useState<string | number>("");
+  const [userID, setUserID] = useState<string | number>("");
+  const [pokemonObj, setPokemonObj] = useState({} as IMarket);
+
   const [marketFilter, SetMarketFilter] = useState<IMarket[]>([]);
 
   const { isModalConfirmMarket, setIsModalConfirmMarket } =
+    useContext(ModalContext);
+  const { isModalConfirmRemove, setIsModalConfirmRemove } =
     useContext(ModalContext);
   const { user } = useContext(UserContext);
 
@@ -61,15 +65,10 @@ const Marketplace = () => {
     userId: string | number,
     pokemon: IMarket
   ) => {
-    await apiMarketDelete(pokemonId);
-
-    await apiAddPokemon(userId, pokemon);
-
-    const removeCartItens = market.filter((e) => e.id !== pokemonId);
-
-    setMarket(removeCartItens);
-
-    toast.success("Pokemon removido do mercado");
+    setPokemonID(pokemonId);
+    setUserID(userId);
+    setPokemonObj(pokemon);
+    setIsModalConfirmRemove(true);
   };
 
   useEffect(() => {
@@ -123,7 +122,7 @@ const Marketplace = () => {
 
   const pokeBuy = (id: string | number, price: number) => {
     if (currentCart.find((e) => e.id === id)) {
-      toast.error("Pokemon já está no carrinho");
+      toastError("Pokemon já está no carrinho");
     } else {
       const addToCart = market.filter((e) => e.id === id);
       setCurrentCart((oldCart) => [...oldCart, ...addToCart]);
@@ -136,6 +135,15 @@ const Marketplace = () => {
       <AnimationPages>
         <Header />
         <StyledDivsMarket>
+          {isModalConfirmRemove && (
+            <ModalConfirmRemove
+              pokemonId={pokemonID}
+              userId={userID}
+              pokemon={pokemonObj}
+              setMarket={setMarket}
+              market={market}
+            />
+          )}
           {isModalConfirmMarket && (
             <ModalConfirmMarket
               currentCart={currentCart}
@@ -188,6 +196,7 @@ const Marketplace = () => {
                         Preço: <span> {pokemon.price}g</span>
                       </p>
                     </div>
+
                     {String(user.id) === pokemon.userId ? (
                       <Button
                         width={80}

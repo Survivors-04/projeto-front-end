@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
 import api from "../../services/api";
-import { toast } from "react-toastify";
+import { toastError } from "../../components/ToastifyConfig";
 
 interface iLocationState {
   from: {
@@ -53,7 +53,7 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
 
-        toast.error("Email ou senha incorreto(s)");
+        toastError("Email ou senha incorreto(s)");
       });
   };
   return (
