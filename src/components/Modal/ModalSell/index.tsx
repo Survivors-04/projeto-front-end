@@ -4,9 +4,9 @@ import { IPokemons } from "../../../pages/Profile";
 import apiDeletePokedex from "../../../services/apiDeletePokedex";
 import apiMarketPost from "../../../services/apiPostMarktet";
 import Button from "../../Button";
+import { toastSuccess } from "../../ToastifyConfig";
 import Modal from "../ModalBase";
 import {
-  StyledButtonVender,
   StyledContainerButton,
   StyledModaSell,
 } from "./style";
@@ -47,6 +47,8 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
               });
               setPokemons(newPokemons);
               setIsModalSell(false);
+
+              toastSuccess("Pokemon adicionado ao mercado");
             }}
           >
             Vender

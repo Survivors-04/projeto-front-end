@@ -181,6 +181,8 @@ const Profile = () => {
                               ? "nidorino"
                               : pokemon.Pokemon === "Nidoran-F"
                               ? "nidorina"
+                              : pokemon.Pokemon === "Mr.Mime"
+                              ? "mr._mime"
                               : pokemon.Pokemon.toLowerCase()
                           }.gif`}
                           alt={pokemon.Pokemon}
@@ -193,13 +195,15 @@ const Profile = () => {
                         <StyledParagraph
                           backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01.charAt(0).toUpperCase() + pokemon.Type01.slice(1)}
+                          {pokemon.Type01.charAt(0).toUpperCase() +
+                            pokemon.Type01.slice(1)}
                         </StyledParagraph>
                         {pokemon.Type02 !== "null" ? (
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02.charAt(0).toUpperCase() + pokemon.Type02.slice(1)}
+                            {pokemon.Type02.charAt(0).toUpperCase() +
+                              pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
@@ -208,7 +212,7 @@ const Profile = () => {
                       <p>{pokemon.Rarity}</p>
                       <Button
                         width={80}
-                        hover={'var(--color-yellow-focus)'}
+                        hover={"var(--color-yellow-focus)"}
                         onClick={() => {
                           setIsModalSell(true);
 
@@ -224,7 +228,15 @@ const Profile = () => {
                     <li key={pokemon.id}>
                       <figure>
                         <img
-                          src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                          src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                            pokemon.Pokemon === "Nidoran-M"
+                              ? "nidorino"
+                              : pokemon.Pokemon === "Nidoran-F"
+                              ? "nidorina"
+                              : pokemon.Pokemon === "Mr.Mime"
+                              ? "mr._mime"
+                              : pokemon.Pokemon.toLowerCase()
+                          }.gif`}
                           alt={pokemon.Pokemon}
                         />
                       </figure>
@@ -235,13 +247,15 @@ const Profile = () => {
                         <StyledParagraph
                           backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01.charAt(0).toUpperCase() + pokemon.Type01.slice(1)}
+                          {pokemon.Type01.charAt(0).toUpperCase() +
+                            pokemon.Type01.slice(1)}
                         </StyledParagraph>
                         {pokemon.Type02 !== "null" ? (
                           <StyledSpan
                             backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02.charAt(0).toUpperCase() + pokemon.Type02.slice(1)}
+                            {pokemon.Type02.charAt(0).toUpperCase() +
+                              pokemon.Type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
@@ -250,7 +264,7 @@ const Profile = () => {
                       <p>{pokemon.Rarity}</p>
                       <Button
                         width={80}
-                        hover={'var(--color-yellow-focus)'}
+                        hover={"var(--color-yellow-focus)"}
                         onClick={() => {
                           setIsModalSell(true);
                           setPokemonSell(pokemon);

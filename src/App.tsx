@@ -3,7 +3,6 @@ import Context from "./Context/Context";
 import MainRoutes from "./routes/mainRoutes";
 import Global from "./style/Global";
 
-
 function App() {
   return (
     <>
@@ -11,7 +10,12 @@ function App() {
         <Global />
         <MainRoutes />
       </Context>
-      <ToastContainer/>
+      <ToastContainer
+        toastStyle={{
+          backgroundColor: "var(--color-gray-3)",
+          color: "var(--color-gray-0)",
+        }}
+      />
     </>
   );
 }

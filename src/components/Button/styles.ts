@@ -6,6 +6,7 @@ interface iStyledButton {
   textColor?: string;
   backgroundColor?: string;
   transform?: string;
+  max_width?: number;
 }
 
 const StyledButton = styled.button<iStyledButton>`
@@ -24,6 +25,8 @@ const StyledButton = styled.button<iStyledButton>`
   border: 3px solid ${({ textColor }) => (textColor ? textColor : "black")};
   border-radius: 8px;
   box-shadow: 1.6px 1.6px;
+
+  ${({ max_width }) => max_width && ` max-width: ${max_width}px;`}
 
   :hover {
     background-color: ${({ hover }) =>

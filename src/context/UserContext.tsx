@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { toast } from "react-toastify";
+import { toastError, toastSuccess } from "../components/ToastifyConfig";
 
 import api from "../services/api";
 
@@ -19,7 +19,6 @@ export interface IUserContext {
   setUser: React.Dispatch<React.SetStateAction<iUser>>;
   setIsLogged: Dispatch<SetStateAction<boolean>>;
   isLogged: boolean;
-  setStatus: Dispatch<SetStateAction<boolean>>;
   notify: MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -37,7 +36,6 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 const UserProvider = ({ children }: IUserProvider) => {
   const [user, setUser] = useState<iUser>({} as iUser);
   const [isLogged, setIsLogged] = useState(false);
-  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -63,29 +61,13 @@ const UserProvider = ({ children }: IUserProvider) => {
 
   const notify = (data: any) => {
     data
-      ? toast.success("Conta criada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-      : toast.error("ops, Algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+      ? toastSuccess("Conta criada com sucesso!")
+      : toastError("Ops, Algo deu errado!");
   };
 
   return (
     <UserContext.Provider
-      value={{ user, isLogged, setUser, setIsLogged, setStatus, notify }}
+      value={{ user, isLogged, setUser, setIsLogged, notify }}
     >
       {children}
     </UserContext.Provider>

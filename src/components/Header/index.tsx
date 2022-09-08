@@ -12,7 +12,7 @@ import iconUserHeader from "../../assets/imgs/HeaderSvg/iconUserHeader.svg";
 import menuLogo from "../../assets/imgs/HeaderSvg/menu.svg";
 import { useContext } from "react";
 import { ModalContext } from "../../Context/ModalContext";
-import DiceRoll from "../Modal/DiceRoll";
+import DiceRoll from "../Modal/ModalDiceRoll";
 import ModalHeader from "../Modal/ModalHeader";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";

@@ -10,6 +10,7 @@ import apiPatchUser, { iData } from "../../../services/apiPatchUser";
 import Button from "../../Button";
 import Modal from "../ModalBase";
 import { StyledModalConfirm } from "../ModalHome/styled";
+import { toastSuccess } from "../../ToastifyConfig";
 
 interface iModalConfirmMarket {
   currentCart: IMarket[];
@@ -60,6 +61,8 @@ const ModalConfirmMarket = ({
     setCurrentCart([]);
     setTotal(0);
     setIsModalConfirmMarket(false);
+
+    toastSuccess('Pokemons comprados')
   };
 
   return (
@@ -79,7 +82,7 @@ const ModalConfirmMarket = ({
         ) : (
           <h3>Saldo Insuficiente para comprar os Pokemons </h3>
         )}
-        {}
+        
         <Button
           width={40}
           backgroundColor="var(--color-gray-1)"

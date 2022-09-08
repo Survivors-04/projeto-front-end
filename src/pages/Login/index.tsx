@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
 import api from "../../services/api";
+import { toastError } from "../../components/ToastifyConfig";
 
 interface iLocationState {
   from: {
@@ -51,6 +52,8 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+
+        toastError("Email ou senha incorreto(s)");
       });
   };
   return (
@@ -65,7 +68,6 @@ const Login = () => {
         <ContainerUsers imgBackground={ImgBulbasaur}>
           <main>
             <h2>Login</h2>
-          
 
             <Form userSubmit={onSubmitFunction}>
               <Button width={80}>Entrar</Button>

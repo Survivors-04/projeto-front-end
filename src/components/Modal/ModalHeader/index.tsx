@@ -87,7 +87,7 @@ const ModalHeader = () => {
             </li>
             <li>
               <IoIosHelpCircle />
-              <Link to={"/"}>Ajuda</Link>
+              <Link to={"/help"}>Ajuda</Link>
             </li>
             <li>
               <IoPeopleSharp />

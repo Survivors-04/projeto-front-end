@@ -9,6 +9,7 @@ interface iButton {
   backgroundColor?: string;
   hover?: string;
   transform?: string;
+  max_width?: number;
 }
 
 const Button = ({
@@ -19,6 +20,7 @@ const Button = ({
   backgroundColor,
   hover,
   transform,
+  max_width,
 }: iButton) => {
   return (
     <StyledButton
@@ -28,6 +30,7 @@ const Button = ({
       backgroundColor={backgroundColor}
       hover={hover}
       transform={transform}
+      max_width={max_width}
     >
       {children}
     </StyledButton>
