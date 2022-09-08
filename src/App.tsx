@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import Context from "./Context/Context";
+import Context from "./context/Context";
 import MainRoutes from "./routes/mainRoutes";
 import Global from "./style/Global";
 

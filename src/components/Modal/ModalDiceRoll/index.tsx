@@ -12,9 +12,9 @@ import diceRed from "../../../assets/imgs/DiceRoll/diceRed.png";
 import diceRed2 from "../../../assets/imgs/DiceRoll/diceRed2.png";
 import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ModalContext } from "../../../Context/ModalContext";
+import { ModalContext } from "../../../context/ModalContext";
 import Button from "../../Button";
-import { UserContext } from "../../../Context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import api from "../../../services/api";
 
 const DiceRoll = () => {

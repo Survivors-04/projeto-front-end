@@ -1,15 +1,12 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { ModalContext } from "../../../Context/ModalContext";
+import { ModalContext } from "../../../context/ModalContext";
 import { IPokemons } from "../../../pages/Profile";
 import apiDeletePokedex from "../../../services/apiDeletePokedex";
 import apiMarketPost from "../../../services/apiPostMarktet";
 import Button from "../../Button";
 import { toastSuccess } from "../../ToastifyConfig";
 import Modal from "../ModalBase";
-import {
-  StyledContainerButton,
-  StyledModaSell,
-} from "./style";
+import { StyledContainerButton, StyledModaSell } from "./style";
 
 interface IModalSell {
   pokemonSell: IPokemons;

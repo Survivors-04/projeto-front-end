@@ -21,8 +21,8 @@ import apiMarket from "../../services/apiMarket";
 import { StyledParagraph } from "../../components/TypePokemonParagraph/styles";
 import { StyledSpan } from "../../components/TypePokemonSpan/styles";
 import ModalConfirmMarket from "../../components/Modal/ModalConfirmMarket";
-import { ModalContext } from "../../Context/ModalContext";
-import { UserContext } from "../../Context/UserContext";
+import { ModalContext } from "../../context/ModalContext";
+import { UserContext } from "../../context/UserContext";
 import ModalConfirmRemove from "../../components/Modal/ModalConfirmRemove";
 import { toastError } from "../../components/ToastifyConfig";
 
