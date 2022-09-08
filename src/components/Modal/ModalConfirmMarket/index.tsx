@@ -10,6 +10,7 @@ import apiPatchUser, { iData } from "../../../services/apiPatchUser";
 import Button from "../../Button";
 import Modal from "../ModalBase";
 import { StyledModalConfirm } from "../ModalHome/styled";
+import { toast } from "react-toastify";
 
 interface iModalConfirmMarket {
   currentCart: IMarket[];
@@ -60,6 +61,8 @@ const ModalConfirmMarket = ({
     setCurrentCart([]);
     setTotal(0);
     setIsModalConfirmMarket(false);
+
+    toast.success('Pokemons comprados')
   };
 
   return (

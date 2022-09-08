@@ -68,6 +68,8 @@ const Marketplace = () => {
     const removeCartItens = market.filter((e) => e.id !== pokemonId);
 
     setMarket(removeCartItens);
+
+    toast.success("Pokemon removido do mercado");
   };
 
   useEffect(() => {
@@ -153,6 +155,8 @@ const Marketplace = () => {
                           ? "nidorino"
                           : pokemon.Pokemon === "Nidoran-F"
                           ? "nidorina"
+                          : pokemon.Pokemon === "Mr.Mime"
+                          ? "mr._mime"
                           : pokemon.Pokemon.toLowerCase()
                       }.gif`}
                       alt={pokemon.Pokemon}
@@ -208,7 +212,15 @@ const Marketplace = () => {
               : marketFilter.map((pokemon) => (
                   <StyledSinglePokemon key={pokemon.id}>
                     <img
-                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${pokemon.Pokemon.toLowerCase()}.gif`}
+                      src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                        pokemon.Pokemon === "Nidoran-M"
+                          ? "nidorino"
+                          : pokemon.Pokemon === "Nidoran-F"
+                          ? "nidorina"
+                          : pokemon.Pokemon === "Mr.Mime"
+                          ? "mr._mime"
+                          : pokemon.Pokemon.toLowerCase()
+                      }.gif`}
                       alt={pokemon.Pokemon}
                     />
                     <h3>{pokemon.Pokemon}</h3>
@@ -280,7 +292,15 @@ const Marketplace = () => {
                   {currentCart.map(({ id, Pokemon, price }) => (
                     <StyledMiniCard key={id}>
                       <img
-                        src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${Pokemon.toLowerCase()}.gif`}
+                        src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
+                          Pokemon === "Nidoran-M"
+                            ? "nidorino"
+                            : Pokemon === "Nidoran-F"
+                            ? "nidorina"
+                            : Pokemon === "Mr.Mime"
+                            ? "mr._mime"
+                            : Pokemon.toLowerCase()
+                        }.gif`}
                         alt={Pokemon}
                       />
                       <h3>{Pokemon}</h3>

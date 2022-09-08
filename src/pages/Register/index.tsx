@@ -11,6 +11,7 @@ import { HeaderUsers } from "../../components/StylerUser/styles";
 import apiRegister from "../../services/apiRegister";
 
 import AnimationPages from "../../components/AnimationPages";
+import { toast } from "react-toastify";
 
 interface IOnSubmitFunctionProps {
   name?: string;
@@ -37,7 +38,10 @@ const Register = () => {
     data.dateRoll = 0;
 
     const dataUser = data;
-    apiRegister(dataUser).then(() => navigate("/login", { replace: true }));
+    apiRegister(dataUser).then(() => {
+      toast.success("Conta criada com sucesso");
+      navigate("/login", { replace: true });
+    });
   };
 
   return (

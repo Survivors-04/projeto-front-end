@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "../../../Context/UserContext";
 import api from "../../../services/api";
 import boosters from "../../../pages/Home/boosters";
+import { toast } from "react-toastify";
 
 interface iModalHome {
   boosterTitle: string;
@@ -164,6 +165,7 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
       }
     };
 
+    toast.success("Pokemons adicionados a sua coleção");
     pokemonsResult.forEach(async (pokemon) => await addPokemon(pokemon));
   }, [pokemonsResult, user.id]);
 
@@ -180,6 +182,8 @@ export const ModalHome = ({ boosterTitle, boosterPrice }: iModalHome) => {
                     ? "nidorino"
                     : Pokemon === "Nidoran-F"
                     ? "nidorina"
+                    : Pokemon === "Mr.Mime"
+                    ? "mr._mime"
                     : Pokemon.toLowerCase()
                 }.gif`}
                 alt={Pokemon}

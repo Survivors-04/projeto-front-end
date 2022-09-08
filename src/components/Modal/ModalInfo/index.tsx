@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ModalContext } from "../../../Context/ModalContext";
 import Button from "../../Button";
 import Modal from "../ModalBase";
-import { StyledModalConfirm } from "../ModalHome/styled";
 import StyledInfo from "./style";
 
 const ModalInfo = () => {

@@ -3,7 +3,6 @@ import Context from "./Context/Context";
 import MainRoutes from "./routes/mainRoutes";
 import Global from "./style/Global";
 
-
 function App() {
   return (
     <>
@@ -11,7 +10,17 @@ function App() {
         <Global />
         <MainRoutes />
       </Context>
-      <ToastContainer/>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

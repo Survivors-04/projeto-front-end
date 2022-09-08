@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { toast } from "react-toastify";
 import { ModalContext } from "../../../Context/ModalContext";
 import { IPokemons } from "../../../pages/Profile";
 import apiDeletePokedex from "../../../services/apiDeletePokedex";
@@ -47,6 +48,8 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
               });
               setPokemons(newPokemons);
               setIsModalSell(false);
+
+              toast.success("Pokemon adicionado ao mercado");
             }}
           >
             Vender
