@@ -6,37 +6,43 @@ Além disso o usuário pode comprar Pokemons específicos ou pacotes onde as rec
 Há também a Página do usuário onde ele pode visualizar quantos e quais pokemons ele possui.
 Futuramente pretendemos adicionar mais funcionalidades, como por exemplo, batalhas, novos pokemons, interação entre usuários e etc.
 
-### Esta é a homepage do projeto onde o usuário pode comprar pacotes com pokemons aleatórios!
+### Visite o site!
+
+https://pokemon-house.vercel.app/
+
+### Layout:
+
+#### Esta é a homepage do projeto onde o usuário pode comprar pacotes com pokemons aleatórios!
 
 ![PokedexHomepage](https://i.ibb.co/fdvx4v5/Homepage-Pokedex.png)
 
-### O usuário tem direito a um giro de dados diário, onde ele pode conseguir uma quantia aleatória para conseguir comprar seus pokemons ou pacotes. É necessário estar logado para a compra. Confira abaixo:
+#### O usuário tem direito a um giro de dados diário, onde ele pode conseguir uma quantia aleatória para conseguir comprar seus pokemons ou pacotes. É necessário estar logado para a compra. Confira abaixo:
 
 ![RecompensaHomepage](https://i.ibb.co/vLCYDMz/recompensahomepage.png)
 
-### Esta é a página de cadastro onde é necessário o nickname, email e senha do usuário. Confira abaixo:
+#### Esta é a página de cadastro onde é necessário o nickname, email e senha do usuário. Confira abaixo:
 
 ![RegisterPage](https://i.ibb.co/pXpvJkn/register-Page.png)
 
-### Usuário cadastrado pode se logar usando seu email e senha cadastrados anteriormente. Confira abaixo:
+#### Usuário cadastrado pode se logar usando seu email e senha cadastrados anteriormente. Confira abaixo:
 
 ![LoginPage](https://i.ibb.co/p0Xsgvv/login-Page.png)
 
-### Este é o mercado pokemon, onde o usuário pode comprar seus pokemons. Confira abaixo:
+#### Este é o mercado pokemon, onde o usuário pode comprar seus pokemons. Confira abaixo:
 
 ![MarketplacePage](https://i.ibb.co/9vj69dF/Market-Place.png)
 
-### Esta é a página do usuário, onde ele tem acesso a sua coleção pokemon. Também pode visualizar a quantidade de pokemons em sua coleção e vender os pokemons desejados. Confira abaixo:
+#### Esta é a página do usuário, onde ele tem acesso a sua coleção pokemon. Também pode visualizar a quantidade de pokemons em sua coleção e vender os pokemons desejados. Confira abaixo:
 
 ![ProfilePage](https://i.ibb.co/64XSdts/profile.png)
 
-#### Tecnologias usadas:
+##### Tecnologias usadas:
 
 - React
 - TypeScript
 - Context
 
-#### Bibliotecas e hooks usados:
+##### Bibliotecas e hooks usados:
 
 - Axios
 - style-components
@@ -46,3 +52,12 @@ Futuramente pretendemos adicionar mais funcionalidades, como por exemplo, batalh
 - Framer Motion
 - React Icons
 - React toastify
+- Scrum
+
+##### Idealizado e desenvolvido por:
+
+- [João-Reis](https://github.com/reisquaza)
+- [Paulo-Gustavo](https://github.com/ArkanumBR)
+- [Enrique-Barbosa](https://github.com/enriquebds)
+- [Gabriel-Oliveira](https://github.com/GabrielOliveiraBar)
+- [Edmar-Cardoso](https://github.com/Edmar-Cardoso)
