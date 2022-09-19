@@ -82,21 +82,21 @@ const DiceRoll = () => {
     if (roll) {
       setTimeout(() => {
         toRoll();
-      }, 1800);
+      }, 2000);
     }
   }, [roll, setUser, user]);
 
   return (
     <Modal setIs={setIsModalDice}>
       <StyledConteinerModal>
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           {confirmation && (
             <StyledConfirmation
               as={motion.div}
               key={1}
-              initial={{ y: "-100vh", opacity: 0 }}
+              initial={{ y: -1000, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "+100vw" }}
+              exit={{ y: +1000 }}
               transition={{ duration: 0.6, type: "spring" }}
             >
               <motion.div
@@ -134,10 +134,10 @@ const DiceRoll = () => {
             <StyledRollDice
               as={motion.div}
               key={2}
-              initial={{ y: "-100vh", opacity: 0 }}
+              initial={{ y: -1000, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "+100vw" }}
-              transition={{ duration: 0.6, type: "spring", delay: 0.6 }}
+              exit={{ y: +1000 }}
+              transition={{ duration: 0.6, type: "spring" }}
             >
               <StyledDivImgs>
                 {animationResult ? (
@@ -145,7 +145,7 @@ const DiceRoll = () => {
                     <motion.div
                       initial={{ opacity: 1 }}
                       animate={{ opacity: 0 }}
-                      transition={{ duration: 0.4, yoyo: Infinity, delay: 2.5 }}
+                      transition={{ duration: 0.4, yoyo: Infinity, delay: 2 }}
                     >
                       <img src={diceRed} alt="pokemon" />
                     </motion.div>
@@ -155,7 +155,7 @@ const DiceRoll = () => {
                       transition={{
                         duration: 0.4,
                         yoyo: Infinity,
-                        delay: 2,
+                        delay: 1.5,
                       }}
                     >
                       <img src={diceRed2} alt="pokemon" />
@@ -178,7 +178,7 @@ const DiceRoll = () => {
                       transition={{
                         duration: 0.2,
                         yoyo: Infinity,
-                        delay: 2,
+                        delay: 1.5,
                       }}
                     >
                       {numberResult}
@@ -197,10 +197,10 @@ const DiceRoll = () => {
             <StyledResult
               as={motion.div}
               key={3}
-              initial={{ y: "-100vh", opacity: 0 }}
+              initial={{ y: -1000, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "+100vw" }}
-              transition={{ duration: 0.6, type: "spring", delay: 1.2 }}
+              exit={{ y: +1000 }}
+              transition={{ duration: 0.6, type: "spring" }}
             >
               <img src={pikachuDance} alt="pokemon" />
 
