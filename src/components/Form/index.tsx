@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
-
 import { loginSchema } from "../../validations/loginValidations";
-
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -10,7 +8,7 @@ interface IForm {
   userSubmit: SubmitHandler<FieldValues>;
 }
 export interface IOnSubmitFunctionProps {
-  email?: string;
+  username?: string;
   password?: string;
 }
 
@@ -25,13 +23,13 @@ export const Form = ({ children, userSubmit }: IForm) => {
 
   return (
     <form onSubmit={handleSubmit(userSubmit)}>
-      <label htmlFor="email">Email</label>
+      <label htmlFor="username">Nickname</label>
       <input
-        type="email"
+        type="text"
         placeholder="Digite Seu Email"
-        {...register("email")}
+        {...register("username")}
       />
-      <span>{errors.email?.message}</span>
+      <span>{errors.username?.message}</span>
 
       <label htmlFor="password">Senha</label>
       <input

@@ -13,6 +13,7 @@ import { UserContext } from "../../context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
 import api from "../../services/api";
 import { toastError } from "../../components/ToastifyConfig";
+import jwt_decode from "jwt-decode";
 
 interface iLocationState {
   from: {
@@ -22,7 +23,7 @@ interface iLocationState {
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setUser, setIsLogged } = useContext(UserContext);
+  const { setIsLogged } = useContext(UserContext);
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
     const fromPathname = () => {
@@ -38,13 +39,15 @@ const Login = () => {
 
     ApiLogin(data)
       .then((res) => {
+        console.log(res);
         window.localStorage.clear();
-        window.localStorage.setItem("@TOKEN", res.data.accessToken);
-        window.localStorage.setItem("@USERID", res.data.user.id);
-        setUser(res.data.user);
+        window.localStorage.setItem("@TOKEN", res.data.access);
+
+        let decode: any = jwt_decode(res.data.access);
+        console.log(decode);
+        window.localStorage.setItem("@USERID", decode.user_id);
 
         const token = localStorage.getItem("@TOKEN");
-
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
         setIsLogged(true);
