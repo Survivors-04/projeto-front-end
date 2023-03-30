@@ -1,46 +1,64 @@
 import StyledContainer from "../../components/Container/styles";
 import { StyledBoosterList, StyledInfo, StyledInfoContainer } from "./styles";
-import boosters from "./boosters";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContext";
 import { ModalHome } from "../../components/Modal/ModalHome";
 import ModalConfirm from "../../components/Modal/ModalConfirm";
 import AnimationPages from "../../components/AnimationPages";
 import ModalInfo from "../../components/Modal/ModalInfo";
+import apiBoostersList from "../../services/boosters/apiGetBoosters";
+import booster_01 from "../../assets/imgs/boosters/booster_01.png";
+import booster_02 from "../../assets/imgs/boosters/booster_02.png";
+import booster_03 from "../../assets/imgs/boosters/booster_03.png";
+import booster_04 from "../../assets/imgs/boosters/booster_04.png";
+import { iBooster } from "../../interfaces/booster";
 
 const Home = () => {
   const { isModalHome, isModalConfirm, setIsModalConfirm } =
     useContext(ModalContext);
   const { isModalInfo, setIsModalInfo } = useContext(ModalContext);
-  const [boosterTitle, setBoosterTitle] = useState("");
+  const [boosterName, setBoosterName] = useState("");
+  const [boosterId, setBoosterId] = useState("");
   const [boosterPrice, setBoosterPrice] = useState(0);
+  const [boostersAvaiable, setBoostersAvaiable] = useState<iBooster[]>([]);
 
-  const submitBuy = (title: string, price: number) => {
-    setBoosterTitle(title);
+  const submitBuy = (title: string, price: number, id: string) => {
+    setBoosterName(title);
     setBoosterPrice(price);
+    setBoosterId(id);
 
     setIsModalConfirm(true);
   };
 
+  useEffect(() => {
+    const getBoosters = async () => {
+      const boosters: iBooster[] = await apiBoostersList();
+
+      setBoostersAvaiable(boosters);
+    };
+
+    getBoosters();
+  }, []);
+
+  const boostersImgUrl = [booster_01, booster_02, booster_03, booster_04];
+
   return (
     <AnimationPages>
       <Header />
-      {isModalHome && (
-        <ModalHome boosterTitle={boosterTitle} boosterPrice={boosterPrice} />
-      )}
+      {isModalHome && <ModalHome boosterId={boosterId} />}
       {isModalConfirm && (
-        <ModalConfirm boosterTitle={boosterTitle} boosterPrice={boosterPrice} />
+        <ModalConfirm boosterTitle={boosterName} boosterPrice={boosterPrice} />
       )}
       {isModalInfo && <ModalInfo />}
       <StyledContainer>
         <StyledBoosterList>
-          {boosters.map(({ imgUrl, title, price }, index) => (
+          {boostersAvaiable.map(({ price, name, id }, index) => (
             <li key={index}>
-              <img src={imgUrl} alt={title} />
+              <img src={boostersImgUrl[index]} alt={name} />
               <div>
-                <h3>{title}</h3>
+                <h3>{name}</h3>
                 {price && (
                   <>
                     <p>
@@ -48,7 +66,7 @@ const Home = () => {
                     </p>
                     <Button
                       transform="none"
-                      onClick={() => submitBuy(title, price)}
+                      onClick={() => submitBuy(name, price, id)}
                     >
                       Comprar
                     </Button>
@@ -90,8 +108,7 @@ const Home = () => {
             </li>
           </ul>
           <Button max_width={380} onClick={() => setIsModalInfo(true)}>
-            {" "}
-            Mais informações{" "}
+            Mais informações
           </Button>
         </StyledInfo>
       </StyledInfoContainer>

@@ -9,7 +9,7 @@ export interface iData {
 
 const apiPatchUser = async (userId: string | number, data: iData) => {
   try {
-    const response = await api.patch(`/Users/${userId}`, data);
+    const response = await api.patch(`/users/${userId}/`, data);
 
     return response;
   } catch (err) {
