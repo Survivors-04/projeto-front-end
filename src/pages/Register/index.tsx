@@ -13,7 +13,7 @@ import AnimationPages from "../../components/AnimationPages";
 import { toastSuccess } from "../../components/ToastifyConfig";
 
 interface IOnSubmitFunctionProps {
-  name?: string;
+  username?: string;
   email?: string;
   password?: string;
   confirmPassword?: string;
@@ -56,13 +56,13 @@ const Register = () => {
           <main>
             <h2>Crie sua conta</h2>
             <form onSubmit={handleSubmit(onSubmitFunction)}>
-              <label htmlFor="name">Nickname</label>
+              <label htmlFor="username">Nickname</label>
               <input
                 type="text"
                 placeholder="Digite Seu nickname"
-                {...register("name")}
+                {...register("username")}
               />
-              <span>{errors.name?.message}</span>
+              <span>{errors.username?.message}</span>
 
               <label htmlFor="email">Email</label>
               <input

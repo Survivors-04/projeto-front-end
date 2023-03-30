@@ -10,7 +10,7 @@ interface IForm {
   userSubmit: SubmitHandler<FieldValues>;
 }
 export interface IOnSubmitFunctionProps {
-  email?: string;
+  username?: string;
   password?: string;
 }
 
@@ -25,13 +25,13 @@ export const Form = ({ children, userSubmit }: IForm) => {
 
   return (
     <form onSubmit={handleSubmit(userSubmit)}>
-      <label htmlFor="email">Email</label>
+      <label htmlFor="username">Username</label>
       <input
-        type="email"
-        placeholder="Digite Seu Email"
-        {...register("email")}
+        type="username"
+        placeholder="Digite Seu username"
+        {...register("username")}
       />
-      <span>{errors.email?.message}</span>
+      <span>{errors.username?.message}</span>
 
       <label htmlFor="password">Senha</label>
       <input
