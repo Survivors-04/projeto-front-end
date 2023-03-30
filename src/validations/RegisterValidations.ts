@@ -9,5 +9,5 @@ export  const formSchema = yup.object().shape({
   .matches(/(\d)/, "deve conter ao menos 1 número")
   .matches(/(\W)|_/, "deve conter ao menos 1 caracter especial")
   .matches(/.{8}/, "deve conter ao menos 8 dígitos"),
-name:yup.string().required("Nickname obrigatório!")
+  username:yup.string().required("Nickname obrigatório!")
 });
