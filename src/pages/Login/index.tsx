@@ -13,7 +13,7 @@ import { UserContext } from "../../context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
 import api from "../../services/api";
 import { toastError } from "../../components/ToastifyConfig";
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 interface iLocationState {
   from: {
@@ -39,7 +39,6 @@ const Login = () => {
 
     ApiLogin(data)
       .then((res) => {
-        console.log(res);
         window.localStorage.clear();
         window.localStorage.setItem("@TOKEN", res.data.access);
 
@@ -56,7 +55,7 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
 
-        toastError("Email ou senha incorreto(s)");
+        toastError("Username ou senha incorreto(s)");
       });
   };
   return (

@@ -60,14 +60,13 @@ const Register = () => {
           <main>
             <h2>Crie sua conta</h2>
             <form onSubmit={handleSubmit(onSubmitFunction)}>
-              <label htmlFor="name">Nickname</label>
+              <label htmlFor="username">Nickname</label>
               <input
                 type="text"
                 placeholder="Digite Seu nickname"
                 {...register("username")}
               />
               <span>{errors.username?.message}</span>
-
               <label htmlFor="name">Nome</label>
               <input
                 type="text"
@@ -75,7 +74,6 @@ const Register = () => {
                 {...register("first_name")}
               />
               <span>{errors.first_name?.message}</span>
-
               <label htmlFor="name">Sobrenome</label>
               <input
                 type="text"
@@ -83,7 +81,6 @@ const Register = () => {
                 {...register("last_name")}
               />
               <span>{errors.last_name?.message}</span>
-
               <label htmlFor="email">Email</label>
               <input
                 type="email"

@@ -23,10 +23,10 @@ export const Form = ({ children, userSubmit }: IForm) => {
 
   return (
     <form onSubmit={handleSubmit(userSubmit)}>
-      <label htmlFor="username">Nickname</label>
+      <label htmlFor="username">Username</label>
       <input
-        type="text"
-        placeholder="Digite Seu Email"
+        type="username"
+        placeholder="Digite Seu username"
         {...register("username")}
       />
       <span>{errors.username?.message}</span>

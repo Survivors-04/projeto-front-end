@@ -8,7 +8,7 @@ export interface IApiRegister {
   gold?: number;
 }
 const apiRegister = async (data: IApiRegister) => {
-  await Api.post("users/", data);
+  await Api.post("/users/", data);
 };
 
 export default apiRegister;
