@@ -23,7 +23,7 @@ interface iLocationState {
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setUser, setIsLogged } = useContext(UserContext);
+  const { setIsLogged } = useContext(UserContext);
 
   const onSubmitFunction = (data: IOnSubmitFunctionProps) => {
     const fromPathname = () => {
@@ -39,15 +39,14 @@ const Login = () => {
 
     ApiLogin(data)
       .then((res) => {
-        console.log(res)
         window.localStorage.clear();
         window.localStorage.setItem("@TOKEN", res.data.access);
+
+        let decode: any = jwt_decode(res.data.access);
+        console.log(decode);
+        window.localStorage.setItem("@USERID", decode.user_id);
+
         const token = localStorage.getItem("@TOKEN");
-
-        const decoded = jwtDecode(token!)
-        const { id }: any = decoded
-        window.localStorage.setItem("@USERID", id)             
-
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
         setIsLogged(true);

@@ -7,7 +7,6 @@ interface IContainerProps {
 export const ContainerUsers = styled.div<IContainerProps>`
   width: 400px;
   max-width: 300px;
-  height: 458px;
   margin: 0px;
   background: rgba(255, 215, 0, 0.9);
   margin-top: 0px;
@@ -39,7 +38,7 @@ export const ContainerUsers = styled.div<IContainerProps>`
       font-weight: 700;
       font-size: 20px;
       color: var(--color-gray-4);
-      margin-bottom: 35px;
+      margin: 15px 0px 18px 0px;
     }
 
     form {
@@ -57,17 +56,18 @@ export const ContainerUsers = styled.div<IContainerProps>`
         font-size: 15px;
         display: flex;
         justify-content: flex-start;
-        margin-bottom: 7px;
+        margin: 7px 0px 7px 0px;
       }
       input {
         max-width: 230px;
-        height: 30px;
+        height: 35px;
         border: 2px solid transparent;
         outline: none;
         border-bottom: 2px solid #3f3f3f;
         caret-color: #3f3f3f;
         background-color: #212121;
         padding: 5px;
+        margin-bottom: 8px;
         color: var(--color-gray-0);
         transition: 0.5s linear;
         letter-spacing: 1px;
@@ -85,8 +85,10 @@ export const ContainerUsers = styled.div<IContainerProps>`
       }
 
       span {
+        max-width: 230px;
         color: var(--color-red);
         font-weight: 700;
+        text-align: center;
       }
 
       button {
