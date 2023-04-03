@@ -10,6 +10,7 @@ import {
 import { toastError, toastSuccess } from "../components/ToastifyConfig";
 
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface IUserProvider {
   children: ReactNode;
@@ -23,12 +24,14 @@ export interface IUserContext {
 }
 
 export interface iUser {
-  id: number;
+  id: string;
   gold: number;
   email: string;
   name: string;
   password: string;
   dateRoll: number;
+  first_name: string;
+  last_name: string;
 }
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -36,11 +39,31 @@ export const UserContext = createContext<IUserContext>({} as IUserContext);
 const UserProvider = ({ children }: IUserProvider) => {
   const [user, setUser] = useState<iUser>({} as iUser);
   const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem("@TOKEN");
       const userID = localStorage.getItem("@USERID");
+      const tokenExpiration = localStorage.getItem("@TOKENEXP");
+
+      const isTokenExpired = (expirationTime: string): boolean => {
+        const expirationTimestamp = new Date(
+          Number(expirationTime) * 1000
+        ).getTime();
+
+        const nowTimestamp = Date.now();
+
+        return nowTimestamp > expirationTimestamp;
+      };
+
+      if (tokenExpiration && isTokenExpired(tokenExpiration)) {
+        localStorage.clear();
+
+        setIsLogged(false);
+
+        navigate("/", { replace: true });
+      }
 
       if (token) {
         try {
@@ -57,7 +80,7 @@ const UserProvider = ({ children }: IUserProvider) => {
     };
 
     loadUser();
-  }, []);
+  }, [navigate]);
 
   const notify = (data: any) => {
     data
