@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useContext } from "react";
 import { ModalContext } from "../../../context/ModalContext";
 import { IMarket } from "../../../pages/Marketplace";
-import apiAddPokemon from "../../../services/apiAddPokemon";
 import apiMarketDelete from "../../../services/apiMarketDelete";
 import Button from "../../Button";
 import { toastSuccess } from "../../ToastifyConfig";
@@ -27,8 +26,6 @@ const ModalConfirmRemove = ({
 
   const removePokemon = async () => {
     await apiMarketDelete(pokemonId);
-
-    await apiAddPokemon(userId, pokemon);
 
     const removeCartItens = market.filter((e) => e.id !== pokemonId);
 

@@ -1,23 +1,27 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { ModalContext } from "../../../context/ModalContext";
-import { IPokemons } from "../../../pages/Profile";
+import { iPokemonUser, iPokemonUserUpdate } from "../../../interfaces/pokemons";
 import apiDeletePokedex from "../../../services/apiDeletePokedex";
 import apiMarketPost from "../../../services/apiPostMarktet";
 import Button from "../../Button";
 import { toastSuccess } from "../../ToastifyConfig";
 import Modal from "../ModalBase";
 import { StyledContainerButton, StyledModaSell } from "./style";
+import apiUpdatePokemonUser from "../../../services/pokemons/apiUpdatePokemonUser";
 
 interface IModalSell {
-  pokemonSell: IPokemons;
-  pokemons: IPokemons[];
-  setPokemons: Dispatch<SetStateAction<IPokemons[]>>;
+  pokemonSell: iPokemonUser;
+  setRefreshkey: Dispatch<SetStateAction<number>>;
 }
 
-const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
+const ModalSell = ({ pokemonSell, setRefreshkey }: IModalSell) => {
   const { setIsModalSell } = useContext(ModalContext);
   const [valueSell, setValueSell] = useState("");
-  const priceSell = (pokemonSell.price = Number(valueSell));
+
+  const data: iPokemonUserUpdate = {
+    price: Number(valueSell),
+    on_marketplace: true,
+  };
 
   return (
     <Modal setIs={setIsModalSell}>
@@ -36,13 +40,9 @@ const ModalSell = ({ pokemonSell, pokemons, setPokemons }: IModalSell) => {
           <Button
             width={60}
             onClick={() => {
-              apiMarketPost(pokemonSell);
-              apiDeletePokedex(pokemonSell.id);
+              apiUpdatePokemonUser(data, pokemonSell.id);
+              setRefreshkey((oldKey) => oldKey + 1);
 
-              const newPokemons = pokemons.filter((elem) => {
-                return elem.id !== pokemonSell.id;
-              });
-              setPokemons(newPokemons);
               setIsModalSell(false);
 
               toastSuccess("Pokemon adicionado ao mercado");

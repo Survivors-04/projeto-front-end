@@ -3,7 +3,6 @@ import { ModalContext } from "../../../context/ModalContext";
 import { UserContext } from "../../../context/UserContext";
 import { IMarket } from "../../../pages/Marketplace";
 import { v4 as uuidv4 } from "uuid";
-import apiAddPokemon from "../../../services/apiAddPokemon";
 import apiGetUserID from "../../../services/apiGetUserID";
 import apiMarketDelete from "../../../services/apiMarketDelete";
 import apiPatchUser, { iData } from "../../../services/apiPatchUser";
@@ -55,7 +54,6 @@ const ModalConfirmMarket = ({
 
       const newPokemon = { ...pokemon, userId: user.id, id: pokemonId };
 
-      await apiAddPokemon(user.id, newPokemon);
     });
 
     setCurrentCart([]);

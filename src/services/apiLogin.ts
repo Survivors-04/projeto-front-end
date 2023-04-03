@@ -6,7 +6,7 @@ export interface IApiLogin {
 }
 
 const ApiLogin = (data: IApiLogin) => {
-  const response = api.post("users/login", data);
+  const response = api.post("login/", data);
   return response;
 };
 

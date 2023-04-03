@@ -32,7 +32,7 @@ const Login = () => {
 
         return from.pathname;
       } else {
-        return "/profile";
+        return "/";
       }
     };
     const toNavigate = fromPathname();
@@ -42,9 +42,10 @@ const Login = () => {
         window.localStorage.clear();
         window.localStorage.setItem("@TOKEN", res.data.access);
 
-        let decode: any = jwt_decode(res.data.access);
+        let decode: any = jwtDecode(res.data.access);
         console.log(decode);
         window.localStorage.setItem("@USERID", decode.user_id);
+        window.localStorage.setItem("@TOKENEXP", decode.exp);
 
         const token = localStorage.getItem("@TOKEN");
         api.defaults.headers.common.Authorization = `Bearer ${token}`;

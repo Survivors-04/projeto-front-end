@@ -12,58 +12,53 @@ import Button from "../../components/Button";
 import ModalSell from "../../components/Modal/ModalSell";
 import { ModalContext } from "../../context/ModalContext";
 import AnimationPages from "../../components/AnimationPages";
-
-export interface IPokemons {
-  Pokemon: string;
-  Rarity: string;
-  Number: number;
-  Type01: string;
-  Type02: string;
-  userId: number;
-  id: number | string;
-  price: number;
-}
+import apiReadPokemonUser from "../../services/pokemons/apiReadPokemonUser";
+import { iPokemonUser } from "../../interfaces/pokemons";
 
 const Profile = () => {
-  const [pokemons, setPokemons] = useState<IPokemons[]>([]);
+  const [pokemons, setPokemons] = useState<iPokemonUser[]>([]);
   const [countCommons, setCountCommons] = useState(0);
   const [countRares, setCountRares] = useState(0);
-  const [pokemonSell, setPokemonSell] = useState({} as IPokemons);
+  const [pokemonSell, setPokemonSell] = useState({} as iPokemonUser);
   const { isModalSell, setIsModalSell } = useContext(ModalContext);
   const [countEpics, setCountEpics] = useState(0);
   const [countLegendary, setCountLegendary] = useState(0);
   const { user } = useContext(UserContext);
   const [userInput, setUserInput] = useState("");
-  const [pokemonsFiltered, setPokemonsFiltered] = useState<IPokemons[]>([]);
+  const [pokemonsFiltered, setPokemonsFiltered] = useState<iPokemonUser[]>([]);
+  const [refreshKey, setrefreshKey] = useState(0);
 
   useEffect(() => {
-    api.get(`/Users/${user.id}/pokedexUser`).then((response) => {
-      setPokemons(response.data);
+    apiReadPokemonUser(user.id).then((response) => {
+      const pokemonFilter = response.filter(
+        (pokemon) => pokemon.on_marketplace === false
+      );
+      setPokemons(pokemonFilter);
     });
-  }, [user.id]);
+  }, [user.id, refreshKey]);
 
   useEffect(() => {
     const countRares = () => {
       let countRaresPokemons = pokemons.filter(
-        (pokemon) => pokemon.Rarity === "Rare"
+        (pokemon) => pokemon.rarity === "R"
       ).length;
       setCountRares(countRaresPokemons);
     };
     const countCommons = () => {
       let countCommonsPokemons = pokemons.filter(
-        (pokemon) => pokemon.Rarity === "Common"
+        (pokemon) => pokemon.rarity === "C"
       ).length;
       setCountCommons(countCommonsPokemons);
     };
     const countEpics = () => {
       let countEpicsPokemons = pokemons.filter(
-        (pokemon) => pokemon.Rarity === "Epic"
+        (pokemon) => pokemon.rarity === "E"
       ).length;
       setCountEpics(countEpicsPokemons);
     };
     const countLegendary = () => {
       let countLegendaryPokemons = pokemons.filter(
-        (pokemon) => pokemon.Rarity === "Legendary"
+        (pokemon) => pokemon.rarity === "L"
       ).length;
       setCountLegendary(countLegendaryPokemons);
     };
@@ -82,26 +77,34 @@ const Profile = () => {
         .toLowerCase();
 
       const filter = pokemons.filter((poke) => {
-        let name = poke.Pokemon.normalize("NFD")
+        let name = poke.name
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
-        let rarity = poke.Rarity.normalize("NFD")
+        let rarity = poke.rarity
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
 
-        let type01 = poke.Type01.normalize("NFD")
+        let type_1 = poke.type_1
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
 
-        let type02 = poke.Type02.normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLowerCase();
+        // let type_2 = "";
+
+        // if (type_2 !== null) {
+        //   type_2 = poke
+        //     .type_2!.normalize("NFD")
+        //     .replace(/[\u0300-\u036f]/g, "")
+        //     .toLowerCase();
+        // }
 
         if (
           name.includes(search) ||
           rarity.includes(search) ||
-          type01.includes(search) ||
-          type02.includes(search)
+          type_1.includes(search)
+          // type_2.includes(search)
         ) {
           return poke;
         }
@@ -129,7 +132,10 @@ const Profile = () => {
               </figure>
 
               <ul>
-                <li>{user.name}</li>
+                <li>
+                  {user.first_name} {user.last_name}
+                </li>
+
                 <li>Coleção: {pokemons.length}</li>
                 <li>Comuns: {countCommons}</li>
                 <li>Raros: {countRares}</li>
@@ -172,39 +178,39 @@ const Profile = () => {
                       <figure>
                         <img
                           src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                            pokemon.Pokemon === "Nidoran-M"
+                            pokemon.name === "Nidoran-M"
                               ? "nidorino"
-                              : pokemon.Pokemon === "Nidoran-F"
+                              : pokemon.name === "Nidoran-F"
                               ? "nidorina"
-                              : pokemon.Pokemon === "Mr.Mime"
+                              : pokemon.name === "Mr.Mime"
                               ? "mr._mime"
-                              : pokemon.Pokemon.toLowerCase()
+                              : pokemon.name.toLowerCase()
                           }.gif`}
-                          alt={pokemon.Pokemon}
+                          alt={pokemon.name}
                         />
                       </figure>
 
-                      <h3>{pokemon.Pokemon}</h3>
+                      <h3>{pokemon.name}</h3>
 
                       <div>
                         <StyledParagraph
-                          backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                          backgroundColor={`var(--color-type-${pokemon.type_1.toLowerCase()})`}
                         >
-                          {pokemon.Type01.charAt(0).toUpperCase() +
-                            pokemon.Type01.slice(1)}
+                          {pokemon.type_1.charAt(0).toUpperCase() +
+                            pokemon.type_1.slice(1)}
                         </StyledParagraph>
-                        {pokemon.Type02 !== "null" ? (
+                        {pokemon.type_2 !== null ? (
                           <StyledSpan
-                            backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                            backgroundColor={`var(--color-type-${pokemon.type_2!.toLowerCase()})`}
                           >
-                            {pokemon.Type02.charAt(0).toUpperCase() +
-                              pokemon.Type02.slice(1)}
+                            {pokemon.type_2!.charAt(0).toUpperCase() +
+                              pokemon.type_2!.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
                         )}
                       </div>
-                      <p>{pokemon.Rarity}</p>
+                      <p>{pokemon.rarity}</p>
                       <Button
                         width={80}
                         hover={"var(--color-yellow-focus)"}
@@ -224,39 +230,39 @@ const Profile = () => {
                       <figure>
                         <img
                           src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                            pokemon.Pokemon === "Nidoran-M"
+                            pokemon.name === "Nidoran-M"
                               ? "nidorino"
-                              : pokemon.Pokemon === "Nidoran-F"
+                              : pokemon.name === "Nidoran-F"
                               ? "nidorina"
-                              : pokemon.Pokemon === "Mr.Mime"
+                              : pokemon.name === "Mr.Mime"
                               ? "mr._mime"
-                              : pokemon.Pokemon.toLowerCase()
+                              : pokemon.name.toLowerCase()
                           }.gif`}
-                          alt={pokemon.Pokemon}
+                          alt={pokemon.name}
                         />
                       </figure>
 
-                      <h3>{pokemon.Pokemon}</h3>
+                      <h3>{pokemon.name}</h3>
 
                       <div>
                         <StyledParagraph
-                          backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                          backgroundColor={`var(--color-type-${pokemon.type_1.toLowerCase()})`}
                         >
-                          {pokemon.Type01.charAt(0).toUpperCase() +
-                            pokemon.Type01.slice(1)}
+                          {pokemon.type_1.charAt(0).toUpperCase() +
+                            pokemon.type_1.slice(1)}
                         </StyledParagraph>
-                        {pokemon.Type02 !== "null" ? (
+                        {pokemon.type_2! !== "null" ? (
                           <StyledSpan
-                            backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                            backgroundColor={`var(--color-type-${pokemon.type_2!.toLowerCase()})`}
                           >
-                            {pokemon.Type02.charAt(0).toUpperCase() +
-                              pokemon.Type02.slice(1)}
+                            {pokemon.type_2!.charAt(0).toUpperCase() +
+                              pokemon.type_2!.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
                         )}
                       </div>
-                      <p>{pokemon.Rarity}</p>
+                      <p>{pokemon.rarity}</p>
                       <Button
                         width={80}
                         hover={"var(--color-yellow-focus)"}
@@ -275,8 +281,7 @@ const Profile = () => {
               {isModalSell && (
                 <ModalSell
                   pokemonSell={pokemonSell}
-                  pokemons={pokemons}
-                  setPokemons={setPokemons}
+                  setRefreshkey={setrefreshKey}
                 />
               )}
             </StyledList>
