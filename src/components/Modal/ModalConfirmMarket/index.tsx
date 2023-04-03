@@ -44,11 +44,11 @@ const ModalConfirmMarket = ({
       });
       setMarket(newPokemons);
 
-      const seller: iData = await apiGetUserID(pokemon.userId);
+      const seller: iData = await apiGetUserID(pokemon.user);
 
       const totalGold: iData = { gold: seller.gold + pokemon.price };
 
-      await apiPatchUser(pokemon.userId, totalGold);
+      await apiPatchUser(pokemon.user, totalGold);
 
       const pokemonId = uuidv4();
 

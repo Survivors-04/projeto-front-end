@@ -27,14 +27,15 @@ import ModalConfirmRemove from "../../components/Modal/ModalConfirmRemove";
 import { toastError } from "../../components/ToastifyConfig";
 
 export interface IMarket {
-  Pokemon: string;
-  Rarity: string;
-  Number: number;
-  Type01: string;
-  Type02: string;
   id: string | number;
-  userId: string | number;
+  name: string;
+  on_marketplace: boolean;
+  pokedex: number;
   price: number;
+  rarity: string;
+  type01: string;
+  type02: string;
+  user: string | number;
 }
 
 const Marketplace = () => {
@@ -79,18 +80,22 @@ const Marketplace = () => {
         .toLowerCase();
 
       const filter = market.filter((poke) => {
-        let name = poke.Pokemon.normalize("NFD")
+        let name = poke.name
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
-        let rarity = poke.Rarity.normalize("NFD")
+        let rarity = poke.rarity
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
 
-        let type01 = poke.Type01.normalize("NFD")
+        let type01 = poke.type01
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
 
-        let type02 = poke.Type02.normalize("NFD")
+        let type02 = poke.type02
+          .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
           .toLowerCase();
 
@@ -112,11 +117,14 @@ const Marketplace = () => {
 
   useEffect(() => {
     const markList = async () => {
-      const marketList = await apiMarket();
-      const marketData = marketList?.data;
-      setMarket(marketData);
+      await apiMarket()
+        .then((res) => {
+          setMarket(res?.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     };
-
     markList();
   }, []);
 
@@ -130,6 +138,7 @@ const Marketplace = () => {
     }
   };
 
+  console.log(market);
   return (
     <>
       <AnimationPages>
@@ -159,50 +168,50 @@ const Marketplace = () => {
                   <StyledSinglePokemon key={pokemon.id}>
                     <img
                       src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                        pokemon.Pokemon === "Nidoran-M"
+                        pokemon.name === "Nidoran-M"
                           ? "nidorino"
-                          : pokemon.Pokemon === "Nidoran-F"
+                          : pokemon.name === "Nidoran-F"
                           ? "nidorina"
-                          : pokemon.Pokemon === "Mr.Mime"
+                          : pokemon.name === "Mr.Mime"
                           ? "mr._mime"
-                          : pokemon.Pokemon.toLowerCase()
+                          : pokemon.name.toLowerCase()
                       }.gif`}
-                      alt={pokemon.Pokemon}
+                      alt={pokemon.name}
                     />
-                    <h3>{pokemon.Pokemon}</h3>
+                    <h3>{pokemon.name}</h3>
                     <>
                       <StyledDivTipo>
                         <StyledParagraph
-                          backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                          backgroundColor={`var(--color-type-${pokemon.type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01.charAt(0).toUpperCase() +
-                            pokemon.Type01.slice(1)}
+                          {pokemon.type01.charAt(0).toUpperCase() +
+                            pokemon.type01.slice(1)}
                         </StyledParagraph>
-                        {pokemon.Type02 !== "null" ? (
+                        {pokemon.type02 !== "null" ? (
                           <StyledSpan
-                            backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                            backgroundColor={`var(--color-type-${pokemon.type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02.charAt(0).toUpperCase() +
-                              pokemon.Type02.slice(1)}
+                            {pokemon.type02.charAt(0).toUpperCase() +
+                              pokemon.type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
                         )}
                       </StyledDivTipo>
                     </>
-                    <h4>{pokemon.Rarity}</h4>
+                    <h4>{pokemon.rarity}</h4>
                     <div>
                       <p>
                         Preço: <span> {pokemon.price}g</span>
                       </p>
                     </div>
 
-                    {String(user.id) === pokemon.userId ? (
+                    {String(user.id) === pokemon.user ? (
                       <Button
                         width={80}
                         hover={"var(--color-red-focus)"}
                         onClick={() =>
-                          removePokemon(pokemon.id, pokemon.userId, pokemon)
+                          removePokemon(pokemon.id, pokemon.user, pokemon)
                         }
                       >
                         Remover
@@ -222,49 +231,49 @@ const Marketplace = () => {
                   <StyledSinglePokemon key={pokemon.id}>
                     <img
                       src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                        pokemon.Pokemon === "Nidoran-M"
+                        pokemon.name === "Nidoran-M"
                           ? "nidorino"
-                          : pokemon.Pokemon === "Nidoran-F"
+                          : pokemon.name === "Nidoran-F"
                           ? "nidorina"
-                          : pokemon.Pokemon === "Mr.Mime"
+                          : pokemon.name === "Mr.Mime"
                           ? "mr._mime"
-                          : pokemon.Pokemon.toLowerCase()
+                          : pokemon.name.toLowerCase()
                       }.gif`}
-                      alt={pokemon.Pokemon}
+                      alt={pokemon.name}
                     />
-                    <h3>{pokemon.Pokemon}</h3>
+                    <h3>{pokemon.name}</h3>
                     <>
                       <StyledDivTipo>
                         <StyledParagraph
-                          backgroundColor={`var(--color-type-${pokemon.Type01.toLowerCase()})`}
+                          backgroundColor={`var(--color-type-${pokemon.type01.toLowerCase()})`}
                         >
-                          {pokemon.Type01.charAt(0).toUpperCase() +
-                            pokemon.Type01.slice(1)}
+                          {pokemon.type01.charAt(0).toUpperCase() +
+                            pokemon.type01.slice(1)}
                         </StyledParagraph>
-                        {pokemon.Type02 !== "null" ? (
+                        {pokemon.type02 !== "null" ? (
                           <StyledSpan
-                            backgroundColor={`var(--color-type-${pokemon.Type02.toLowerCase()})`}
+                            backgroundColor={`var(--color-type-${pokemon.type02.toLowerCase()})`}
                           >
-                            {pokemon.Type02.charAt(0).toUpperCase() +
-                              pokemon.Type02.slice(1)}
+                            {pokemon.type02.charAt(0).toUpperCase() +
+                              pokemon.type02.slice(1)}
                           </StyledSpan>
                         ) : (
                           <></>
                         )}
                       </StyledDivTipo>
                     </>
-                    <h4>{pokemon.Rarity}</h4>
+                    <h4>{pokemon.rarity}</h4>
                     <div>
                       <p>
                         Preço: <span> {pokemon.price}g</span>
                       </p>
                     </div>
-                    {String(user.id) === pokemon.userId ? (
+                    {String(user.id) === pokemon.user ? (
                       <Button
                         width={80}
                         hover={"var(--color-red-focus)"}
                         onClick={() =>
-                          removePokemon(pokemon.id, pokemon.userId, pokemon)
+                          removePokemon(pokemon.id, pokemon.user, pokemon)
                         }
                       >
                         Remover
@@ -298,21 +307,21 @@ const Marketplace = () => {
               <h2>Carrinho</h2>
               {currentCart.length > 0 ? (
                 <StyledDivOverflow>
-                  {currentCart.map(({ id, Pokemon, price }) => (
+                  {currentCart.map(({ id, name, price }) => (
                     <StyledMiniCard key={id}>
                       <img
                         src={`https://www.pkparaiso.com/imagenes/xy/sprites/animados/${
-                          Pokemon === "Nidoran-M"
+                          name === "Nidoran-M"
                             ? "nidorino"
-                            : Pokemon === "Nidoran-F"
+                            : name === "Nidoran-F"
                             ? "nidorina"
-                            : Pokemon === "Mr.Mime"
+                            : name === "Mr.Mime"
                             ? "mr._mime"
-                            : Pokemon.toLowerCase()
+                            : name.toLowerCase()
                         }.gif`}
-                        alt={Pokemon}
+                        alt={name}
                       />
-                      <h3>{Pokemon}</h3>
+                      <h3>{name}</h3>
                       <div>
                         <p>Preço</p>
                         <StyledCartPrice>{price}g</StyledCartPrice>

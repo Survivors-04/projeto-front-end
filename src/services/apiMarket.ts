@@ -1,12 +1,8 @@
-
-
 import api from "./api";
-
-
 
 const apiMarket = async () => {
   try {
-    const marketList = await api.get("/marketPlace");
+    const marketList = await api.get("/api/marketplace/");
 
     return marketList;
   } catch (err) {
