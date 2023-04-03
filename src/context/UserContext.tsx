@@ -47,7 +47,7 @@ const UserProvider = ({ children }: IUserProvider) => {
           api.defaults.headers.common.Authorization = `Bearer ${token}`;
           setIsLogged(true);
 
-          const { data } = await api.get(`users/${userID}`);
+          const { data } = await api.get(`/users/${userID}`);
 
           setUser(data);
         } catch (err) {

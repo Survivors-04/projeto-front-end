@@ -42,7 +42,7 @@ const ModalConfirmRemove = ({
   return (
     <Modal setIs={setIsModalConfirmRemove}>
       <StyledModalConfirm>
-        <h3>Deseja remover o(a) {pokemon.Pokemon} do mercado? </h3>
+        <h3>Deseja remover o(a) {pokemon.name} do mercado? </h3>
         <Button width={50} onClick={() => removePokemon()}>
           Confirmar
         </Button>

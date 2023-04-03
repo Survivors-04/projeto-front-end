@@ -13,7 +13,7 @@ import { UserContext } from "../../context/UserContext";
 import AnimationPages from "../../components/AnimationPages";
 import api from "../../services/api";
 import { toastError } from "../../components/ToastifyConfig";
-import jwtDecode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 interface iLocationState {
   from: {
